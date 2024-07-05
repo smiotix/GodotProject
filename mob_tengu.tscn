@@ -1,0 +1,150 @@
+[gd_scene load_steps=14 format=3 uid="uid://bbavo3fqvfpmo"]
+
+[ext_resource type="PackedScene" uid="uid://bc2pojclx3i8k" path="res://mob_tengu.glb" id="1_lurqd"]
+[ext_resource type="Animation" uid="uid://canutncxnpmtc" path="res://sword_attack.tres" id="2_7tqdm"]
+[ext_resource type="Material" uid="uid://b3pkh23sjb0s5" path="res://gobot_celshaded04.tres" id="2_50k5q"]
+[ext_resource type="Material" uid="uid://8px8f12vlsc3" path="res://gobot_celshaded.tres" id="2_78x2u"]
+[ext_resource type="PackedScene" uid="uid://bwnpea5c72irq" path="res://tate.tscn" id="2_mgtbs"]
+[ext_resource type="Material" uid="uid://bxnmlau2cbgpn" path="res://gobot_celshaded01.tres" id="3_51pt3"]
+[ext_resource type="Material" uid="uid://65hxltror3id" path="res://gobot_celshaded07.tres" id="4_a4cr0"]
+[ext_resource type="Material" uid="uid://oai3kx0a3yxp" path="res://gobot_celshaded02.tres" id="4_ixvcv"]
+[ext_resource type="Material" uid="uid://dp8nneb6bp3b3" path="res://gobot_celshaded06.tres" id="4_qlqkb"]
+[ext_resource type="Material" uid="uid://05ha8o2fii2q" path="res://gobot_celshaded05.tres" id="5_hmbop"]
+[ext_resource type="Material" uid="uid://76gpgohcm0g7" path="res://gobot_celshaded03.tres" id="6_acq0r"]
+[ext_resource type="PackedScene" uid="uid://dt4tg0jbi1mc2" path="res://blade.tscn" id="11_bvhcg"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_benol"]
+_data = {
+"sword_attack": ExtResource("2_7tqdm")
+}
+
+[node name="mob_tengu" instance=ExtResource("1_lurqd")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Armature" index="0"]
+libraries = {
+"anim01": SubResource("AnimationLibrary_benol")
+}
+
+[node name="GeneralSkeleton" parent="Armature" index="1"]
+bones/1/rotation = Quaternion(0.0818962, -0.45112, 0.0288784, 0.888228)
+bones/2/rotation = Quaternion(0.0646651, 0.026735, -0.0338577, 0.996974)
+bones/3/rotation = Quaternion(0.00735618, 0.0102021, 0.0130065, 0.999836)
+bones/4/rotation = Quaternion(0.000360683, 0.00947792, 0.00418167, 0.999946)
+bones/5/rotation = Quaternion(-0.00775113, 0.0864304, -0.0198152, 0.996031)
+bones/6/rotation = Quaternion(-0.0582492, 0.205572, -0.0423777, 0.975987)
+bones/9/rotation = Quaternion(0.475491, 0.532809, 0.534503, -0.452028)
+bones/10/rotation = Quaternion(0.0695215, 0.901948, -0.424739, 0.0354094)
+bones/11/rotation = Quaternion(0.68251, -0.494284, 0.362078, 0.39845)
+bones/12/rotation = Quaternion(0.0214811, 0.703379, -0.0258675, 0.710019)
+bones/13/rotation = Quaternion(-0.178986, 0.795017, 0.118765, 0.567281)
+bones/14/rotation = Quaternion(-0.0843263, 0.415582, 0.309575, 0.851084)
+bones/15/rotation = Quaternion(-2.98023e-08, 2.98023e-08, 0, 1)
+bones/16/rotation = Quaternion(0.554867, 0.0213068, 0.0317305, 0.83106)
+bones/17/rotation = Quaternion(0.570447, 0.00988244, -0.0140915, 0.821154)
+bones/19/rotation = Quaternion(0.619232, 0.0259869, 0.0338803, 0.784046)
+bones/20/rotation = Quaternion(0.5536, 0.00836828, -0.0112214, 0.832665)
+bones/22/rotation = Quaternion(0.51728, -0.00513741, 0.00999922, 0.855743)
+bones/23/rotation = Quaternion(0.591327, -0.00684555, -0.00780416, 0.806365)
+bones/24/rotation = Quaternion(5.96046e-08, 4.47035e-08, 0, 1)
+bones/25/rotation = Quaternion(0.602546, 0.00235452, 0.000885605, 0.798081)
+bones/26/rotation = Quaternion(0.411104, 0.00151872, 0.000537992, 0.911587)
+bones/28/rotation = Quaternion(0.604868, -0.43566, -0.437218, -0.503165)
+bones/29/rotation = Quaternion(-0.0168671, 0.922923, -0.383266, 0.0321949)
+bones/30/rotation = Quaternion(0.48188, 0.597371, -0.405585, 0.496428)
+bones/31/rotation = Quaternion(0.190007, -0.697928, -0.0476436, 0.688857)
+bones/32/rotation = Quaternion(-0.35879, -0.716248, -0.185455, 0.569091)
+bones/33/rotation = Quaternion(0.171572, 0.0515815, 0.138155, 0.974072)
+bones/34/rotation = Quaternion(-1.49012e-08, 1.49012e-08, 2.98023e-08, 1)
+bones/35/rotation = Quaternion(0.548687, -0.0211424, -0.0322267, 0.835139)
+bones/36/rotation = Quaternion(0.495762, -0.0126391, 0.011636, 0.868289)
+bones/37/rotation = Quaternion(1.49012e-08, 1.49012e-08, 1.49012e-08, 1)
+bones/38/rotation = Quaternion(0.671738, -0.0283638, -0.0327377, 0.739522)
+bones/39/rotation = Quaternion(0.281474, -0.00431037, 0.0137407, 0.959461)
+bones/40/rotation = Quaternion(0, 0, 2.98023e-08, 1)
+bones/41/rotation = Quaternion(0.596525, -0.000836406, -0.0115145, 0.802512)
+bones/42/rotation = Quaternion(0.334982, 0.00395989, 0.00977188, 0.942165)
+bones/43/rotation = Quaternion(-2.98023e-08, 2.98023e-08, -2.98023e-08, 1)
+bones/44/rotation = Quaternion(0.457215, 0.000854112, -0.00133559, 0.889355)
+bones/45/rotation = Quaternion(0.223503, 0.000504538, 0.000210524, 0.974703)
+bones/46/rotation = Quaternion(1.49012e-08, 1.49012e-08, 0, 1)
+bones/51/rotation = Quaternion(0.376236, 0.446339, 0.793078, -0.173941)
+bones/52/rotation = Quaternion(0.020356, 0.906182, -0.398808, -0.139187)
+bones/53/rotation = Quaternion(-0.0467057, 0.709795, -0.701041, 0.0505107)
+bones/54/rotation = Quaternion(0.0319359, 0.998556, 0.0231801, -0.0364568)
+bones/55/rotation = Quaternion(-0.25042, 0.230496, 0.909265, 0.239582)
+bones/56/rotation = Quaternion(0.0434232, 0.941894, -0.333076, 0.0031563)
+bones/57/rotation = Quaternion(0.178647, 0.615959, -0.741358, -0.197655)
+bones/58/rotation = Quaternion(-0.00531532, 0.999876, 0.0120021, 0.00865979)
+
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Armature/GeneralSkeleton" index="0"]
+transform = Transform3D(-0.210488, -0.97121, -0.111562, -0.113678, -0.0890281, 0.989521, -0.970964, 0.220965, -0.0916661, 0.0570626, 0.979921, 0.360857)
+bone_name = "LeftLowerArm"
+bone_idx = 11
+
+[node name="tate" parent="Armature/GeneralSkeleton/BoneAttachment3D2" index="0" instance=ExtResource("2_mgtbs")]
+transform = Transform3D(2.89819e-05, -0.232732, -3.18126e-05, -0.466752, -1.17793e-05, -0.0745631, 0.0724299, 1.7234e-05, -0.480499, -0.124924, 0.369222, -0.131118)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/GeneralSkeleton" index="1"]
+transform = Transform3D(0.197337, -0.714508, 0.67122, 0.838566, -0.231632, -0.493107, 0.507805, 0.66017, 0.553452, -0.602801, 0.860283, -0.0290797)
+bone_name = "RightHand"
+bone_idx = 31
+
+[node name="blade" parent="Armature/GeneralSkeleton/BoneAttachment3D" index="0" instance=ExtResource("11_bvhcg")]
+transform = Transform3D(-0.00329771, 0.258127, 0.0247809, -0.00371206, -0.0192333, 0.344427, 0.0682311, 0.0114293, 0.019936, 0.0578285, 0.0675892, 0.00369787)
+
+[node name="underbody" parent="Armature/GeneralSkeleton" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00564671, 0)
+surface_material_override/0 = ExtResource("2_50k5q")
+
+[node name="スカート" parent="Armature/GeneralSkeleton" index="3"]
+surface_material_override/0 = ExtResource("3_51pt3")
+
+[node name="上球" parent="Armature/GeneralSkeleton" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00137764, 0, 0.000372976)
+surface_material_override/0 = ExtResource("5_hmbop")
+
+[node name="右下駄" parent="Armature/GeneralSkeleton" index="5"]
+surface_material_override/0 = ExtResource("4_a4cr0")
+
+[node name="尻尾" parent="Armature/GeneralSkeleton" index="6"]
+surface_material_override/0 = ExtResource("4_qlqkb")
+
+[node name="左下駄" parent="Armature/GeneralSkeleton" index="7"]
+surface_material_override/0 = ExtResource("4_a4cr0")
+
+[node name="帽" parent="Armature/GeneralSkeleton" index="8"]
+surface_material_override/0 = ExtResource("4_a4cr0")
+
+[node name="手" parent="Armature/GeneralSkeleton" index="9"]
+surface_material_override/0 = ExtResource("4_ixvcv")
+
+[node name="耳" parent="Armature/GeneralSkeleton" index="10"]
+surface_material_override/0 = ExtResource("4_qlqkb")
+
+[node name="胴" parent="Armature/GeneralSkeleton" index="11"]
+surface_material_override/0 = ExtResource("5_hmbop")
+
+[node name="脚" parent="Armature/GeneralSkeleton" index="12"]
+surface_material_override/0 = ExtResource("4_ixvcv")
+
+[node name="腕" parent="Armature/GeneralSkeleton" index="13"]
+surface_material_override/0 = ExtResource("4_ixvcv")
+
+[node name="袖" parent="Armature/GeneralSkeleton" index="14"]
+surface_material_override/0 = ExtResource("6_acq0r")
+
+[node name="靴" parent="Armature/GeneralSkeleton" index="16"]
+surface_material_override/0 = ExtResource("4_a4cr0")
+
+[node name="靴下" parent="Armature/GeneralSkeleton" index="17"]
+surface_material_override/0 = ExtResource("5_hmbop")
+
+[node name="顔" parent="Armature/GeneralSkeleton" index="18"]
+surface_material_override/0 = ExtResource("2_78x2u")
+
+[node name="首" parent="Armature/GeneralSkeleton" index="19"]
+surface_material_override/0 = ExtResource("4_ixvcv")
+
+[node name="髪" parent="Armature/GeneralSkeleton" index="20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.19209e-07, 0)
+surface_material_override/0 = ExtResource("4_qlqkb")

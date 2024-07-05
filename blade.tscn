@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt4tg0jbi1mc2"]
+
+[ext_resource type="PackedScene" uid="uid://bvj8ue35i1v" path="res://blade.glb" id="1_v841c"]
+[ext_resource type="Material" uid="uid://crrv5y40b7g1b" path="res://gobot_celshaded09.tres" id="2_b7jmr"]
+[ext_resource type="Material" uid="uid://cn3u3xoqw0rwj" path="res://gobot_celshaded08.tres" id="3_k17cf"]
+
+[node name="blade" instance=ExtResource("1_v841c")]
+
+[node name="柄" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_b7jmr")
+
+[node name="刃" parent="." index="1"]
+surface_material_override/0 = ExtResource("3_k17cf")

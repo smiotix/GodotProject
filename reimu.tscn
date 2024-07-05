@@ -1,0 +1,164 @@
+[gd_scene load_steps=21 format=3 uid="uid://dnstydu5ohyss"]
+
+[ext_resource type="PackedScene" uid="uid://cpkjaa0rdt8e3" path="res://reimu.glb" id="1_y1iwv"]
+[ext_resource type="Material" uid="uid://cl2ihxojvy1e0" path="res://gobot_celshaded15.tres" id="2_1cci6"]
+[ext_resource type="Material" uid="uid://65hxltror3id" path="res://gobot_celshaded07.tres" id="2_cqapn"]
+[ext_resource type="Animation" uid="uid://3je5n6l8kl0q" path="res://idle.tres" id="2_iablv"]
+[ext_resource type="Animation" uid="uid://xdb3k30tt5ho" path="res://run.tres" id="3_2jcwr"]
+[ext_resource type="Material" uid="uid://den433yusf3jr" path="res://gobot_celshaded11.tres" id="3_cpiqm"]
+[ext_resource type="Material" uid="uid://05ha8o2fii2q" path="res://gobot_celshaded05.tres" id="4_copse"]
+[ext_resource type="Material" uid="uid://g7rlac8lcj5k" path="res://gobot_celshaded13.tres" id="4_qw28l"]
+[ext_resource type="Material" uid="uid://ym3nabswj6ed" path="res://gobot_celshaded12.tres" id="5_1apdb"]
+[ext_resource type="Material" uid="uid://y64cjtwhv3td" path="res://gobot_celshaded17.tres" id="5_adm68"]
+[ext_resource type="Material" uid="uid://ctmh2pdjthw6h" path="res://gobot_celshaded16.tres" id="6_ykwnx"]
+[ext_resource type="Material" uid="uid://btyy0uovd413h" path="res://gobot_celshaded18.tres" id="7_yg0jj"]
+[ext_resource type="Material" uid="uid://s5v7j54cg0a5" path="res://gobot_celshaded14.tres" id="10_75mgh"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ngbyf"]
+_data = {
+"idle": ExtResource("2_iablv"),
+"run": ExtResource("3_2jcwr")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hwap1"]
+animation = &"anim02/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n4n6w"]
+animation = &"anim02/run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3g1js"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qs5df"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gvtqo"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tmk8c"]
+states/idle/node = SubResource("AnimationNodeAnimation_hwap1")
+states/idle/position = Vector2(434, 31)
+states/run/node = SubResource("AnimationNodeAnimation_n4n6w")
+states/run/position = Vector2(462, 170)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3g1js"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_qs5df"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_gvtqo")]
+
+[node name="reimu" instance=ExtResource("1_y1iwv")]
+
+[node name="EffecPos" type="Node3D" parent="Armature" index="0"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Armature" index="1"]
+libraries = {
+"anim02": SubResource("AnimationLibrary_ngbyf")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Armature" index="2"]
+tree_root = SubResource("AnimationNodeStateMachine_tmk8c")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/idle = false
+parameters/conditions/run = false
+
+[node name="GeneralSkeleton" parent="Armature" index="3"]
+bones/1/rotation = Quaternion(-0.0069632, -0.0476352, -0.0295105, 0.998405)
+bones/2/rotation = Quaternion(0.009429, 0.00365627, 0.0155942, 0.999827)
+bones/3/rotation = Quaternion(0.0185601, 0.00693659, 0.0271996, 0.999434)
+bones/4/rotation = Quaternion(0.0185601, 0.00693657, 0.0271996, 0.999434)
+bones/5/rotation = Quaternion(-0.0942364, -0.00138787, 0.00780404, 0.995518)
+bones/6/rotation = Quaternion(0.028407, 0.00847366, -0.050065, 0.998306)
+bones/9/rotation = Quaternion(0.51364, 0.469183, 0.580486, -0.423174)
+bones/10/rotation = Quaternion(0.106002, 0.81177, -0.546804, -0.175493)
+bones/11/rotation = Quaternion(0.109604, -0.698797, 0.109532, 0.698335)
+bones/12/rotation = Quaternion(0.00531169, 0.587625, 0.152009, 0.794709)
+bones/13/rotation = Quaternion(-0.186812, 0.722468, 0.136546, 0.651534)
+bones/14/rotation = Quaternion(-0.00560214, -0.00278673, -0.000284135, 0.99998)
+bones/15/rotation = Quaternion(-2.98023e-08, 2.98023e-08, 0, 1)
+bones/16/rotation = Quaternion(0.0996766, 0.00382921, -0.0102708, 0.99496)
+bones/17/rotation = Quaternion(5.96046e-08, 0, 6.63102e-05, 1)
+bones/19/rotation = Quaternion(0.0907981, 9.04234e-05, 0.00256295, 0.995866)
+bones/20/rotation = Quaternion(2.98023e-08, -2.98023e-08, -2.0951e-05, 1)
+bones/22/rotation = Quaternion(0.0917719, -0.000958667, -0.000815633, 0.995779)
+bones/23/rotation = Quaternion(0, 4.47035e-08, 4.47035e-08, 1)
+bones/24/rotation = Quaternion(5.96046e-08, 4.47035e-08, 0, 1)
+bones/25/rotation = Quaternion(0.1435, -0.000244728, 0.0251899, 0.98933)
+bones/26/rotation = Quaternion(5.96046e-08, -1.49012e-08, 6.72191e-05, 1)
+bones/28/rotation = Quaternion(0.522889, -0.46483, -0.552763, -0.452741)
+bones/29/rotation = Quaternion(-0.0920646, 0.803137, -0.52959, 0.256964)
+bones/30/rotation = Quaternion(0.126765, 0.695026, -0.126986, 0.696235)
+bones/31/rotation = Quaternion(-0.103231, -0.48035, -0.195222, 0.84882)
+bones/32/rotation = Quaternion(-0.152293, -0.73494, -0.125718, 0.648741)
+bones/33/rotation = Quaternion(-0.006365, 0.00315903, 0.000399619, 0.999975)
+bones/34/rotation = Quaternion(-1.49012e-08, 1.49012e-08, 2.98023e-08, 1)
+bones/35/rotation = Quaternion(0.0860933, -3.89839e-05, 0.00666785, 0.996265)
+bones/36/rotation = Quaternion(-2.98023e-08, -2.98023e-08, 8.81404e-05, 1)
+bones/37/rotation = Quaternion(1.49012e-08, 1.49012e-08, 1.49012e-08, 1)
+bones/38/rotation = Quaternion(0.141997, 0.000508096, -0.00831551, 0.989832)
+bones/39/rotation = Quaternion(2.98023e-08, -2.98023e-08, 0.000322029, 1)
+bones/40/rotation = Quaternion(0, 0, 2.98023e-08, 1)
+bones/41/rotation = Quaternion(0.140617, 0.00287868, -0.00795654, 0.990028)
+bones/42/rotation = Quaternion(-2.98023e-08, 2.98023e-08, 0.000112608, 1)
+bones/43/rotation = Quaternion(-2.98023e-08, 2.98023e-08, -2.98023e-08, 1)
+bones/44/rotation = Quaternion(0.164538, 0.00620774, -0.0437715, 0.98538)
+bones/45/rotation = Quaternion(0, 0, 0.000496566, 1)
+bones/46/rotation = Quaternion(1.49012e-08, 1.49012e-08, 0, 1)
+bones/51/rotation = Quaternion(0.0231593, 0.127864, 0.988595, -0.0761163)
+bones/52/rotation = Quaternion(0.00483293, 0.991458, -0.13033, 0.00104875)
+bones/53/rotation = Quaternion(0.0984068, 0.715433, -0.678309, 0.13553)
+bones/54/rotation = Quaternion(-0.0272407, 0.999551, -9.14527e-05, 0.0124668)
+bones/55/rotation = Quaternion(-0.0609798, 0.0212165, 0.996239, -0.0577797)
+bones/56/rotation = Quaternion(-0.00204597, 0.997435, -0.0715496, 7.82643e-05)
+bones/57/rotation = Quaternion(-0.0922844, 0.673204, -0.731797, -0.0524718)
+bones/58/rotation = Quaternion(-0.00833547, 0.999661, 0.0240893, 0.00531647)
+
+[node name="underbody" parent="Armature/GeneralSkeleton" index="0"]
+surface_material_override/0 = ExtResource("2_1cci6")
+
+[node name="スカート" parent="Armature/GeneralSkeleton" index="1"]
+surface_material_override/0 = ExtResource("2_cqapn")
+
+[node name="タイ" parent="Armature/GeneralSkeleton" index="2"]
+surface_material_override/0 = ExtResource("4_qw28l")
+
+[node name="リボンA" parent="Armature/GeneralSkeleton" index="3"]
+surface_material_override/0 = ExtResource("5_adm68")
+
+[node name="リボンB" parent="Armature/GeneralSkeleton" index="4"]
+surface_material_override/0 = ExtResource("2_cqapn")
+
+[node name="上腕" parent="Armature/GeneralSkeleton" index="5"]
+surface_material_override/0 = ExtResource("6_ykwnx")
+
+[node name="手" parent="Armature/GeneralSkeleton" index="6"]
+surface_material_override/0 = ExtResource("6_ykwnx")
+
+[node name="耳" parent="Armature/GeneralSkeleton" index="8"]
+surface_material_override/0 = ExtResource("6_ykwnx")
+
+[node name="胴" parent="Armature/GeneralSkeleton" index="9"]
+surface_material_override/0 = ExtResource("2_cqapn")
+
+[node name="脚" parent="Armature/GeneralSkeleton" index="10"]
+surface_material_override/0 = ExtResource("6_ykwnx")
+
+[node name="腕" parent="Armature/GeneralSkeleton" index="11"]
+surface_material_override/0 = ExtResource("7_yg0jj")
+
+[node name="襟" parent="Armature/GeneralSkeleton" index="12"]
+surface_material_override/0 = ExtResource("4_copse")
+
+[node name="靴" parent="Armature/GeneralSkeleton" index="13"]
+surface_material_override/0 = ExtResource("3_cpiqm")
+
+[node name="靴下" parent="Armature/GeneralSkeleton" index="14"]
+surface_material_override/0 = ExtResource("4_copse")
+
+[node name="顔" parent="Armature/GeneralSkeleton" index="15"]
+surface_material_override/0 = ExtResource("10_75mgh")
+
+[node name="首" parent="Armature/GeneralSkeleton" index="16"]
+surface_material_override/0 = ExtResource("6_ykwnx")
+
+[node name="髪" parent="Armature/GeneralSkeleton" index="17"]
+surface_material_override/0 = ExtResource("5_1apdb")

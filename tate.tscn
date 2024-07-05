@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwnpea5c72irq"]
+
+[ext_resource type="PackedScene" uid="uid://cvseowmjdltmb" path="res://tate.glb" id="1_fxnl2"]
+[ext_resource type="Material" uid="uid://c2v3cdclwya3s" path="res://gobot_celshaded10.tres" id="2_nd8ur"]
+
+[node name="tate" instance=ExtResource("1_fxnl2")]
+
+[node name="盾" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_nd8ur")
