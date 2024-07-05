@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbavo3fqvfpmo"]
+[gd_scene load_steps=15 format=3 uid="uid://bbavo3fqvfpmo"]
 
 [ext_resource type="PackedScene" uid="uid://bc2pojclx3i8k" path="res://mob_tengu.glb" id="1_lurqd"]
 [ext_resource type="Animation" uid="uid://canutncxnpmtc" path="res://sword_attack.tres" id="2_7tqdm"]
@@ -9,6 +9,7 @@
 [ext_resource type="Material" uid="uid://65hxltror3id" path="res://gobot_celshaded07.tres" id="4_a4cr0"]
 [ext_resource type="Material" uid="uid://oai3kx0a3yxp" path="res://gobot_celshaded02.tres" id="4_ixvcv"]
 [ext_resource type="Material" uid="uid://dp8nneb6bp3b3" path="res://gobot_celshaded06.tres" id="4_qlqkb"]
+[ext_resource type="Script" path="res://enemy_raycast.gd" id="5_31vku"]
 [ext_resource type="Material" uid="uid://05ha8o2fii2q" path="res://gobot_celshaded05.tres" id="5_hmbop"]
 [ext_resource type="Material" uid="uid://76gpgohcm0g7" path="res://gobot_celshaded03.tres" id="6_acq0r"]
 [ext_resource type="PackedScene" uid="uid://dt4tg0jbi1mc2" path="res://blade.tscn" id="11_bvhcg"]
@@ -76,75 +77,83 @@ bones/56/rotation = Quaternion(0.0434232, 0.941894, -0.333076, 0.0031563)
 bones/57/rotation = Quaternion(0.178647, 0.615959, -0.741358, -0.197655)
 bones/58/rotation = Quaternion(-0.00531532, 0.999876, 0.0120021, 0.00865979)
 
-[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Armature/GeneralSkeleton" index="0"]
-transform = Transform3D(-0.210488, -0.97121, -0.111562, -0.113678, -0.0890281, 0.989521, -0.970964, 0.220965, -0.0916661, 0.0570626, 0.979921, 0.360857)
-bone_name = "LeftLowerArm"
-bone_idx = 11
-
-[node name="tate" parent="Armature/GeneralSkeleton/BoneAttachment3D2" index="0" instance=ExtResource("2_mgtbs")]
-transform = Transform3D(2.89819e-05, -0.232732, -3.18126e-05, -0.466752, -1.17793e-05, -0.0745631, 0.0724299, 1.7234e-05, -0.480499, -0.124924, 0.369222, -0.131118)
-
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/GeneralSkeleton" index="1"]
-transform = Transform3D(0.197337, -0.714508, 0.67122, 0.838566, -0.231632, -0.493107, 0.507805, 0.66017, 0.553452, -0.602801, 0.860283, -0.0290797)
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/GeneralSkeleton" index="0"]
+transform = Transform3D(0.197337, -0.714508, 0.67122, 0.838566, -0.231632, -0.493107, 0.507805, 0.66017, 0.553452, -0.602801, 0.860283, -0.0290796)
 bone_name = "RightHand"
 bone_idx = 31
 
 [node name="blade" parent="Armature/GeneralSkeleton/BoneAttachment3D" index="0" instance=ExtResource("11_bvhcg")]
 transform = Transform3D(-0.00329771, 0.258127, 0.0247809, -0.00371206, -0.0192333, 0.344427, 0.0682311, 0.0114293, 0.019936, 0.0578285, 0.0675892, 0.00369787)
 
-[node name="underbody" parent="Armature/GeneralSkeleton" index="2"]
+[node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Armature/GeneralSkeleton" index="1"]
+transform = Transform3D(-0.210488, -0.97121, -0.111562, -0.113678, -0.089028, 0.989521, -0.970964, 0.220964, -0.0916661, 0.0570626, 0.979921, 0.360857)
+bone_name = "LeftLowerArm"
+bone_idx = 11
+
+[node name="tate" parent="Armature/GeneralSkeleton/BoneAttachment3D2" index="0" instance=ExtResource("2_mgtbs")]
+transform = Transform3D(2.89819e-05, -0.232732, -3.18126e-05, -0.466752, -1.17793e-05, -0.0745631, 0.0724299, 1.7234e-05, -0.480499, -0.124924, 0.369222, -0.131118)
+
+[node name="BoneAttachment3D3" type="BoneAttachment3D" parent="Armature/GeneralSkeleton" index="2"]
+transform = Transform3D(0.970421, -0.0521849, -0.235713, 0.00616471, 0.981396, -0.191893, 0.241341, 0.184764, 0.952689, -0.153327, 1.45866, 0.185002)
+bone_name = "Head"
+bone_idx = 6
+
+[node name="RayCast3D" type="RayCast3D" parent="Armature/GeneralSkeleton/BoneAttachment3D3" index="0"]
+script = ExtResource("5_31vku")
+
+[node name="underbody" parent="Armature/GeneralSkeleton" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00564671, 0)
 surface_material_override/0 = ExtResource("2_50k5q")
 
-[node name="スカート" parent="Armature/GeneralSkeleton" index="3"]
+[node name="スカート" parent="Armature/GeneralSkeleton" index="4"]
 surface_material_override/0 = ExtResource("3_51pt3")
 
-[node name="上球" parent="Armature/GeneralSkeleton" index="4"]
+[node name="上球" parent="Armature/GeneralSkeleton" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00137764, 0, 0.000372976)
 surface_material_override/0 = ExtResource("5_hmbop")
 
-[node name="右下駄" parent="Armature/GeneralSkeleton" index="5"]
+[node name="右下駄" parent="Armature/GeneralSkeleton" index="6"]
 surface_material_override/0 = ExtResource("4_a4cr0")
 
-[node name="尻尾" parent="Armature/GeneralSkeleton" index="6"]
+[node name="尻尾" parent="Armature/GeneralSkeleton" index="7"]
 surface_material_override/0 = ExtResource("4_qlqkb")
 
-[node name="左下駄" parent="Armature/GeneralSkeleton" index="7"]
+[node name="左下駄" parent="Armature/GeneralSkeleton" index="8"]
 surface_material_override/0 = ExtResource("4_a4cr0")
 
-[node name="帽" parent="Armature/GeneralSkeleton" index="8"]
+[node name="帽" parent="Armature/GeneralSkeleton" index="9"]
 surface_material_override/0 = ExtResource("4_a4cr0")
 
-[node name="手" parent="Armature/GeneralSkeleton" index="9"]
+[node name="手" parent="Armature/GeneralSkeleton" index="10"]
 surface_material_override/0 = ExtResource("4_ixvcv")
 
-[node name="耳" parent="Armature/GeneralSkeleton" index="10"]
+[node name="耳" parent="Armature/GeneralSkeleton" index="11"]
 surface_material_override/0 = ExtResource("4_qlqkb")
 
-[node name="胴" parent="Armature/GeneralSkeleton" index="11"]
+[node name="胴" parent="Armature/GeneralSkeleton" index="12"]
 surface_material_override/0 = ExtResource("5_hmbop")
 
-[node name="脚" parent="Armature/GeneralSkeleton" index="12"]
+[node name="脚" parent="Armature/GeneralSkeleton" index="13"]
 surface_material_override/0 = ExtResource("4_ixvcv")
 
-[node name="腕" parent="Armature/GeneralSkeleton" index="13"]
+[node name="腕" parent="Armature/GeneralSkeleton" index="14"]
 surface_material_override/0 = ExtResource("4_ixvcv")
 
-[node name="袖" parent="Armature/GeneralSkeleton" index="14"]
+[node name="袖" parent="Armature/GeneralSkeleton" index="15"]
 surface_material_override/0 = ExtResource("6_acq0r")
 
-[node name="靴" parent="Armature/GeneralSkeleton" index="16"]
+[node name="靴" parent="Armature/GeneralSkeleton" index="17"]
 surface_material_override/0 = ExtResource("4_a4cr0")
 
-[node name="靴下" parent="Armature/GeneralSkeleton" index="17"]
+[node name="靴下" parent="Armature/GeneralSkeleton" index="18"]
 surface_material_override/0 = ExtResource("5_hmbop")
 
-[node name="顔" parent="Armature/GeneralSkeleton" index="18"]
+[node name="顔" parent="Armature/GeneralSkeleton" index="19"]
 surface_material_override/0 = ExtResource("2_78x2u")
 
-[node name="首" parent="Armature/GeneralSkeleton" index="19"]
+[node name="首" parent="Armature/GeneralSkeleton" index="20"]
 surface_material_override/0 = ExtResource("4_ixvcv")
 
-[node name="髪" parent="Armature/GeneralSkeleton" index="20"]
+[node name="髪" parent="Armature/GeneralSkeleton" index="21"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.19209e-07, 0)
 surface_material_override/0 = ExtResource("4_qlqkb")

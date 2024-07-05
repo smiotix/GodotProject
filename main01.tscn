@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbbhs6rj4bm8h"]
+[gd_scene load_steps=13 format=3 uid="uid://bbbhs6rj4bm8h"]
 
 [ext_resource type="Script" path="res://camera_shaft.gd" id="1_cqxwe"]
 [ext_resource type="Material" uid="uid://05ha8o2fii2q" path="res://gobot_celshaded05.tres" id="1_pebbi"]
 [ext_resource type="PackedScene" uid="uid://dnstydu5ohyss" path="res://reimu.tscn" id="2_aa2n7"]
 [ext_resource type="Script" path="res://third_person.gd" id="3_y20me"]
 [ext_resource type="Texture2D" uid="uid://bkkut4d6ea11j" path="res://AllSky_Night_MoonBurst Equirect.png" id="5_wliq2"]
+[ext_resource type="PackedScene" uid="uid://bbavo3fqvfpmo" path="res://mob_tengu.tscn" id="6_8xcgn"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ucs7y"]
 
@@ -45,7 +46,7 @@ surface_material_override/0 = ExtResource("1_pebbi")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_cv46t")
 
-[node name="Reimu" type="CharacterBody3D" parent="."]
+[node name="Reimu" type="CharacterBody3D" parent="." groups=["Player"]]
 script = ExtResource("3_y20me")
 
 [node name="reimu" parent="Reimu" instance=ExtResource("2_aa2n7")]
@@ -61,3 +62,6 @@ environment = SubResource("Environment_yg06h")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.985739, -0.0137888, 0.167717, -3.28618e-09, 0.996637, 0.0819385, -0.168283, -0.08077, 0.982424, 4.76837e-07, 5.08215, -3.36679)
 directional_shadow_split_2 = 0.038
+
+[node name="mob_tengu" parent="." instance=ExtResource("6_8xcgn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4007, 0.265275, -6.49859)
