@@ -107,20 +107,32 @@ func _physics_process(delta: float) -> void:
 		#velocity += gravity * delta
 		if move_direction != Vector3.ZERO:
 			#var corrected_direction = move_direction.rotated(Vector3.UP, PI)
-			animstate = state_machine.get_current_node()
+			#animstate = state_machine.get_current_node()
 			if animstate != "run" and animstate != "attack":
 				state_machine.travel("run")
 			#look_at(global_transform.origin + corrected_direction, Vector3.UP)
 			look_at(global_transform.origin + move_direction,Vector3.UP)
 			if animstate != "attack":
 				velocity = move_direction * move_speed + gravity * delta
+	elif  joystick_left_input != Vector2.ZERO and is_on_floor() and DamageFlag and Flag02 and not is_standing:
+		move_direction = camera_node.global_transform.basis * Vector3(joystick_left_input.x, 0, joystick_left_input.y).normalized()
+		move_direction.y = 0
+		if move_direction != Vector3.ZERO:
+			look_at(global_transform.origin + move_direction,Vector3.UP)
+			if animstate == "cIdle":
+				state_machine.travel("cWalk")
+			velocity = move_direction * cronch_move_speed + gravity * delta
+	elif joystick_left_input == Vector2.ZERO and is_on_floor() and DamageFlag and Flag02 and not is_standing:
+		if animstate != "cIdle":
+			state_machine.travel("cIdle")
+		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
 	elif animstate != "jump" and is_on_floor() and animstate != "attack" and DamageFlag and animstate != "parry" and Flag02 and is_standing:
-		animstate = state_machine.get_current_node()
+		#animstate = state_machine.get_current_node()
 		if animstate != "idle":
 			state_machine.travel("idle")
 		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
 	elif animstate == "jump" and current_position > 0.85 and Flag02:
-		animstate = state_machine.get_current_node()
+		#animstate = state_machine.get_current_node()
 		if animstate != "falling":
 			state_machine.travel("falling")
 	elif Flag02 and is_standing:
@@ -130,7 +142,7 @@ func _physics_process(delta: float) -> void:
 	#print(is_on_floor())
 	#print(gravity)
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and DamageFlag and Flag02 and is_standing:
-		animstate = state_machine.get_current_node()
+		#animstate = state_machine.get_current_node()
 		if animstate != "jump":
 			state_machine.travel("jump")
 		var horizontal_jump = Vector3(move_direction.x, 0, move_direction.z).normalized()
@@ -141,7 +153,7 @@ func _physics_process(delta: float) -> void:
 	#print(is_on_floor())
 	#print(current_position)
 	if !is_on_floor() and Flag02:
-		animstate = state_machine.get_current_node()
+		#animstate = state_machine.get_current_node()
 		if animstate != "jump":
 			state_machine.travel("falling")
 	animstate = state_machine.get_current_node()
