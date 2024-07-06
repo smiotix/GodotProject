@@ -126,7 +126,7 @@ func _physics_process(delta: float) -> void:
 		if animstate != "cIdle":
 			state_machine.travel("cIdle")
 		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
-	elif animstate != "jump" and is_on_floor() and animstate != "attack" and DamageFlag and animstate != "parry" and Flag02 and is_standing:
+	elif animstate != "jump" and is_on_floor() and animstate != "attack" and DamageFlag and animstate != "parry" and animstate != "c2s" and Flag02 and is_standing:
 		#animstate = state_machine.get_current_node()
 		if animstate != "idle":
 			state_machine.travel("idle")
@@ -247,9 +247,15 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("cronch") and is_standing:
 		state_machine.travel("s2c")
 		is_standing = false
+	elif Input.is_action_just_pressed("cronch") and not is_standing:
+		state_machine.travel("c2s")
+		is_standing = true
 	#print(current_position)
 	if animstate == "s2c" and current_position > 0.16:
 		state_machine.travel("cIdle")
+	if animstate == "c2s" and current_position > 3.36:
+		state_machine.travel("idle")
+	#print(current_position)
 	move_and_slide()
 
 	# カメラの回転処理
