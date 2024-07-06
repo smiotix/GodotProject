@@ -1,13 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://bbbhs6rj4bm8h"]
+[gd_scene load_steps=14 format=3 uid="uid://bbbhs6rj4bm8h"]
 
 [ext_resource type="Script" path="res://camera_shaft.gd" id="1_cqxwe"]
-[ext_resource type="Material" uid="uid://05ha8o2fii2q" path="res://gobot_celshaded05.tres" id="1_pebbi"]
 [ext_resource type="PackedScene" uid="uid://dnstydu5ohyss" path="res://reimu.tscn" id="2_aa2n7"]
+[ext_resource type="Texture2D" uid="uid://dttbcvauvs1tt" path="res://GrassHillAlbedo.png" id="2_bqqm0"]
 [ext_resource type="Script" path="res://third_person.gd" id="3_y20me"]
 [ext_resource type="Texture2D" uid="uid://bkkut4d6ea11j" path="res://AllSky_Night_MoonBurst Equirect.png" id="5_wliq2"]
 [ext_resource type="PackedScene" uid="uid://bbavo3fqvfpmo" path="res://mob_tengu.tscn" id="6_8xcgn"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ucs7y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qxax"]
+albedo_texture = ExtResource("2_bqqm0")
+uv1_scale = Vector3(2000, 2000, 2000)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cv46t"]
 
@@ -39,7 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(5000, 0, 0, 0, 5000, 0, 0, 0, 5000, 0, -2500, 0)
 mesh = SubResource("BoxMesh_ucs7y")
-surface_material_override/0 = ExtResource("1_pebbi")
+surface_material_override/0 = SubResource("StandardMaterial3D_1qxax")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 

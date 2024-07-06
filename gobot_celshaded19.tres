@@ -1,6 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://ctmh2pdjthw6h"]
-
-[ext_resource type="Texture2D" uid="uid://h0ucia34smdo" path="res://reimu_筒.png" id="1_8a86s"]
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://dtxhnqjh4kplu"]
 
 [sub_resource type="Shader" id="Shader_4oepr"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's StandardMaterial3D.
@@ -75,7 +73,7 @@ gradient = SubResource("Gradient_kgq3v")
 resource_name = "GobotMat"
 render_priority = 0
 shader = SubResource("Shader_4oepr")
-shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo = Color(0.970026, 0.823838, 0.78082, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
 shader_parameter/metallic_texture_channel = null
@@ -86,6 +84,5 @@ shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("1_8a86s")
 shader_parameter/color_gradient = SubResource("GradientTexture1D_kgg7x")
 shader_parameter/color_ramp3 = SubResource("GradientTexture1D_ovwhm")

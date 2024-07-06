@@ -15,6 +15,7 @@ var EffecPos: Node3D
 
 # 移動とカメラ回転の速度
 var move_speed: float = 10.0
+var cronch_move_speed: float = 5.0
 var camera_rotate_speed: float = 2
 # 重力をノードのプロパティとして設定
 var gravity = Vector3.ZERO
@@ -38,6 +39,7 @@ var Flag00: bool = true
 #var bar:ProgressBar = null
 var Flag01: bool = true
 var Flag02: bool = true
+var is_standing: bool = true
 #var WinText: Label = null
 #var audioplayer: AudioStreamPlayer3D = null
 #var PauseText: Label = null
@@ -97,7 +99,7 @@ func _physics_process(delta: float) -> void:
 	var current_position = state_machine.get_current_play_position ()
 	animstate = state_machine.get_current_node() 
 	# キャラクターの移動処理
-	if joystick_left_input != Vector2.ZERO and is_on_floor() and DamageFlag and Flag02:
+	if joystick_left_input != Vector2.ZERO and is_on_floor() and DamageFlag and Flag02 and is_standing:
 		move_direction = camera_node.global_transform.basis * Vector3(joystick_left_input.x, 0, joystick_left_input.y).normalized()
 		move_direction.y = 0 # Y軸の移動は無視（重力による落下のみ）
 		# ジャンプ処理
@@ -112,7 +114,7 @@ func _physics_process(delta: float) -> void:
 			look_at(global_transform.origin + move_direction,Vector3.UP)
 			if animstate != "attack":
 				velocity = move_direction * move_speed + gravity * delta
-	elif animstate != "jump" and is_on_floor() and animstate != "attack" and DamageFlag and animstate != "parry" and Flag02:
+	elif animstate != "jump" and is_on_floor() and animstate != "attack" and DamageFlag and animstate != "parry" and Flag02 and is_standing:
 		animstate = state_machine.get_current_node()
 		if animstate != "idle":
 			state_machine.travel("idle")
@@ -121,13 +123,13 @@ func _physics_process(delta: float) -> void:
 		animstate = state_machine.get_current_node()
 		if animstate != "falling":
 			state_machine.travel("falling")
-	elif Flag02:
+	elif Flag02 and is_standing:
 		velocity.y = velocity.y + gravity.y * delta
-	else:
+	elif is_standing:
 		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
 	#print(is_on_floor())
 	#print(gravity)
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and DamageFlag and Flag02:
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and DamageFlag and Flag02 and is_standing:
 		animstate = state_machine.get_current_node()
 		if animstate != "jump":
 			state_machine.travel("jump")
@@ -145,7 +147,7 @@ func _physics_process(delta: float) -> void:
 	animstate = state_machine.get_current_node()
 	if animstate == "attack" and current_position > 1.5333 and DamageFlag:
 		state_machine.travel("idle")
-	if Input.is_action_just_pressed("attack") and is_on_floor()  and animstate != "jump" and animstate != "falling" and animstate != "attack" and DamageFlag and Flag02:
+	if Input.is_action_just_pressed("attack") and is_on_floor()  and animstate != "jump" and animstate != "falling" and animstate != "attack" and DamageFlag and Flag02 and is_standing:
 		state_machine.travel("attack")
 		attack_flag = true
 	#print(current_position)
@@ -217,7 +219,7 @@ func _physics_process(delta: float) -> void:
 		camera_node.rotate_y(deg_to_rad(joystick_right_input.x * camera_rotate_speed))
 	var camerarot = camera_node.transform.basis.get_euler()
 	camera_node.transform.basis = Basis.from_euler(Vector3(camerarot.x,camerarot.y,0))
-	if animstate == "parry" and current_position > 0.1 and Flag02:
+	if animstate == "parry" and current_position > 0.1 and Flag02 and is_standing:
 		#print(current_position)
 		state_machine.travel("idle")
 	if parry_miss:
@@ -230,6 +232,12 @@ func _physics_process(delta: float) -> void:
 			parry_miss = false
 			Flag00 = true
 		#print(parry_miss_timer)
+	if Input.is_action_just_pressed("cronch") and is_standing:
+		state_machine.travel("s2c")
+		is_standing = false
+	#print(current_position)
+	if animstate == "s2c" and current_position > 0.16:
+		state_machine.travel("cIdle")
 	move_and_slide()
 
 	# カメラの回転処理
