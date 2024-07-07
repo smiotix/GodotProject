@@ -22,6 +22,10 @@ func _process(delta: float):
 		if is_colliding():
 			var collision_point = get_collision_point()
 			var collided_object = get_collider()
+			if collided_object.is_in_group("Player"):
+				print("Player Detected")
+				#var group_name = collided_object.get_collision_layer()				
+				#pass
 			# 衝突したオブジェクトに対する処理を実装
-			if not (collided_object is StaticBody3D):
-				print("視界内に衝突したオブジェクト:", collided_object)
+#			if not (collided_object is StaticBody3D):
+#				print("視界内に衝突したオブジェクト:", collided_object)

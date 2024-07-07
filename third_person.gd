@@ -256,7 +256,8 @@ func _physics_process(delta: float) -> void:
 		col_02.disabled = false
 		col_01.disabled = true
 	elif Input.is_action_just_pressed("cronch") and not is_standing:
-		state_machine.travel("c2s")
+		if animstate == "cIdle" or animstate == "cWalk":
+			state_machine.travel("c2s")
 		is_standing = true
 		col_01.disabled = false
 		col_02.disabled = true
