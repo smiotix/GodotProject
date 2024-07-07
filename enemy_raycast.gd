@@ -1,7 +1,7 @@
 extends RayCast3D
 
 # 視界の範囲を設定（例：視界距離10メートル）
-var view_distance: float = 10.0
+var view_distance: float = 18.0
 var view_angle_min: float = 20.0  # 前方20度
 var view_angle_max: float = 160.0  # 前方110度
 
@@ -12,7 +12,7 @@ func _ready():
 
 func _process(delta: float):
 	for angle_deg in range(view_angle_min, view_angle_max, 10):
-		var ray_direction = Vector3(cos(deg_to_rad(angle_deg)),0.0,sin(deg_to_rad(angle_deg))) * view_distance
+		var ray_direction = Vector3(cos(deg_to_rad(angle_deg)),-0.08,sin(deg_to_rad(angle_deg))) * view_distance
 		target_position = transform.origin + ray_direction
 		
 		var start_point = global_transform.origin
