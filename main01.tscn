@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbbhs6rj4bm8h"]
+[gd_scene load_steps=15 format=3 uid="uid://bbbhs6rj4bm8h"]
 
 [ext_resource type="Script" path="res://camera_shaft.gd" id="1_cqxwe"]
 [ext_resource type="PackedScene" uid="uid://dnstydu5ohyss" path="res://reimu.tscn" id="2_aa2n7"]
@@ -16,6 +16,10 @@ uv1_scale = Vector3(2000, 2000, 2000)
 [sub_resource type="BoxShape3D" id="BoxShape3D_cv46t"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_86nf7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xu838"]
+radius = 0.377746
+height = 1.58928
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sot2r"]
 panorama = ExtResource("5_wliq2")
@@ -56,9 +60,13 @@ script = ExtResource("3_y20me")
 [node name="reimu" parent="Reimu" instance=ExtResource("2_aa2n7")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Reimu"]
+[node name="CollisionShape3D_01" type="CollisionShape3D" parent="Reimu"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.844664, 0)
 shape = SubResource("CapsuleShape3D_86nf7")
+
+[node name="CollisionShape3D_02" type="CollisionShape3D" parent="Reimu"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.429137, 0)
+shape = SubResource("CapsuleShape3D_xu838")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yg06h")

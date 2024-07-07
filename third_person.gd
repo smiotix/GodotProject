@@ -40,6 +40,8 @@ var Flag00: bool = true
 var Flag01: bool = true
 var Flag02: bool = true
 var is_standing: bool = true
+var col_01: CollisionShape3D = null
+var col_02: CollisionShape3D = null
 #var WinText: Label = null
 #var audioplayer: AudioStreamPlayer3D = null
 #var PauseText: Label = null
@@ -57,6 +59,10 @@ func _ready():
 	animation_tree = get_node("reimu/Armature/AnimationTree")
 	state_machine = animation_tree.get("parameters/playback")
 	EffecPos = get_node("reimu/Armature/EffecPos")
+	col_01 = get_node("CollisionShape3D_01")
+	col_02 = get_node("CollisionShape3D_02")
+	col_02.disabled = true
+	#print(col_01.name)
 	#DamageEffect = get_node("reimu/Armature/GeneralSkeleton")
 #	attack_area = get_node("koishi01godot/Armature/Area3D")
 #	bar = get_node("../Koishi_Life")
@@ -247,15 +253,20 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("cronch") and is_standing:
 		state_machine.travel("s2c")
 		is_standing = false
+		col_02.disabled = false
+		col_01.disabled = true
 	elif Input.is_action_just_pressed("cronch") and not is_standing:
 		state_machine.travel("c2s")
 		is_standing = true
+		col_01.disabled = false
+		col_02.disabled = true
 	#print(current_position)
 	if animstate == "s2c" and current_position > 0.16:
 		state_machine.travel("cIdle")
 	if animstate == "c2s" and current_position > 3.36:
 		state_machine.travel("idle")
-	#print(current_position)
+	#print("col01",not col_01.disabled)
+	#print("col02",not col_02.disabled)
 	move_and_slide()
 
 	# カメラの回転処理
