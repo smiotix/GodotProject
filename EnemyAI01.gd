@@ -31,22 +31,26 @@ func _physics_process(delta: float) -> void:
 		animstate = state_machine.get_current_node()
 		#print(animstate)
 		if WalkTimer < 0.0:
-			if Flag01:
-				if animstate != "idle":
-					state_machine.travel("idle")
+			if WalkTimer > -1.0:
+				if Flag01:
+					if animstate != "idle":
+						state_machine.travel("idle")
 				#t = 0.0
 				#current_rotation = Quaternion(transform.basis)
 				#target_rotation = Quaternion(transform.basis.inverse())
-				velocity = Vector3.ZERO + gravity * delta
-				current_rotation = global_transform.basis.z.normalized()
-				target_rotation = -global_transform.basis.z.normalized()
-				Flag01 = false
-			var interpolated_direction = current_rotation.lerp(target_rotation, lerp_speed * delta)
-			interpolated_direction.y = 0
-			look_at(global_transform.origin + interpolated_direction, Vector3.UP)
+					velocity = Vector3.ZERO + gravity * delta
+					current_rotation = global_transform.basis.z.normalized()
+					target_rotation = -global_transform.basis.z.normalized()
+					Flag01 = false
+				var interpolated_direction = current_rotation.lerp(target_rotation, lerp_speed * delta)
+				interpolated_direction.y = 0
+				look_at(global_transform.origin + interpolated_direction, Vector3.UP)
+			else:
+				WalkTimer = WalkTime
+				Flag01 = true
 		else:
 			if animstate != "walk":
 				state_machine.travel("walk")
 			velocity = -transform.basis.z * walk_speed + gravity * delta
-			#print(WalkTimer)
+	#print(WalkTimer)
 	move_and_slide()
