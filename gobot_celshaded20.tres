@@ -1,6 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://dp8nneb6bp3b3"]
-
-[ext_resource type="Texture2D" uid="uid://dhlkm31af8m82" path="res://mob_tengu_顔.png" id="1_4xi16"]
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://d0pq5xfwmffqt"]
 
 [sub_resource type="Shader" id="Shader_4oepr"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's StandardMaterial3D.
@@ -75,7 +73,7 @@ gradient = SubResource("Gradient_kgq3v")
 resource_name = "GobotMat"
 render_priority = 0
 shader = SubResource("Shader_4oepr")
-shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo = Color(0.662452, 0.662452, 0.662452, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
 shader_parameter/metallic_texture_channel = null
@@ -86,6 +84,5 @@ shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("1_4xi16")
 shader_parameter/color_gradient = SubResource("GradientTexture1D_kgg7x")
 shader_parameter/color_ramp3 = SubResource("GradientTexture1D_ovwhm")

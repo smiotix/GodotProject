@@ -1,11 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://bbbhs6rj4bm8h"]
+[gd_scene load_steps=17 format=3 uid="uid://bbbhs6rj4bm8h"]
 
 [ext_resource type="Script" path="res://camera_shaft.gd" id="1_cqxwe"]
 [ext_resource type="PackedScene" uid="uid://dnstydu5ohyss" path="res://reimu.tscn" id="2_aa2n7"]
 [ext_resource type="Texture2D" uid="uid://dttbcvauvs1tt" path="res://GrassHillAlbedo.png" id="2_bqqm0"]
 [ext_resource type="Script" path="res://third_person.gd" id="3_y20me"]
 [ext_resource type="Texture2D" uid="uid://bkkut4d6ea11j" path="res://AllSky_Night_MoonBurst Equirect.png" id="5_wliq2"]
-[ext_resource type="PackedScene" uid="uid://bbavo3fqvfpmo" path="res://mob_tengu.tscn" id="6_8xcgn"]
+[ext_resource type="PackedScene" uid="uid://cpqolx1pmtnga" path="res://mob_tengu.tscn" id="6_8xcgn"]
+[ext_resource type="Script" path="res://EnemyAI01.gd" id="6_pv662"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ucs7y"]
 
@@ -34,6 +35,9 @@ ssao_enabled = true
 ssao_radius = 8.57
 ssao_intensity = 6.72
 ssao_power = 0.416088
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gaccb"]
+height = 2.53975
 
 [node name="Node3D" type="Node3D"]
 
@@ -75,5 +79,13 @@ environment = SubResource("Environment_yg06h")
 transform = Transform3D(0.985739, -0.0137888, 0.167717, -3.28618e-09, 0.996637, 0.0819385, -0.168283, -0.08077, 0.982424, 4.76837e-07, 5.08215, -3.36679)
 directional_shadow_split_2 = 0.038
 
-[node name="mob_tengu" parent="." instance=ExtResource("6_8xcgn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.4007, 0.265275, -6.49859)
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5168, 0, 0)
+script = ExtResource("6_pv662")
+
+[node name="mob_tengu" parent="CharacterBody3D" instance=ExtResource("6_8xcgn")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.857155, 0)
+shape = SubResource("CapsuleShape3D_gaccb")

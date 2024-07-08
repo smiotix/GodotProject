@@ -20,7 +20,7 @@ func _process(delta: float):
 		raycast.enabled = true
 		self.add_child(raycast)  # レイキャストをシーンに追加
 		#raycast.global_transform.origin = start_point
-		DebugDraw3D.draw_line(start_point,end_point,Color(1.0,0.0,0.0,1.0),view_distance)
+		#DebugDraw3D.draw_line(start_point,end_point,Color(1.0,0.0,0.0,1.0),view_distance)
 		await get_tree().create_timer(0).timeout  # フレームの終わりまで待つ
 		if raycast.is_colliding():  # レイキャストオブジェクトに対して衝突検出を行う
 			var collided_object = raycast.get_collider()
