@@ -13,19 +13,19 @@ func _ready():
 func _process(delta: float):
 	for angle_deg in range(view_angle_min, view_angle_max, 10):
 		var ray_direction = Vector3(cos(deg_to_rad(angle_deg)),-0.08,sin(deg_to_rad(angle_deg))) * view_distance
-		target_position = transform.origin + ray_direction
-		
 		var start_point = global_transform.origin
 		var end_point = start_point + ray_direction
-		# 視界を線で描画
+		var raycast = RayCast3D.new()  # 新しいレイキャストを作成
+		raycast.target_position = ray_direction
+		raycast.enabled = true
+		self.add_child(raycast)  # レイキャストをシーンに追加
+		#raycast.global_transform.origin = start_point
 		DebugDraw3D.draw_line(start_point,end_point,Color(1.0,0.0,0.0,1.0),view_distance)
-		if is_colliding():
-			var collision_point = get_collision_point()
-			var collided_object = get_collider()
+		await get_tree().create_timer(0).timeout  # フレームの終わりまで待つ
+		if raycast.is_colliding():  # レイキャストオブジェクトに対して衝突検出を行う
+			var collided_object = raycast.get_collider()
 			if collided_object.is_in_group("Player"):
 				print("Player Detected")
-				#var group_name = collided_object.get_collision_layer()				
-				#pass
-			# 衝突したオブジェクトに対する処理を実装
-#			if not (collided_object is StaticBody3D):
-#				print("視界内に衝突したオブジェクト:", collided_object)
+		self.remove_child(raycast)  # レイキャストをシーンから削除
+		raycast.queue_free()  # レイキャストをメモリから解放
+
