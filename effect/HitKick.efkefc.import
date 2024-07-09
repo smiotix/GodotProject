@@ -1,0 +1,17 @@
+[remap]
+
+importer="effekseer.effect"
+type="Resource"
+uid="uid://3b0rca64p0vy"
+path="res://.godot/imported/HitKick.efkefc-94c6a1a700802a7550b45ebb96debe9d.res"
+
+[deps]
+
+source_file="res://effect/HitKick.efkefc"
+dest_files=["res://.godot/imported/HitKick.efkefc-94c6a1a700802a7550b45ebb96debe9d.res"]
+
+[params]
+
+scale=1.0
+data_type=0
+compress=true

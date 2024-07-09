@@ -115,11 +115,11 @@ func _physics_process(delta: float) -> void:
 		if move_direction != Vector3.ZERO:
 			#var corrected_direction = move_direction.rotated(Vector3.UP, PI)
 			#animstate = state_machine.get_current_node()
-			if animstate != "run" and animstate != "attack":
+			if animstate != "run" and animstate != "kick":
 				state_machine.travel("run")
 			#look_at(global_transform.origin + corrected_direction, Vector3.UP)
 			look_at(global_transform.origin + move_direction,Vector3.UP)
-			if animstate != "attack":
+			if animstate != "kick":
 				velocity = move_direction * move_speed + gravity * delta
 	elif  joystick_left_input != Vector2.ZERO and is_on_floor() and DamageFlag and Flag02 and not is_standing:
 		move_direction = camera_node.global_transform.basis * Vector3(joystick_left_input.x, 0, joystick_left_input.y).normalized()
@@ -133,7 +133,7 @@ func _physics_process(delta: float) -> void:
 		if animstate != "cIdle":
 			state_machine.travel("cIdle")
 		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
-	elif animstate != "jump" and is_on_floor() and animstate != "attack" and DamageFlag and animstate != "parry" and animstate != "c2s" and Flag02 and is_standing:
+	elif animstate != "jump" and is_on_floor() and animstate != "kick" and DamageFlag and animstate != "parry" and animstate != "c2s" and Flag02 and is_standing:
 		#animstate = state_machine.get_current_node()
 		if animstate != "idle":
 			state_machine.travel("idle")
@@ -166,11 +166,11 @@ func _physics_process(delta: float) -> void:
 	animstate = state_machine.get_current_node()
 	if animstate == "attack" and current_position > 1.5333 and DamageFlag:
 		state_machine.travel("idle")
-	if Input.is_action_just_pressed("attack") and is_on_floor()  and animstate != "jump" and animstate != "falling" and animstate != "attack" and DamageFlag and Flag02 and is_standing:
-		state_machine.travel("attack")
+	if Input.is_action_just_pressed("attack") and is_on_floor()  and animstate != "jump" and animstate != "falling" and animstate != "kick" and DamageFlag and Flag02 and is_standing:
+		state_machine.travel("kick")
 		attack_flag = true
 	#print(current_position)
-	if animstate == "attack" and Flag02:
+	if animstate == "kick" and Flag02:
 		if near_enemy != null:
 			var current_direction = -global_transform.basis.z.normalized()
 			target_direction = (near_enemy.global_transform.origin - global_transform.origin).normalized()
@@ -179,24 +179,26 @@ func _physics_process(delta: float) -> void:
 			look_at(global_transform.origin + interpolated_direction, Vector3.UP)
 		# ここで、near_enemyには最も近い敵の参照が格納されます。
 		velocity = Vector3.ZERO
-		if current_position > 0.7 and attack_flag:
+		if current_position > 0.6 and attack_flag:
 			#if enemy_enter:
-			for enemy in get_tree().get_nodes_in_group("Enemy"):
-				if enemy.has_method("flash_damage"):
-					if enemy.get("body_enter"):
-						if not enemy.get("guard_falg"):
-							enemy.flash_damage()
-#							var sound = preload("res://soundFX_blade.wav")
+			if near_enemy.get("body_enter"):
+				pass
+				#var sound = preload("res://soundFX_blade.wav")
 #							audioplayer.stream = sound
 #							audioplayer.play()
 			attack_flag = false
-#			var effect_resource = preload("res://effect/sword02.efkefc")
+			var effect_resource = preload("res://effect/Hit03.efkefc")
 			var emitter = EffekseerEmitter3D.new()
-#			emitter.set_effect(effect_resource)
+			emitter.set_effect(effect_resource)
 			emitter.transform.origin = EffecPos.transform.origin
 			emitter.transform.basis = EffecPos.transform.basis
 			emitter.play()
 			add_child(emitter)
+		elif current_position >1.89:
+			if is_standing:
+				state_machine.travel("idle")
+			else:
+				state_machine.travel("cIdle")
 	if not DamageFlag and Flag02:
 		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
 		if Flag01:
@@ -269,6 +271,7 @@ func _physics_process(delta: float) -> void:
 		state_machine.travel("idle")
 	#print("col01",not col_01.disabled)
 	#print("col02",not col_02.disabled)
+	#print(current_position)
 	move_and_slide()
 
 	# カメラの回転処理
@@ -277,10 +280,10 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body):
 	if body.is_in_group("Enemy"):
 		body.set("body_enter",true)
-		print("敵がエリアに入りました",body.get("body_enter"))
+		#print("敵がエリアに入りました",body.get("body_enter"))
 func _on_Area_body_exited(body):
 	if body.is_in_group("Enemy"):
 		body.set("body_enter",false)
-		print("敵がエリアを離れました",body.get("body_enter"))
+		#print("敵がエリアを離れました",body.get("body_enter"))
 		# ここでプレイヤーがエリアを離れたときの処理を行う
 

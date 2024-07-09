@@ -1,0 +1,17 @@
+[remap]
+
+importer="effekseer.effect"
+type="Resource"
+uid="uid://5r5lajv8a2v3"
+path="res://.godot/imported/Hit02.efkefc-fc402b3714b512c9111a4e352510f4f6.res"
+
+[deps]
+
+source_file="res://effect/Hit02.efkefc"
+dest_files=["res://.godot/imported/Hit02.efkefc-fc402b3714b512c9111a4e352510f4f6.res"]
+
+[params]
+
+scale=1.0
+data_type=0
+compress=true
