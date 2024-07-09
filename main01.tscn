@@ -79,7 +79,7 @@ environment = SubResource("Environment_yg06h")
 transform = Transform3D(0.985739, -0.0137888, 0.167717, -3.28618e-09, 0.996637, 0.0819385, -0.168283, -0.08077, 0.982424, 4.76837e-07, 5.08215, -3.36679)
 directional_shadow_split_2 = 0.038
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." groups=["Enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5168, 0, 0)
 script = ExtResource("6_pv662")
 

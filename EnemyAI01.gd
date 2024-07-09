@@ -17,6 +17,7 @@ var target_rotation = null
 var current_rotation = null
 var t = null
 var lerp_speed = 5.0
+var body_enter: bool = false
 
 func _ready():
 	gravity = Vector3.DOWN * ProjectSettings.get_setting("physics/3d/default_gravity")

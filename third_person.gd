@@ -42,6 +42,7 @@ var Flag02: bool = true
 var is_standing: bool = true
 var col_01: CollisionShape3D = null
 var col_02: CollisionShape3D = null
+var attack_area: Area3D = null
 #var WinText: Label = null
 #var audioplayer: AudioStreamPlayer3D = null
 #var PauseText: Label = null
@@ -64,14 +65,14 @@ func _ready():
 	col_02.disabled = true
 	#print(col_01.name)
 	#DamageEffect = get_node("reimu/Armature/GeneralSkeleton")
-#	attack_area = get_node("koishi01godot/Armature/Area3D")
+	attack_area = get_node("reimu/Armature/Area3D")
 #	bar = get_node("../Koishi_Life")
 #	WinText = get_node("../WinText")
 #	audioplayer = get_node("koishi01godot/Armature/AudioStreamPlayer3D")
 #	PauseText = get_node("../PauseText")
 #	damage_duration = DamageEffect.get("blink_duration")
-#	attack_area.connect("body_entered", Callable(self, "_on_body_entered"))
-#	attack_area.connect("body_exited", Callable(self, "_on_Area_body_exited"))
+	attack_area.connect("body_entered", Callable(self, "_on_body_entered"))
+	attack_area.connect("body_exited", Callable(self, "_on_Area_body_exited"))
 #	bar.value = 100
 #	WinText.text = ""
 	#for enemy in get_tree().get_nodes_in_group("Enemy"):
@@ -273,13 +274,13 @@ func _physics_process(delta: float) -> void:
 	# カメラの回転処理
 
 	
-#func _on_body_entered(body):
-#	if body.is_in_group("Enemy"):
-#		#print("敵がエリアに入りました")
-#		body.set("body_enter",true)
-#func _on_Area_body_exited(body):
-#	if body.is_in_group("Enemy"):
-#		#print("敵がエリアを離れました")
-#		body.set("body_enter",false)
+func _on_body_entered(body):
+	if body.is_in_group("Enemy"):
+		body.set("body_enter",true)
+		print("敵がエリアに入りました",body.get("body_enter"))
+func _on_Area_body_exited(body):
+	if body.is_in_group("Enemy"):
+		body.set("body_enter",false)
+		print("敵がエリアを離れました",body.get("body_enter"))
 		# ここでプレイヤーがエリアを離れたときの処理を行う
 
