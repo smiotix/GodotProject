@@ -18,12 +18,18 @@ var current_rotation = null
 var t = null
 var lerp_speed = 5.0
 var body_enter: bool = false
+var Player: CharacterBody3D = null
 
 func _ready():
 	gravity = Vector3.DOWN * ProjectSettings.get_setting("physics/3d/default_gravity")
 	rayscript = get_node("mob_tengu/Armature/GeneralSkeleton/BoneAttachment3D3/RayCast3D")
 	animation_tree = get_node("mob_tengu/Armature/AnimationTree")
 	state_machine = animation_tree.get("parameters/playback")
+	var node_group = get_tree().get_nodes_in_group("Player")
+	for node in node_group:
+		if node is CharacterBody3D:
+			Player = node
+	#print(Player.name)
 	WalkTimer = WalkTime
 	#print(rayscript.name)
 func _physics_process(delta: float) -> void:
