@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dnstydu5ohyss" path="res://reimu.tscn" id="2_aa2n7"]
 [ext_resource type="Texture2D" uid="uid://dttbcvauvs1tt" path="res://GrassHillAlbedo.png" id="2_bqqm0"]
 [ext_resource type="Script" path="res://third_person.gd" id="3_y20me"]
-[ext_resource type="Texture2D" uid="uid://bkkut4d6ea11j" path="res://AllSky_Night_MoonBurst Equirect.png" id="5_wliq2"]
+[ext_resource type="Texture2D" uid="uid://b543wc160l280" path="res://Epic_GloriousPink_EquiRect.png" id="5_26jld"]
 [ext_resource type="PackedScene" uid="uid://cpqolx1pmtnga" path="res://mob_tengu.tscn" id="6_8xcgn"]
 [ext_resource type="Script" path="res://EnemyAI01.gd" id="6_pv662"]
 
@@ -23,7 +23,7 @@ radius = 0.377746
 height = 1.58928
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sot2r"]
-panorama = ExtResource("5_wliq2")
+panorama = ExtResource("5_26jld")
 
 [sub_resource type="Sky" id="Sky_32dx4"]
 sky_material = SubResource("PanoramaSkyMaterial_sot2r")

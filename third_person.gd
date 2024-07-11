@@ -129,11 +129,11 @@ func _physics_process(delta: float) -> void:
 			if animstate == "cIdle":
 				state_machine.travel("cWalk")
 			velocity = move_direction * cronch_move_speed + gravity * delta
-	elif joystick_left_input == Vector2.ZERO and is_on_floor() and DamageFlag and Flag02 and not is_standing:
+	elif joystick_left_input == Vector2.ZERO and is_on_floor() and DamageFlag and Flag02 and not is_standing and animstate != "take_down" and animstate != "kick":
 		if animstate != "cIdle":
 			state_machine.travel("cIdle")
 		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
-	elif animstate != "jump" and is_on_floor() and animstate != "kick" and DamageFlag and animstate != "parry" and animstate != "c2s" and Flag02 and is_standing:
+	elif animstate != "jump" and is_on_floor() and animstate != "kick" and DamageFlag and animstate != "parry" and animstate != "c2s" and  animstate != "take_down" and Flag02 and is_standing:
 		#animstate = state_machine.get_current_node()
 		if animstate != "idle":
 			state_machine.travel("idle")
@@ -164,9 +164,7 @@ func _physics_process(delta: float) -> void:
 		if animstate != "jump":
 			state_machine.travel("falling")
 	animstate = state_machine.get_current_node()
-	if animstate == "attack" and current_position > 1.5333 and DamageFlag:
-		state_machine.travel("idle")
-	if Input.is_action_just_pressed("attack") and is_on_floor()  and animstate != "jump" and animstate != "falling" and animstate != "kick" and DamageFlag and Flag02 and is_standing:
+	if Input.is_action_just_pressed("attack") and is_on_floor()  and animstate != "jump" and animstate != "falling" and animstate != "kick" and DamageFlag and Flag02:
 		state_machine.travel("kick")
 		attack_flag = true
 	#print(current_position)
@@ -253,6 +251,9 @@ func _physics_process(delta: float) -> void:
 			parry_miss = false
 			Flag00 = true
 		#print(parry_miss_timer)
+	if Input.is_action_just_pressed("take_down"):
+		if animstate != "take_down":
+			state_machine.travel("take_down")
 	if Input.is_action_just_pressed("cronch") and is_standing:
 		state_machine.travel("s2c")
 		is_standing = false
@@ -271,7 +272,12 @@ func _physics_process(delta: float) -> void:
 		state_machine.travel("idle")
 	#print("col01",not col_01.disabled)
 	#print("col02",not col_02.disabled)
-	#print(current_position)
+	if animstate == "take_down" and current_position > 0.61:
+		if is_standing:
+			state_machine.travel("idle")
+		else:
+			state_machine.travel("cIdle")
+		#print(current_position)
 	move_and_slide()
 
 	# カメラの回転処理
