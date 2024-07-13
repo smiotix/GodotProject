@@ -4,6 +4,7 @@ extends RayCast3D
 var view_distance: float = 25.0
 var view_angle_min: float = 20.0  # 前方20度
 var view_angle_max: float = 160.0  # 前方110度
+var PlayerDetection: bool = false
 
 func _ready():
 	#RenderingServer.VIEWPORT_DEBUG_DRAW_WIREFRAME
@@ -25,7 +26,8 @@ func _process(delta: float):
 		if raycast.is_colliding():  # レイキャストオブジェクトに対して衝突検出を行う
 			var collided_object = raycast.get_collider()
 			if collided_object.is_in_group("Player"):
-				print("Player Detected")
+				PlayerDetection = true
+				#print("Player Detected")
 		self.remove_child(raycast)  # レイキャストをシーンから削除
 		raycast.queue_free()  # レイキャストをメモリから解放
 

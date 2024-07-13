@@ -3,6 +3,7 @@ extends CharacterBody3D
 enum State {Patrol,Attack}
 var state = State.Patrol
 var walk_speed: float = 3.0
+var run_speed:float = 13.0
 var rayscript: RayCast3D = null
 var gravity: Vector3 = Vector3.ZERO
 var state_machine = null
@@ -19,12 +20,15 @@ var t = null
 var lerp_speed = 5.0
 var body_enter: bool = false
 var Player: CharacterBody3D = null
+var Flag02: bool = true
+var attack_area: Area3D = null
 
 func _ready():
 	gravity = Vector3.DOWN * ProjectSettings.get_setting("physics/3d/default_gravity")
 	rayscript = get_node("mob_tengu/Armature/GeneralSkeleton/BoneAttachment3D3/RayCast3D")
 	animation_tree = get_node("mob_tengu/Armature/AnimationTree")
 	state_machine = animation_tree.get("parameters/playback")
+	attack_area = get_node("mob_tengu/Armature/Area3D")
 	var node_group = get_tree().get_nodes_in_group("Player")
 	for node in node_group:
 		if node is CharacterBody3D:
@@ -32,10 +36,14 @@ func _ready():
 	#print(Player.name)
 	WalkTimer = WalkTime
 	#print(rayscript.name)
+	#print(attack_area.name) 
+	attack_area.connect("body_entered", Callable(self, "_on_body_entered"))
+	attack_area.connect("body_exited", Callable(self, "_on_Area_body_exited"))
 func _physics_process(delta: float) -> void:
+	var current_position = state_machine.get_current_play_position ()
+	animstate = state_machine.get_current_node()
 	if state == State.Patrol:
-		WalkTimer -= delta
-		animstate = state_machine.get_current_node()
+		WalkTimer -= delta		
 		#print(animstate)
 		if WalkTimer < 0.0:
 			if WalkTimer > -1.0:
@@ -60,4 +68,32 @@ func _physics_process(delta: float) -> void:
 				state_machine.travel("walk")
 			velocity = -transform.basis.z * walk_speed + gravity * delta
 	#print(WalkTimer)
+	if state == State.Attack:
+		var target_position = Vector3(Player.transform.origin.x,0,Player.transform.origin.z)
+		look_at(target_position,Vector3.UP)
+		var distance = transform.origin.distance_to(target_position)
+		if distance < 1.8 and animstate != "attack":
+			state_machine.travel("attack")
+			velocity = gravity * delta 
+		elif animstate == "attack":
+			velocity = gravity * delta 
+			#print(current_position)
+			if current_position > 1.53:
+				state_machine.trvel("idle")
+		else:
+			if animstate != "run":
+				state_machine.travel("run")
+			velocity = -transform.basis.z * run_speed + gravity * delta 
+	if Flag02:
+		if rayscript.get("PlayerDetection"):
+			state = State.Attack
+			Flag02 = false
 	move_and_slide()
+	
+func _on_body_entered(body):
+	if body.is_in_group("Player"):
+		body.set("body_enter",true)
+		#print("敵がエリアに入りました",body.get("body_enter"))
+func _on_Area_body_exited(body):
+	if body.is_in_group("Player"):
+		body.set("body_enter",false)

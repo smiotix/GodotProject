@@ -43,6 +43,7 @@ var is_standing: bool = true
 var col_01: CollisionShape3D = null
 var col_02: CollisionShape3D = null
 var attack_area: Area3D = null
+var body_enter: bool = false
 #var WinText: Label = null
 #var audioplayer: AudioStreamPlayer3D = null
 #var PauseText: Label = null
