@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://05ha8o2fii2q"]
 
-[sub_resource type="Shader" id="Shader_4oepr"]
+[sub_resource type="Shader" id="Shader_e8408"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.2.1.stable's StandardMaterial3D.
 
 shader_type spatial;
@@ -72,7 +72,7 @@ gradient = SubResource("Gradient_kgq3v")
 [resource]
 resource_name = "GobotMat"
 render_priority = 0
-shader = SubResource("Shader_4oepr")
+shader = SubResource("Shader_e8408")
 shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0

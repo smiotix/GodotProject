@@ -22,6 +22,7 @@ var body_enter: bool = false
 var Player: CharacterBody3D = null
 var Flag02: bool = true
 var attack_area: Area3D = null
+var attack_flag: bool = true
 
 func _ready():
 	gravity = Vector3.DOWN * ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -74,10 +75,16 @@ func _physics_process(delta: float) -> void:
 		var distance = transform.origin.distance_to(target_position)
 		if distance < 1.8 and animstate != "attack":
 			state_machine.travel("attack")
+			attack_flag = true
 			velocity = gravity * delta 
 		elif animstate == "attack":
 			velocity = gravity * delta 
 			#print(current_position)
+			if current_position > 1 and attack_flag:
+				if Player.get("body_enter"):
+					if Player.has_method("flash_damage"):
+						Player.flash_damage()
+						attack_flag = false
 			if current_position > 1.53:
 				state_machine.travel("idle")
 		else:

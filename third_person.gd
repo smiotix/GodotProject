@@ -283,7 +283,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	# カメラの回転処理
-
+func flash_damage():
+	DamageEffect.take_damage()
 	
 func _on_body_entered(body):
 	if body.is_in_group("Enemy"):

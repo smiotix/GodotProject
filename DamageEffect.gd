@@ -8,6 +8,9 @@ var original_materials: Array = []
 
 # 点滅処理中かどうかを追跡する変数
 var is_blinking: bool = false
+var Flag01: bool = true
+var clock : float = 0.0
+var FlashTime: float = 0.1
 
 func _ready():
 	# 元のマテリアルをリストに保存
@@ -17,7 +20,9 @@ func _ready():
 
 func _process(delta):
 	if is_blinking:
-		update_blinking_effect()
+		if clock <= 0.0:
+			update_blinking_effect()
+		clock -= delta
 
 # 点滅処理を更新する関数
 func update_blinking_effect():
@@ -30,6 +35,7 @@ func update_blinking_effect():
 
 # ゲーム中にダメージを受けたときに呼び出される関数
 func take_damage():
+	clock = FlashTime
 	is_blinking = true
 	# マテリアルをダメージ用のものに切り替える
 	for child in get_children():
