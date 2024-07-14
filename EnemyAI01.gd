@@ -79,7 +79,7 @@ func _physics_process(delta: float) -> void:
 			velocity = gravity * delta 
 			#print(current_position)
 			if current_position > 1.53:
-				state_machine.trvel("idle")
+				state_machine.travel("idle")
 		else:
 			if animstate != "run":
 				state_machine.travel("run")
@@ -93,7 +93,8 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		body.set("body_enter",true)
-		#print("敵がエリアに入りました",body.get("body_enter"))
+		print("プレイヤーがエリアに入りました",body.get("body_enter"))
 func _on_Area_body_exited(body):
 	if body.is_in_group("Player"):
 		body.set("body_enter",false)
+		print("プレイヤーがエリアを離れました",body.get("body_enter"))

@@ -44,6 +44,7 @@ var col_01: CollisionShape3D = null
 var col_02: CollisionShape3D = null
 var attack_area: Area3D = null
 var body_enter: bool = false
+var DamageEffect: Skeleton3D = null
 #var WinText: Label = null
 #var audioplayer: AudioStreamPlayer3D = null
 #var PauseText: Label = null
@@ -65,7 +66,7 @@ func _ready():
 	col_02 = get_node("CollisionShape3D_02")
 	col_02.disabled = true
 	#print(col_01.name)
-	#DamageEffect = get_node("reimu/Armature/GeneralSkeleton")
+	DamageEffect = get_node("reimu/Armature/GeneralSkeleton")
 	attack_area = get_node("reimu/Armature/Area3D")
 #	bar = get_node("../Koishi_Life")
 #	WinText = get_node("../WinText")
@@ -293,4 +294,5 @@ func _on_Area_body_exited(body):
 		body.set("body_enter",false)
 		#print("敵がエリアを離れました",body.get("body_enter"))
 		# ここでプレイヤーがエリアを離れたときの処理を行う
+
 
