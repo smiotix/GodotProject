@@ -27,7 +27,7 @@ var move_direction: Vector3 = Vector3.ZERO
 var attack_flag = false;
 var DamageFlag: bool = true
 #var DamageEffect:Skeleton3D = null
-var damage_duration: float = 0.0
+var damage_duration: float = 1.0
 var damage_elapsed:float = 0.0
 #var attack_area: Area3D = null
 var enemy_enter: bool = false
@@ -182,24 +182,23 @@ func _physics_process(delta: float) -> void:
 		if current_position > 0.6 and attack_flag:
 			#if enemy_enter:
 			if near_enemy.get("body_enter"):
-				pass
-				#var sound = preload("res://soundFX_blade.wav")
-#							audioplayer.stream = sound
-#							audioplayer.play()
-			attack_flag = false
-			var effect_resource = preload("res://effect/Hit03.efkefc")
-			var emitter = EffekseerEmitter3D.new()
-			emitter.set_effect(effect_resource)
-			emitter.transform.origin = EffecPos.transform.origin
-			emitter.transform.basis = EffecPos.transform.basis
-			emitter.play()
-			add_child(emitter)
+				if near_enemy.has_method("flash_damage"):
+					attack_flag = false
+					var effect_resource = preload("res://effect/Hit03.efkefc")
+					var emitter = EffekseerEmitter3D.new()
+					emitter.set_effect(effect_resource)
+					emitter.transform.origin = EffecPos.transform.origin
+					emitter.transform.basis = EffecPos.transform.basis
+					emitter.play()
+					add_child(emitter)
+					near_enemy.flash_damage()
 		elif current_position >1.89:
 			if is_standing:
 				state_machine.travel("idle")
 			else:
 				state_machine.travel("cIdle")
 	if not DamageFlag and Flag02:
+		#print("damaged")
 		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
 		if Flag01:
 #			bar.value -= 30
@@ -285,6 +284,8 @@ func _physics_process(delta: float) -> void:
 	# カメラの回転処理
 func flash_damage():
 	DamageEffect.take_damage()
+	DamageFlag = false
+	
 	
 func _on_body_entered(body):
 	if body.is_in_group("Enemy"):
