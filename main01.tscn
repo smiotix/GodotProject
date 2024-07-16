@@ -80,7 +80,7 @@ transform = Transform3D(0.985739, -0.0137888, 0.167717, -3.28618e-09, 0.996637, 
 directional_shadow_split_2 = 0.038
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." groups=["Enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5168, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5007, 0, 0)
 script = ExtResource("6_pv662")
 
 [node name="mob_tengu" parent="CharacterBody3D" instance=ExtResource("6_8xcgn")]

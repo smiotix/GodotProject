@@ -111,6 +111,7 @@ func _physics_process(delta: float) -> void:
 			state = State.Attack
 			Flag02 = false
 	if DamageFlag:
+		#print("damage")
 		if damage_elapsed >= damage_duration:
 			damage_elapsed = 0.0
 			if animstate != "idle":
@@ -129,8 +130,8 @@ func flash_damage():
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		body.set("body_enter",true)
-		print("プレイヤーがエリアに入りました",body.get("body_enter"))
+		#print("プレイヤーがエリアに入りました",body.get("body_enter"))
 func _on_Area_body_exited(body):
 	if body.is_in_group("Player"):
 		body.set("body_enter",false)
-		print("プレイヤーがエリアを離れました",body.get("body_enter"))
+		#print("プレイヤーがエリアを離れました",body.get("body_enter"))

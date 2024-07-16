@@ -192,7 +192,7 @@ func _physics_process(delta: float) -> void:
 					emitter.play()
 					add_child(emitter)
 					near_enemy.flash_damage()
-		elif current_position >1.89:
+		if current_position > 1.89:
 			if is_standing:
 				state_machine.travel("idle")
 			else:
@@ -278,7 +278,7 @@ func _physics_process(delta: float) -> void:
 			state_machine.travel("idle")
 		else:
 			state_machine.travel("cIdle")
-		#print(current_position)
+	#print(current_position)
 	move_and_slide()
 
 	# カメラの回転処理

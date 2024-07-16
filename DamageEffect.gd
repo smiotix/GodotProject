@@ -27,10 +27,11 @@ func _process(delta):
 # 点滅処理を更新する関数
 func update_blinking_effect():
 	# 点滅処理を終了し、元のマテリアルに戻す
-	for i in range(len(get_children())):
-		var child = get_child(i)
+	var i = 0
+	for child in get_children():
 		if child is MeshInstance3D:
 			child.material_override = original_materials[i]
+			i += 1
 	is_blinking = false
 
 # ゲーム中にダメージを受けたときに呼び出される関数
