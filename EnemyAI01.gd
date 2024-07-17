@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
-enum State {Patrol,Attack}
+enum State {Patrol,Attack,Die,Stop}
 var state = State.Patrol
-var walk_speed: float = 3.0
+var walk_speed: float = 2.0
 var run_speed:float = 13.0
 var rayscript: RayCast3D = null
 var gravity: Vector3 = Vector3.ZERO
@@ -106,7 +106,7 @@ func _physics_process(delta: float) -> void:
 			if animstate != "run":
 				state_machine.travel("run")
 			velocity = -transform.basis.z * run_speed + gravity * delta 
-	if Flag02:
+	if Flag02 and state == State.Patrol:
 		if rayscript.get("PlayerDetection"):
 			state = State.Attack
 			Flag02 = false
@@ -128,7 +128,15 @@ func flash_damage():
 		state = State.Attack
 	DamageEffect.take_damage()
 	DamageFlag = true
-		
+
+func take_down():
+	if state != State.Attack:
+		DamageEffect.take_damage()
+		if state != State.Die:
+			state = State.Die
+		if animstate != "death":
+			state_machine.travel("death")
+
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		body.set("body_enter",true)

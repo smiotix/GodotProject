@@ -45,6 +45,7 @@ var col_02: CollisionShape3D = null
 var attack_area: Area3D = null
 var body_enter: bool = false
 var DamageEffect: Skeleton3D = null
+var take_down_flag: bool = true
 #var WinText: Label = null
 #var audioplayer: AudioStreamPlayer3D = null
 #var PauseText: Label = null
@@ -253,6 +254,7 @@ func _physics_process(delta: float) -> void:
 			Flag00 = true
 		#print(parry_miss_timer)
 	if Input.is_action_just_pressed("take_down"):
+		take_down_flag = true
 		if animstate != "take_down":
 			state_machine.travel("take_down")
 	if Input.is_action_just_pressed("cronch") and is_standing:
@@ -278,6 +280,19 @@ func _physics_process(delta: float) -> void:
 			state_machine.travel("idle")
 		else:
 			state_machine.travel("cIdle")
+	if animstate == "take_down":
+		#print(near_enemy.get("body_enter"))
+		#print(near_enemy.has_method("take_down"))
+		#print(current_position)
+		if current_position >0.29 and take_down_flag and near_enemy != null:
+			print(near_enemy.get("body_enter"))
+			print(near_enemy.has_method("take_down"))
+			print(current_position)
+			if near_enemy.get("body_enter"):
+				if near_enemy.has_method("take_down"):
+					near_enemy.take_down()
+			take_down_flag = false
+			
 	#print(current_position)
 	move_and_slide()
 
