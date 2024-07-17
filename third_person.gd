@@ -178,7 +178,7 @@ func _physics_process(delta: float) -> void:
 			interpolated_direction.y = 0
 			look_at(global_transform.origin + interpolated_direction, Vector3.UP)
 		# ここで、near_enemyには最も近い敵の参照が格納されます。
-		velocity = Vector3.ZERO
+		velocity =  Vector3(0, velocity.y, 0)  + gravity * delta
 		if current_position > 0.6 and attack_flag:
 			#if enemy_enter:
 			if near_enemy.get("body_enter"):

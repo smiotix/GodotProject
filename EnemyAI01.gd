@@ -124,6 +124,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func flash_damage():
+	if state != State.Attack:
+		state = State.Attack
 	DamageEffect.take_damage()
 	DamageFlag = true
 		
