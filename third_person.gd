@@ -118,7 +118,7 @@ func _physics_process(delta: float) -> void:
 		if move_direction != Vector3.ZERO:
 			#var corrected_direction = move_direction.rotated(Vector3.UP, PI)
 			#animstate = state_machine.get_current_node()
-			if animstate != "run" and animstate != "kick":
+			if animstate != "run" and animstate != "kick" and animstate != "take_down":
 				state_machine.travel("run")
 			#look_at(global_transform.origin + corrected_direction, Vector3.UP)
 			look_at(global_transform.origin + move_direction,Vector3.UP)
@@ -257,6 +257,10 @@ func _physics_process(delta: float) -> void:
 		take_down_flag = true
 		if animstate != "take_down":
 			state_machine.travel("take_down")
+		if near_enemy != null:
+			if near_enemy.get("body_enter"):
+				if near_enemy.has_method("before_take_down"):
+					near_enemy.before_take_down()
 	if Input.is_action_just_pressed("cronch") and is_standing:
 		state_machine.travel("s2c")
 		is_standing = false
@@ -285,13 +289,11 @@ func _physics_process(delta: float) -> void:
 		#print(near_enemy.has_method("take_down"))
 		#print(current_position)
 		if current_position >0.29 and take_down_flag and near_enemy != null:
-			print(near_enemy.get("body_enter"))
-			print(near_enemy.has_method("take_down"))
-			print(current_position)
-			if near_enemy.get("body_enter"):
+			if near_enemy.get("before_take_down_flag"):
 				if near_enemy.has_method("take_down"):
 					near_enemy.take_down()
 			take_down_flag = false
+		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
 			
 	#print(current_position)
 	move_and_slide()

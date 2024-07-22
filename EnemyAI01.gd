@@ -28,6 +28,8 @@ var DamageEffect: Skeleton3D =  null
 var DamageFlag: bool = false
 var damage_duration: float = 1.0
 var damage_elapsed:float = 0.0
+var before_take_down_flag: bool = false
+var HitPoint: int = 100
 
 func _ready():
 	gravity = Vector3.DOWN * ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -77,7 +79,7 @@ func _physics_process(delta: float) -> void:
 				state_machine.travel("walk")
 			velocity = -transform.basis.z * walk_speed + gravity * delta
 	#print(WalkTimer)
-	if state == State.Attack and not DamageFlag:
+	elif state == State.Attack and not DamageFlag:
 		var target_position = Vector3(Player.transform.origin.x,0,Player.transform.origin.z)
 		look_at(target_position,Vector3.UP)
 		var distance = transform.origin.distance_to(target_position)
@@ -106,6 +108,15 @@ func _physics_process(delta: float) -> void:
 			if animstate != "run":
 				state_machine.travel("run")
 			velocity = -transform.basis.z * run_speed + gravity * delta 
+	elif state == State.Die:
+		if animstate != "death":
+			state_machine.travel("death")
+		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
+		await get_tree().create_timer(12.0).timeout
+		DamageFlag = false
+		self.free()
+	else:
+		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
 	if Flag02 and state == State.Patrol:
 		if rayscript.get("PlayerDetection"):
 			state = State.Attack
@@ -121,12 +132,16 @@ func _physics_process(delta: float) -> void:
 			if animstate != "damage":
 				state_machine.travel("damage")
 			damage_elapsed += delta
-	move_and_slide()
+	if HitPoint <= 0:
+		state = State.Die
+	if is_instance_valid(self):
+		move_and_slide()
 	
 func flash_damage():
 	if state != State.Attack:
 		state = State.Attack
 	DamageEffect.take_damage()
+	HitPoint -= 30
 	DamageFlag = true
 
 func take_down():
@@ -134,9 +149,11 @@ func take_down():
 		DamageEffect.take_damage()
 		if state != State.Die:
 			state = State.Die
-		if animstate != "death":
-			state_machine.travel("death")
 
+
+func before_take_down():
+	state = State.Stop
+	before_take_down_flag = true
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		body.set("body_enter",true)
