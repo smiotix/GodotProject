@@ -77,7 +77,7 @@ func _ready():
 #	damage_duration = DamageEffect.get("blink_duration")
 	attack_area.connect("body_entered", Callable(self, "_on_body_entered"))
 	attack_area.connect("body_exited", Callable(self, "_on_Area_body_exited"))
-	floor_snap_length = 5.0
+	floor_snap_length = 0.3
 #	bar.value = 100
 #	WinText.text = ""
 	#for enemy in get_tree().get_nodes_in_group("Enemy"):

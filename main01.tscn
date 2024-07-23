@@ -99,7 +99,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.857155, 0)
 shape = SubResource("CapsuleShape3D_gaccb")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(500, 0, 0, 0, 484.4, 123.922, 0, -123.922, 484.4, -67.8039, -196.333, 265.353)
+transform = Transform3D(500, 0, 0, 0, 445.067, 227.85, 0, -227.85, 445.067, -67.8039, -155.563, 265.353)
 mesh = SubResource("BoxMesh_gvh2l")
 surface_material_override/0 = SubResource("StandardMaterial3D_ak0ts")
 
