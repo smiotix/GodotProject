@@ -46,6 +46,7 @@ var attack_area: Area3D = null
 var body_enter: bool = false
 var DamageEffect: Skeleton3D = null
 var take_down_flag: bool = true
+var HitPoint: int = 100
 #var WinText: Label = null
 #var audioplayer: AudioStreamPlayer3D = null
 #var PauseText: Label = null
@@ -76,6 +77,7 @@ func _ready():
 #	damage_duration = DamageEffect.get("blink_duration")
 	attack_area.connect("body_entered", Callable(self, "_on_body_entered"))
 	attack_area.connect("body_exited", Callable(self, "_on_Area_body_exited"))
+	floor_snap_length = 5.0
 #	bar.value = 100
 #	WinText.text = ""
 	#for enemy in get_tree().get_nodes_in_group("Enemy"):
@@ -149,6 +151,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y = velocity.y + gravity.y * delta
 	elif is_standing:
 		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
+	elif animstate == "falling":
+		velocity += gravity * delta
 	#print(is_on_floor())
 	#print(gravity)
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and DamageFlag and Flag02 and is_standing:
@@ -294,7 +298,10 @@ func _physics_process(delta: float) -> void:
 					near_enemy.take_down()
 			take_down_flag = false
 		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
-			
+	if HitPoint <= 0:
+		if animstate != "death":
+			state_machine.travel("death")
+		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
 	#print(current_position)
 	move_and_slide()
 
@@ -302,7 +309,8 @@ func _physics_process(delta: float) -> void:
 func flash_damage():
 	DamageEffect.take_damage()
 	DamageFlag = false
-	
+func HitDamage(damage):
+	HitPoint -= damage	
 	
 func _on_body_entered(body):
 	if body.is_in_group("Enemy"):

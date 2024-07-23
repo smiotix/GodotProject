@@ -94,6 +94,8 @@ func _physics_process(delta: float) -> void:
 				if Player.get("body_enter"):
 					if Player.has_method("flash_damage"):
 						Player.flash_damage()
+						if Player.has_method("HitDamage"):
+							Player.HitDamage(30)
 						var effect_resource = preload("res://effect/sword02.efkefc")
 						var emitter = EffekseerEmitter3D.new()
 						emitter.set_effect(effect_resource)

@@ -264,7 +264,7 @@ script = ExtResource("7_7l7s1")
 damage_material = ExtResource("8_pt1y1")
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="Armature/GeneralSkeleton" index="0"]
-transform = Transform3D(-0.313386, -0.938258, -0.146498, -0.0658909, -0.132413, 0.989002, -0.947337, 0.319592, -0.0203264, 0.0195936, 0.99079, 0.364954)
+transform = Transform3D(-0.313388, -0.938257, -0.146499, -0.0658898, -0.132414, 0.989002, -0.947337, 0.319594, -0.0203245, 0.0195943, 0.99079, 0.364954)
 bone_name = "LeftLowerArm"
 bone_idx = 11
 
@@ -272,7 +272,7 @@ bone_idx = 11
 transform = Transform3D(2.15596e-08, -0.52, -7.85091e-08, -0.519942, -2.27274e-08, 0.00775036, -0.00775036, 7.8179e-08, -0.519942, 0.0242536, 0.485256, -0.127613)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/GeneralSkeleton" index="1"]
-transform = Transform3D(0.152496, -0.744442, 0.650039, 0.887703, -0.185943, -0.421199, 0.434428, 0.641273, 0.632488, -0.582359, 0.810994, -0.0679747)
+transform = Transform3D(0.152497, -0.744442, 0.650039, 0.887703, -0.185944, -0.421199, 0.434429, 0.641273, 0.632487, -0.582359, 0.810994, -0.0679745)
 bone_name = "RightHand"
 bone_idx = 31
 
@@ -280,7 +280,7 @@ bone_idx = 31
 transform = Transform3D(0.0276077, 0.298695, 0.00440043, 0.0141862, -0.00572511, 0.29961, 0.29839, -0.0273637, -0.0146514, 0.0884382, 0.0670667, -0.00575244)
 
 [node name="BoneAttachment3D3" type="BoneAttachment3D" parent="Armature/GeneralSkeleton" index="2"]
-transform = Transform3D(0.970982, -0.0510755, -0.233636, 0.0218304, 0.991779, -0.126088, 0.238156, 0.117329, 0.964114, -0.157878, 1.46571, 0.148826)
+transform = Transform3D(0.970982, -0.0510754, -0.233636, 0.0218304, 0.991779, -0.126088, 0.238155, 0.117328, 0.964114, -0.157878, 1.46571, 0.148826)
 bone_name = "Head"
 bone_idx = 6
 

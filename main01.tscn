@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bbbhs6rj4bm8h"]
+[gd_scene load_steps=20 format=3 uid="uid://bbbhs6rj4bm8h"]
 
 [ext_resource type="Script" path="res://camera_shaft.gd" id="1_cqxwe"]
 [ext_resource type="PackedScene" uid="uid://dnstydu5ohyss" path="res://reimu.tscn" id="2_aa2n7"]
@@ -38,6 +38,14 @@ ssao_power = 0.416088
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gaccb"]
 height = 2.53975
+
+[sub_resource type="BoxMesh" id="BoxMesh_gvh2l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ak0ts"]
+albedo_texture = ExtResource("2_bqqm0")
+uv1_scale = Vector3(100, 100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ql7n"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -89,3 +97,13 @@ transform = Transform3D(-0.9, 0, 1.35896e-07, 0, 0.9, 0, -1.35896e-07, 0, -0.9, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.857155, 0)
 shape = SubResource("CapsuleShape3D_gaccb")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(500, 0, 0, 0, 484.4, 123.922, 0, -123.922, 484.4, -67.8039, -196.333, 265.353)
+mesh = SubResource("BoxMesh_gvh2l")
+surface_material_override/0 = SubResource("StandardMaterial3D_ak0ts")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("BoxShape3D_1ql7n")
