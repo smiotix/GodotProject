@@ -49,6 +49,7 @@ func _ready():
 	#print(attack_area.name) 
 	attack_area.connect("body_entered", Callable(self, "_on_body_entered"))
 	attack_area.connect("body_exited", Callable(self, "_on_Area_body_exited"))
+	floor_snap_length = 0.3
 	#print(EffecPos.name)
 func _physics_process(delta: float) -> void:
 	var current_position = state_machine.get_current_play_position ()
@@ -77,7 +78,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			if animstate != "walk":
 				state_machine.travel("walk")
-			velocity = -transform.basis.z * walk_speed + gravity * delta
+			velocity = -transform.basis.z * walk_speed + Vector3(0, velocity.y, 0) + gravity * delta
+			#velocity = Vector3(0, velocity.y, 0)  + gravity * delta
 	#print(WalkTimer)
 	elif state == State.Attack and not DamageFlag:
 		var target_position = Vector3(Player.transform.origin.x,0,Player.transform.origin.z)
@@ -109,7 +111,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			if animstate != "run":
 				state_machine.travel("run")
-			velocity = -transform.basis.z * run_speed + gravity * delta 
+			velocity = -transform.basis.z * run_speed + Vector3(0, velocity.y, 0) + gravity * delta 
 	elif state == State.Die:
 		if animstate != "death":
 			state_machine.travel("death")

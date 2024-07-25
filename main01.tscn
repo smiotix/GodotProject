@@ -1,20 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://bbbhs6rj4bm8h"]
+[gd_scene load_steps=13 format=3 uid="uid://bbbhs6rj4bm8h"]
 
 [ext_resource type="Script" path="res://camera_shaft.gd" id="1_cqxwe"]
 [ext_resource type="PackedScene" uid="uid://dnstydu5ohyss" path="res://reimu.tscn" id="2_aa2n7"]
-[ext_resource type="Texture2D" uid="uid://dttbcvauvs1tt" path="res://GrassHillAlbedo.png" id="2_bqqm0"]
 [ext_resource type="Script" path="res://third_person.gd" id="3_y20me"]
 [ext_resource type="Texture2D" uid="uid://b543wc160l280" path="res://Epic_GloriousPink_EquiRect.png" id="5_26jld"]
-[ext_resource type="PackedScene" uid="uid://cpqolx1pmtnga" path="res://mob_tengu.tscn" id="6_8xcgn"]
-[ext_resource type="Script" path="res://EnemyAI01.gd" id="6_pv662"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_ucs7y"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qxax"]
-albedo_texture = ExtResource("2_bqqm0")
-uv1_scale = Vector3(2000, 2000, 2000)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_cv46t"]
+[ext_resource type="Script" path="res://spawn.gd" id="5_mrcgt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_86nf7"]
 
@@ -36,16 +26,9 @@ ssao_radius = 8.57
 ssao_intensity = 6.72
 ssao_power = 0.416088
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gaccb"]
-height = 2.53975
+[sub_resource type="BoxMesh" id="BoxMesh_f8hds"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_gvh2l"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ak0ts"]
-albedo_texture = ExtResource("2_bqqm0")
-uv1_scale = Vector3(100, 100, 100)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_1ql7n"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_i7fbv"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -55,16 +38,6 @@ script = ExtResource("1_cqxwe")
 
 [node name="Camera3D" type="Camera3D" parent="Camera_Shaft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(5000, 0, 0, 0, 5000, 0, 0, 0, 5000, 0, -2500, 0)
-mesh = SubResource("BoxMesh_ucs7y")
-surface_material_override/0 = SubResource("StandardMaterial3D_1qxax")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("BoxShape3D_cv46t")
 
 [node name="Reimu" type="CharacterBody3D" parent="." groups=["Player"]]
 script = ExtResource("3_y20me")
@@ -87,23 +60,15 @@ environment = SubResource("Environment_yg06h")
 transform = Transform3D(0.985739, -0.0137888, 0.167717, -3.28618e-09, 0.996637, 0.0819385, -0.168283, -0.08077, 0.982424, 4.76837e-07, 5.08215, -3.36679)
 directional_shadow_split_2 = 0.038
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." groups=["Enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5007, 0, 0)
-script = ExtResource("6_pv662")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, -250, 0)
+mesh = SubResource("BoxMesh_f8hds")
 
-[node name="mob_tengu" parent="CharacterBody3D" instance=ExtResource("6_8xcgn")]
-transform = Transform3D(-0.9, 0, 1.35896e-07, 0, 0.9, 0, -1.35896e-07, 0, -0.9, 0, 0, 0)
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.857155, 0)
-shape = SubResource("CapsuleShape3D_gaccb")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_i7fbv")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(500, 0, 0, 0, 445.067, 227.85, 0, -227.85, 445.067, -67.8039, -155.563, 265.353)
-mesh = SubResource("BoxMesh_gvh2l")
-surface_material_override/0 = SubResource("StandardMaterial3D_ak0ts")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
-shape = SubResource("BoxShape3D_1ql7n")
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04796, 7.22432, -5.01244)
+script = ExtResource("5_mrcgt")
