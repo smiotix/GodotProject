@@ -82,9 +82,10 @@ func _physics_process(delta: float) -> void:
 			#velocity = Vector3(0, velocity.y, 0)  + gravity * delta
 	#print(WalkTimer)
 	elif state == State.Attack and not DamageFlag:
-		var target_position = Vector3(Player.transform.origin.x,0,Player.transform.origin.z)
+		var target_position = Vector3(Player.transform.origin.x,Player.transform.origin.y,Player.transform.origin.z)
 		look_at(target_position,Vector3.UP)
 		var distance = transform.origin.distance_to(target_position)
+		print(distance)
 		if distance < 1.8 and animstate != "attack":
 			state_machine.travel("attack")
 			attack_flag = true
@@ -138,6 +139,7 @@ func _physics_process(delta: float) -> void:
 			damage_elapsed += delta
 	if HitPoint <= 0:
 		state = State.Die
+	#print(body_enter)
 	if is_instance_valid(self):
 		move_and_slide()
 	
@@ -149,7 +151,8 @@ func flash_damage():
 	DamageFlag = true
 
 func take_down():
-	if state != State.Attack:
+	#print(state)
+	if state == State.Stop:
 		DamageEffect.take_damage()
 		if state != State.Die:
 			state = State.Die

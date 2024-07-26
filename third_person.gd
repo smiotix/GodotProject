@@ -294,6 +294,7 @@ func _physics_process(delta: float) -> void:
 		#print(current_position)
 		if current_position >0.29 and take_down_flag and near_enemy != null:
 			if near_enemy.get("before_take_down_flag"):
+				#print(near_enemy.has_method("take_down"))
 				if near_enemy.has_method("take_down"):
 					near_enemy.take_down()
 			take_down_flag = false
@@ -303,6 +304,8 @@ func _physics_process(delta: float) -> void:
 			state_machine.travel("death")
 		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
 	#print(current_position)
+	#if near_enemy != null:
+	#	print("G")
 	move_and_slide()
 
 	# カメラの回転処理

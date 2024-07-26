@@ -4,14 +4,16 @@
 [ext_resource type="PackedScene" uid="uid://cpqolx1pmtnga" path="res://mob_tengu.tscn" id="1_rj70u"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hobl"]
+height = 1.96476
 
 [node name="Node3D" type="Node3D"]
 
-[node name="mob_tengu" type="CharacterBody3D" parent="."]
+[node name="mob_tengu" type="CharacterBody3D" parent="." groups=["Enemy"]]
 script = ExtResource("1_lepvl")
 
 [node name="mob_tengu" parent="mob_tengu" instance=ExtResource("1_rj70u")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="mob_tengu"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.836457, 0)
 shape = SubResource("CapsuleShape3D_2hobl")
