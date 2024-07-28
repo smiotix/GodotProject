@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 #signal damage_enemy
-const JUMP_VELOCITY = 7.5
+const JUMP_VELOCITY = 9.2
 
 var animation_tree = null
 
@@ -155,7 +155,7 @@ func _physics_process(delta: float) -> void:
 		velocity += gravity * delta
 	#print(is_on_floor())
 	#print(gravity)
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor() and DamageFlag and Flag02 and is_standing:
+	if Input.is_action_just_pressed("jump") and is_on_floor() and DamageFlag and Flag02 and is_standing:
 		#animstate = state_machine.get_current_node()
 		if animstate != "jump":
 			state_machine.travel("jump")
@@ -266,12 +266,12 @@ func _physics_process(delta: float) -> void:
 			if near_enemy.get("body_enter"):
 				if near_enemy.has_method("before_take_down"):
 					near_enemy.before_take_down()
-	if Input.is_action_just_pressed("cronch") and is_standing:
+	if Input.is_action_just_pressed("cronch") and is_standing and DamageFlag:
 		state_machine.travel("s2c")
 		is_standing = false
 		col_02.disabled = false
 		col_01.disabled = true
-	elif Input.is_action_just_pressed("cronch") and not is_standing:
+	elif Input.is_action_just_pressed("cronch") and not is_standing and DamageFlag:
 		if animstate == "cIdle" or animstate == "cWalk":
 			state_machine.travel("c2s")
 		is_standing = true
