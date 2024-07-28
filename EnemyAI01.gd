@@ -85,8 +85,8 @@ func _physics_process(delta: float) -> void:
 		var target_position = Player.global_transform.origin
 		look_at(target_position,Vector3.UP)
 		var distance = global_transform.origin.distance_to(target_position)
-		print(distance)
-		if distance == 0 and animstate != "attack":
+		#print(distance)
+		if distance < 1.8 and animstate != "attack":
 			state_machine.travel("attack")
 			attack_flag = true
 			velocity = gravity * delta 

@@ -134,11 +134,11 @@ func _physics_process(delta: float) -> void:
 			if animstate == "cIdle":
 				state_machine.travel("cWalk")
 			velocity = move_direction * cronch_move_speed + gravity * delta
-	elif joystick_left_input == Vector2.ZERO and is_on_floor() and DamageFlag and Flag02 and not is_standing and animstate != "take_down" and animstate != "kick":
+	elif joystick_left_input == Vector2.ZERO and is_on_floor() and DamageFlag and Flag02 and not is_standing and animstate != "take_down" and animstate != "kick" and animstate != "death":
 		if animstate != "cIdle":
 			state_machine.travel("cIdle")
 		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
-	elif animstate != "jump" and is_on_floor() and animstate != "kick" and DamageFlag and animstate != "parry" and animstate != "c2s" and  animstate != "take_down" and Flag02 and is_standing:
+	elif animstate != "jump" and is_on_floor() and animstate != "kick" and DamageFlag and animstate != "parry" and animstate != "c2s" and  animstate != "take_down" and animstate != "death" and Flag02 and is_standing:
 		#animstate = state_machine.get_current_node()
 		if animstate != "idle":
 			state_machine.travel("idle")
@@ -214,9 +214,10 @@ func _physics_process(delta: float) -> void:
 			Flag01 = true
 		else:
 			animstate = state_machine.get_current_node()
-			if animstate != "damage" and animstate != "jump" and animstate != "falling":
+			if animstate != "damage" and animstate != "jump" and animstate != "falling" and animstate != "death":
 				state_machine.travel("damage")
 			damage_elapsed += delta
+			#print(animstate)
 	#print(EffecPos.name)	
 	#print(animstate)	
 	if Input.is_action_just_pressed("parry") and is_on_floor() and DamageFlag and not parry_miss and Flag02:
