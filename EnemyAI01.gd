@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 enum State {Patrol,Attack,Die,Stop}
-var state = State.Attack
+var state = State.Patrol
 var walk_speed: float = 2.0
 var run_speed:float = 13.0
 var rayscript: RayCast3D = null
@@ -78,7 +78,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			if animstate != "walk":
 				state_machine.travel("walk")
-			velocity = -transform.basis.z * walk_speed + Vector3(0, velocity.y, 0) + gravity * delta
+			velocity = -global_transform.basis.z * walk_speed + Vector3(0, velocity.y, 0) + gravity * delta
 			#velocity = Vector3(0, velocity.y, 0)  + gravity * delta
 	#print(WalkTimer)
 	elif state == State.Attack and not DamageFlag:
@@ -112,7 +112,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			if animstate != "run":
 				state_machine.travel("run")
-			velocity = -transform.basis.z * run_speed + Vector3(0, velocity.y, 0) + gravity * delta 
+			velocity = -global_transform.basis.z * run_speed + Vector3(0, velocity.y, 0) + gravity * delta 
 	elif state == State.Die:
 		if animstate != "death":
 			state_machine.travel("death")
