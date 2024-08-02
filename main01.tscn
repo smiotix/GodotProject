@@ -61,7 +61,7 @@ transform = Transform3D(0.985739, -0.0137888, 0.167717, -3.28618e-09, 0.996637, 
 directional_shadow_split_2 = 0.038
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
-transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, -250, 16.345)
+transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, -250, 60.7459)
 mesh = SubResource("BoxMesh_f8hds")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D5"]
@@ -70,5 +70,5 @@ mesh = SubResource("BoxMesh_f8hds")
 shape = SubResource("BoxShape3D_i7fbv")
 
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(-0.87462, 0, -0.48481, 0, 1, 0, 0.48481, 0, -0.87462, 2.43971, 10.3968, 10.1925)
+transform = Transform3D(-0.758135, 0, 0.652099, 0, 1, 0, -0.652099, 0, -0.758135, 2.43971, 10.3968, 75.8483)
 script = ExtResource("5_mrcgt")
