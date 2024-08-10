@@ -26,7 +26,8 @@ func _process(delta: float):
 		if raycast.is_colliding():  # レイキャストオブジェクトに対して衝突検出を行う
 			var collided_object = raycast.get_collider()
 			if collided_object.is_in_group("Player"):
-				PlayerDetection = true
+				if not collided_object.get("stealth"):
+					PlayerDetection = true
 				#print("Player Detected")
 		self.remove_child(raycast)  # レイキャストをシーンから削除
 		raycast.queue_free()  # レイキャストをメモリから解放

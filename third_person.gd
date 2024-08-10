@@ -47,6 +47,7 @@ var body_enter: bool = false
 var DamageEffect: Skeleton3D = null
 var take_down_flag: bool = true
 var HitPoint: int = 100
+var stealth: bool = false
 #var WinText: Label = null
 #var audioplayer: AudioStreamPlayer3D = null
 #var PauseText: Label = null
