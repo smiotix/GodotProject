@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-enum State {Patrol,Attack,Die,Stop}
-var state = State.Patrol
+enum State {Patrol,Attack,Die,Stop,Stand}
+var state = State.Stand 
 var walk_speed: float = 2.0
 var run_speed:float = 13.0
 var rayscript: RayCast3D = null
@@ -120,9 +120,13 @@ func _physics_process(delta: float) -> void:
 		await get_tree().create_timer(12.0).timeout
 		DamageFlag = false
 		self.free()
+	elif state == State.Stand:
+		if animstate != "Stand":
+			state_machine.travel("Stand")
+		velocity = Vector3(0, velocity.y, 0)  + gravity * delta		
 	else:
 		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
-	if Flag02 and state == State.Patrol:
+	if Flag02 and (state == State.Patrol or state == State.Stand):
 		if rayscript.get("PlayerDetection"):
 			state = State.Attack
 			Flag02 = false
@@ -140,6 +144,7 @@ func _physics_process(delta: float) -> void:
 	if HitPoint <= 0:
 		state = State.Die
 	#print(body_enter)
+	#print(animstate)
 	if is_instance_valid(self):
 		move_and_slide()
 	

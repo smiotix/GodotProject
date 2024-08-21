@@ -308,6 +308,7 @@ func _physics_process(delta: float) -> void:
 	#print(current_position)
 	#if near_enemy != null:
 	#	print("G")
+	#print(stealth)
 	move_and_slide()
 
 	# カメラの回転処理
@@ -326,5 +327,3 @@ func _on_Area_body_exited(body):
 		body.set("body_enter",false)
 		#print("敵がエリアを離れました",body.get("body_enter"))
 		# ここでプレイヤーがエリアを離れたときの処理を行う
-
-

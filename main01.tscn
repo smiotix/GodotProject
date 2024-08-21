@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://bbbhs6rj4bm8h"]
+[gd_scene load_steps=16 format=3 uid="uid://bbbhs6rj4bm8h"]
 
 [ext_resource type="Script" path="res://camera_shaft.gd" id="1_cqxwe"]
 [ext_resource type="PackedScene" uid="uid://dnstydu5ohyss" path="res://reimu.tscn" id="2_aa2n7"]
 [ext_resource type="Script" path="res://third_person.gd" id="3_y20me"]
 [ext_resource type="Texture2D" uid="uid://b543wc160l280" path="res://Epic_GloriousPink_EquiRect.png" id="5_26jld"]
 [ext_resource type="Script" path="res://spawn.gd" id="5_mrcgt"]
+[ext_resource type="Script" path="res://Bush.gd" id="6_m122r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_86nf7"]
 
@@ -32,8 +33,7 @@ ssao_power = 0.416088
 
 [sub_resource type="BoxMesh" id="BoxMesh_nm2ct"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_l03xh"]
-size = Vector3(1, 2.36829, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_3a2oi"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -66,7 +66,7 @@ transform = Transform3D(0.985739, -0.0137888, 0.167717, -3.28618e-09, 0.996637, 
 directional_shadow_split_2 = 0.038
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
-transform = Transform3D(40, 0, 0, 0, 2, 0, 0, 0, 300, 0, -2.07452, 0)
+transform = Transform3D(300, 0, 0, 0, 2, 0, 0, 0, 300, 0, -2.07452, 0)
 mesh = SubResource("BoxMesh_f8hds")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D5"]
@@ -75,15 +75,15 @@ mesh = SubResource("BoxMesh_f8hds")
 shape = SubResource("BoxShape3D_i7fbv")
 
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.13112, 6.31472, 16.6415)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.13112, 6.31472, 8.64334)
 script = ExtResource("5_mrcgt")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0)
+transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 3, 0.983504, -0.734338, 5.61597)
 mesh = SubResource("BoxMesh_nm2ct")
 
 [node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+script = ExtResource("6_m122r")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.684143, 0)
-shape = SubResource("BoxShape3D_l03xh")
+shape = SubResource("BoxShape3D_3a2oi")
