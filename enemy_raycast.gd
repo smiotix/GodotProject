@@ -27,7 +27,31 @@ func _process(delta: float):
 			var collided_object = raycast.get_collider()
 			if collided_object.is_in_group("Player"):
 				if not collided_object.get("stealth"):
-					PlayerDetection = true
+					pass
+#					PlayerDetection = true
+			if raycast.is_colliding():
+				var distance = raycast.get_collision_point().distance_to(raycast.global_transform.origin)
+				# 距離に応じて異なる処理を実行
+				if distance < 10.0:
+					#_handle_medium_collision()
+					if collided_object.is_in_group("Player"):
+						if not collided_object.get("stealth"):
+							PlayerDetection = true
+				else:
+					#_handle_far_collision()
+					if collided_object.is_in_group("Player"):
+						if not collided_object.get("stealth"):
+							if not collided_object.get("is_standing"):
+								PlayerDetection = true
 				#print("Player Detected")
 		self.remove_child(raycast)  # レイキャストをシーンから削除
 		raycast.queue_free()  # レイキャストをメモリから解放
+		
+func _handle_close_collision():
+	print("近距離で衝突しました！")
+
+func _handle_medium_collision():
+	print("中距離で衝突しました！")
+
+func _handle_far_collision():
+	print("遠距離で衝突しました！")

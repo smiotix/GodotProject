@@ -30,6 +30,7 @@ var damage_duration: float = 1.0
 var damage_elapsed:float = 0.0
 var before_take_down_flag: bool = false
 var HitPoint: int = 100
+@export_enum("Patrol","Stand") var type:int
 
 func _ready():
 	gravity = Vector3.DOWN * ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -50,6 +51,12 @@ func _ready():
 	attack_area.connect("body_entered", Callable(self, "_on_body_entered"))
 	attack_area.connect("body_exited", Callable(self, "_on_Area_body_exited"))
 	floor_snap_length = 0.3
+	if type == 0:
+		state = State.Patrol
+	elif type == 1:
+		state = State.Stand
+	else:
+		state = State.Stand
 	#print(EffecPos.name)
 func _physics_process(delta: float) -> void:
 	var current_position = state_machine.get_current_play_position ()
