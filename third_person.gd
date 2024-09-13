@@ -48,6 +48,7 @@ var DamageEffect: Skeleton3D = null
 var take_down_flag: bool = true
 var HitPoint: int = 100
 var stealth: bool = false
+var td_Flag: bool = false
 #var WinText: Label = null
 #var audioplayer: AudioStreamPlayer3D = null
 #var PauseText: Label = null
@@ -112,7 +113,7 @@ func _physics_process(delta: float) -> void:
 	var current_position = state_machine.get_current_play_position ()
 	animstate = state_machine.get_current_node() 
 	# キャラクターの移動処理
-	if joystick_left_input != Vector2.ZERO and is_on_floor() and DamageFlag and Flag02 and is_standing:
+	if joystick_left_input != Vector2.ZERO and is_on_floor() and DamageFlag and Flag02 and is_standing and not td_Flag:
 		move_direction = camera_node.global_transform.basis * Vector3(joystick_left_input.x, 0, joystick_left_input.y).normalized()
 		move_direction.y = 0 # Y軸の移動は無視（重力による落下のみ）
 		# ジャンプ処理
@@ -127,7 +128,7 @@ func _physics_process(delta: float) -> void:
 			look_at(global_transform.origin + move_direction,Vector3.UP)
 			if animstate != "kick":
 				velocity = move_direction * move_speed + gravity * delta
-	elif  joystick_left_input != Vector2.ZERO and is_on_floor() and DamageFlag and Flag02 and not is_standing:
+	elif  joystick_left_input != Vector2.ZERO and is_on_floor() and DamageFlag and Flag02 and not is_standing and not td_Flag:
 		move_direction = camera_node.global_transform.basis * Vector3(joystick_left_input.x, 0, joystick_left_input.y).normalized()
 		move_direction.y = 0
 		if move_direction != Vector3.ZERO:
@@ -267,6 +268,7 @@ func _physics_process(delta: float) -> void:
 			if near_enemy.get("body_enter"):
 				if near_enemy.has_method("before_take_down"):
 					near_enemy.before_take_down()
+					td_Flag = true
 	if Input.is_action_just_pressed("cronch") and is_standing and DamageFlag:
 		state_machine.travel("s2c")
 		is_standing = false

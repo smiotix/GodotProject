@@ -2,8 +2,8 @@ extends RayCast3D
 
 # 視界の範囲を設定（例：視界距離10メートル）
 var view_distance: float = 25.0
-var view_angle_min: float = 20.0  # 前方20度
-var view_angle_max: float = 160.0  # 前方110度
+var view_angle_min: float = 40.0  # 前方20度
+var view_angle_max: float = 140.0  # 前方110度
 var PlayerDetection: bool = false
 
 func _ready():

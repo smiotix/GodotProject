@@ -163,10 +163,17 @@ func flash_damage():
 	DamageFlag = true
 
 func take_down():
+	var obj = null
+	var node_group = get_tree().get_nodes_in_group("Player")
+	for node in node_group:
+		if node is CharacterBody3D:
+			obj = node
 	#print(state)
 	if state == State.Stop:
 		DamageEffect.take_damage()
 		if state != State.Die:
+			if obj.get("td_Flag"):
+				obj.set("td_Flag",false)
 			state = State.Die
 
 
