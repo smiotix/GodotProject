@@ -157,7 +157,7 @@ func _physics_process(delta: float) -> void:
 		velocity += gravity * delta
 	#print(is_on_floor())
 	#print(gravity)
-	if Input.is_action_just_pressed("jump") and is_on_floor() and DamageFlag and Flag02 and is_standing:
+	if Input.is_action_just_pressed("jump") and is_on_floor() and DamageFlag and Flag02 and is_standing and not td_Flag:
 		#animstate = state_machine.get_current_node()
 		if animstate != "jump":
 			state_machine.travel("jump")
