@@ -189,16 +189,17 @@ func _physics_process(delta: float) -> void:
 		if current_position > 0.6 and attack_flag:
 			#if enemy_enter:
 			if near_enemy.get("body_enter"):
-				if near_enemy.has_method("flash_damage"):
-					attack_flag = false
-					var effect_resource = preload("res://effect/Hit03.efkefc")
-					var emitter = EffekseerEmitter3D.new()
-					emitter.set_effect(effect_resource)
-					emitter.transform.origin = EffecPos.transform.origin
-					emitter.transform.basis = EffecPos.transform.basis
-					emitter.play()
-					add_child(emitter)
-					near_enemy.flash_damage()
+				if not near_enemy.get("guard_flag"):
+					if near_enemy.has_method("flash_damage"):
+						attack_flag = false
+						var effect_resource = preload("res://effect/Hit03.efkefc")
+						var emitter = EffekseerEmitter3D.new()
+						emitter.set_effect(effect_resource)
+						emitter.transform.origin = EffecPos.transform.origin
+						emitter.transform.basis = EffecPos.transform.basis
+						emitter.play()
+						add_child(emitter)
+						near_enemy.flash_damage()
 		if current_position > 1.89:
 			if is_standing:
 				state_machine.travel("idle")

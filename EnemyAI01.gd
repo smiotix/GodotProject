@@ -31,6 +31,7 @@ var damage_elapsed:float = 0.0
 var before_take_down_flag: bool = false
 var HitPoint: int = 100
 var p_state_machine = null
+var guard_flag: bool = false
 @export_enum("Patrol","Stand") var type:int
 
 func _ready():
@@ -65,6 +66,8 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	var current_position = state_machine.get_current_play_position ()
 	animstate = state_machine.get_current_node()
+	if animstate != "guard":
+		guard_flag = false
 	if state == State.Patrol and not DamageFlag:
 		WalkTimer -= delta		
 		#print(animstate)
@@ -101,7 +104,8 @@ func _physics_process(delta: float) -> void:
 			var p_state = p_state_machine.get_current_node()
 			var p_position = p_state_machine.get_current_play_position ()
 			if p_state == "attack" and p_position > 0.36:
-				pass
+				state_machine.travel("guard")
+				guard_flag = true
 			else:
 				state_machine.travel("attack")
 				attack_flag = true
