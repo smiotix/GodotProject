@@ -30,6 +30,7 @@ var damage_duration: float = 1.0
 var damage_elapsed:float = 0.0
 var before_take_down_flag: bool = false
 var HitPoint: int = 100
+var p_state_machine = null
 @export_enum("Patrol","Stand") var type:int
 
 func _ready():
@@ -44,6 +45,9 @@ func _ready():
 	for node in node_group:
 		if node is CharacterBody3D:
 			Player = node
+	var player_anim_tree = Player.get_node("reimu/Armature/AnimationTree")
+	p_state_machine = player_anim_tree.get("parameters/playback")
+	#print(player_anim_tree.name)
 	#print(Player.name)
 	WalkTimer = WalkTime
 	#print(rayscript.name)
@@ -94,8 +98,13 @@ func _physics_process(delta: float) -> void:
 		var distance = global_transform.origin.distance_to(target_position)
 		#print(distance)
 		if distance < 1.8 and animstate != "attack":
-			state_machine.travel("attack")
-			attack_flag = true
+			var p_state = p_state_machine.get_current_node()
+			var p_position = p_state_machine.get_current_play_position ()
+			if p_state == "attack" and p_position > 0.36:
+				pass
+			else:
+				state_machine.travel("attack")
+				attack_flag = true
 			velocity = gravity * delta 
 		elif animstate == "attack":
 			velocity = gravity * delta 
