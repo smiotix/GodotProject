@@ -100,10 +100,15 @@ func _physics_process(delta: float) -> void:
 		look_at(target_position,Vector3.UP)
 		var distance = global_transform.origin.distance_to(target_position)
 		#print(distance)
-		if distance < 1.8 and animstate != "attack":
+		if animstate == "guard":
+			if current_position > 0.6:
+				await get_tree().create_timer(1.0).timeout
+				state_machine.travel("idle")
+		elif distance < 1.8 and animstate != "attack":
 			var p_state = p_state_machine.get_current_node()
 			var p_position = p_state_machine.get_current_play_position ()
-			if p_state == "attack" and p_position > 0.36:
+			#print(p_state)
+			if p_state == "kick" and p_position > 0.6:
 				state_machine.travel("guard")
 				guard_flag = true
 			else:
