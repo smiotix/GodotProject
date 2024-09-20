@@ -32,6 +32,7 @@ var before_take_down_flag: bool = false
 var HitPoint: int = 100
 var p_state_machine = null
 var guard_flag: bool = false
+var animplayer = null
 @export_enum("Patrol","Stand") var type:int
 
 func _ready():
@@ -42,6 +43,7 @@ func _ready():
 	attack_area = get_node("mob_tengu/Armature/Area3D")
 	EffecPos = get_node("mob_tengu/Armature/EffecPos")
 	DamageEffect = get_node("mob_tengu/Armature/GeneralSkeleton")
+	animplayer = get_node("mob_tengu/Armature/AnimationPlayer")
 	var node_group = get_tree().get_nodes_in_group("Player")
 	for node in node_group:
 		if node is CharacterBody3D:
@@ -63,6 +65,7 @@ func _ready():
 	else:
 		state = State.Stand
 	#print(EffecPos.name)
+	#print(animplayer.name)
 func _physics_process(delta: float) -> void:
 	var current_position = state_machine.get_current_play_position ()
 	animstate = state_machine.get_current_node()
@@ -116,6 +119,8 @@ func _physics_process(delta: float) -> void:
 				attack_flag = true
 			velocity = gravity * delta 
 		elif animstate == "attack":
+			animplayer.speed_scale = 3
+			#print(animplayer.speed_scale)
 			velocity = gravity * delta 
 			#print(current_position)
 			if current_position > 1 and attack_flag:
@@ -133,6 +138,7 @@ func _physics_process(delta: float) -> void:
 						add_child(emitter)
 						attack_flag = false
 			if current_position > 1.53:
+				animplayer.speed_scale = 1
 				state_machine.travel("idle")
 		else:
 			if animstate != "run":
