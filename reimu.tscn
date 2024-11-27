@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=3 uid="uid://dnstydu5ohyss"]
+[gd_scene load_steps=130 format=3 uid="uid://dnstydu5ohyss"]
 
 [ext_resource type="PackedScene" uid="uid://cpkjaa0rdt8e3" path="res://reimu.glb" id="1_y1iwv"]
 [ext_resource type="Material" uid="uid://cl2ihxojvy1e0" path="res://gobot_celshaded15.tres" id="2_1cci6"]
@@ -26,6 +26,7 @@
 [ext_resource type="Animation" uid="uid://vbgrg5yv08yb" path="res://falling.tres" id="12_t17rq"]
 [ext_resource type="Animation" uid="uid://dj1irt8r6hqm8" path="res://new_jump.tres" id="13_i12xu"]
 [ext_resource type="Animation" uid="uid://cis7darmeq72f" path="res://jump.tres" id="14_ca3in"]
+[ext_resource type="Animation" uid="uid://c65q8rjaty40d" path="res://parry.tres" id="15_4b2b2"]
 [ext_resource type="Material" uid="uid://b56fcpivy4pyw" path="res://gobot_celshaded21.tres" id="22_nh8os"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ngbyf"]
@@ -41,6 +42,7 @@ _data = {
 "kick": ExtResource("9_8ir0q"),
 "mini_punch": ExtResource("8_nd3ii"),
 "new_jump": ExtResource("13_i12xu"),
+"parry": ExtResource("15_4b2b2"),
 "run": ExtResource("3_2jcwr"),
 "s2c": ExtResource("4_1lixj")
 }
@@ -71,6 +73,9 @@ animation = &"anim02/new_jump"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qa3c6"]
 animation = &"anim02/kick"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p3okm"]
+animation = &"anim02/parry"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n4n6w"]
 animation = &"anim02/run"
@@ -476,6 +481,36 @@ xfade_time = 0.2
 advance_mode = 2
 advance_condition = &"falling"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lhsx8"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"parry"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s2ilu"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ctuls"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"kick"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_72obj"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"parry"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y7u07"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"damage"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fur3v"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"parry"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tmk8c"]
 states/End/position = Vector2(-6006, -1909)
 states/Start/position = Vector2(-6847, -1855)
@@ -486,24 +521,26 @@ states/cIdle/position = Vector2(-6232, -1749)
 states/cWalk/node = SubResource("AnimationNodeAnimation_bq3rq")
 states/cWalk/position = Vector2(-6353, -1840.76)
 states/damage/node = SubResource("AnimationNodeAnimation_v140x")
-states/damage/position = Vector2(-6754, -1855)
+states/damage/position = Vector2(-6720, -1840.76)
 states/death/node = SubResource("AnimationNodeAnimation_np135")
 states/death/position = Vector2(-6326, -1954.23)
 states/falling/node = SubResource("AnimationNodeAnimation_lbqvb")
 states/falling/position = Vector2(-6161.35, -1937)
 states/idle/node = SubResource("AnimationNodeAnimation_hwap1")
-states/idle/position = Vector2(-6620, -1937)
+states/idle/position = Vector2(-6623.35, -1954.23)
 states/jump/node = SubResource("AnimationNodeAnimation_kcvd1")
 states/jump/position = Vector2(-6784.35, -1937)
 states/kick/node = SubResource("AnimationNodeAnimation_qa3c6")
 states/kick/position = Vector2(-6095.35, -1784.27)
+states/parry/node = SubResource("AnimationNodeAnimation_p3okm")
+states/parry/position = Vector2(-6589.35, -1648.98)
 states/run/node = SubResource("AnimationNodeAnimation_n4n6w")
-states/run/position = Vector2(-6585, -1826)
+states/run/position = Vector2(-6547, -1824)
 states/s2c/node = SubResource("AnimationNodeAnimation_y30q6")
 states/s2c/position = Vector2(-6475, -1878)
 states/take_down/node = SubResource("AnimationNodeAnimation_fmotb")
-states/take_down/position = Vector2(-6749, -1739)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3g1js"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_qs5df"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_gvtqo"), "idle", "s2c", SubResource("AnimationNodeStateMachineTransition_jdtqh"), "c2s", "idle", SubResource("AnimationNodeStateMachineTransition_7rcct"), "s2c", "cIdle", SubResource("AnimationNodeStateMachineTransition_a3s0y"), "cIdle", "c2s", SubResource("AnimationNodeStateMachineTransition_deeom"), "cIdle", "cWalk", SubResource("AnimationNodeStateMachineTransition_jn3t3"), "cWalk", "cIdle", SubResource("AnimationNodeStateMachineTransition_clnco"), "cWalk", "c2s", SubResource("AnimationNodeStateMachineTransition_w5lyd"), "idle", "take_down", SubResource("AnimationNodeStateMachineTransition_trbbt"), "take_down", "idle", SubResource("AnimationNodeStateMachineTransition_jy3kj"), "run", "take_down", SubResource("AnimationNodeStateMachineTransition_8j2ig"), "take_down", "run", SubResource("AnimationNodeStateMachineTransition_usjcm"), "cIdle", "take_down", SubResource("AnimationNodeStateMachineTransition_1jtw7"), "take_down", "cIdle", SubResource("AnimationNodeStateMachineTransition_qj6ii"), "cWalk", "take_down", SubResource("AnimationNodeStateMachineTransition_spa6l"), "take_down", "cWalk", SubResource("AnimationNodeStateMachineTransition_w168k"), "idle", "kick", SubResource("AnimationNodeStateMachineTransition_6xdg1"), "kick", "idle", SubResource("AnimationNodeStateMachineTransition_dnupp"), "run", "kick", SubResource("AnimationNodeStateMachineTransition_ycsnw"), "kick", "run", SubResource("AnimationNodeStateMachineTransition_xy67b"), "cWalk", "kick", SubResource("AnimationNodeStateMachineTransition_kybuy"), "kick", "cWalk", SubResource("AnimationNodeStateMachineTransition_rcg7d"), "kick", "cIdle", SubResource("AnimationNodeStateMachineTransition_g0xrd"), "cIdle", "kick", SubResource("AnimationNodeStateMachineTransition_su47a"), "idle", "damage", SubResource("AnimationNodeStateMachineTransition_qgm60"), "damage", "idle", SubResource("AnimationNodeStateMachineTransition_kwov4"), "run", "damage", SubResource("AnimationNodeStateMachineTransition_a1qfr"), "damage", "run", SubResource("AnimationNodeStateMachineTransition_12of4"), "take_down", "damage", SubResource("AnimationNodeStateMachineTransition_wbceu"), "damage", "take_down", SubResource("AnimationNodeStateMachineTransition_h1oew"), "s2c", "damage", SubResource("AnimationNodeStateMachineTransition_h3k33"), "damage", "s2c", SubResource("AnimationNodeStateMachineTransition_8m78l"), "damage", "c2s", SubResource("AnimationNodeStateMachineTransition_t6yda"), "c2s", "damage", SubResource("AnimationNodeStateMachineTransition_qu44p"), "damage", "cIdle", SubResource("AnimationNodeStateMachineTransition_ipby0"), "cIdle", "damage", SubResource("AnimationNodeStateMachineTransition_uygbv"), "cWalk", "damage", SubResource("AnimationNodeStateMachineTransition_icq4c"), "damage", "cWalk", SubResource("AnimationNodeStateMachineTransition_g488v"), "damage", "kick", SubResource("AnimationNodeStateMachineTransition_6r0in"), "kick", "damage", SubResource("AnimationNodeStateMachineTransition_5mn3b"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_c8bkq"), "s2c", "death", SubResource("AnimationNodeStateMachineTransition_da4am"), "run", "death", SubResource("AnimationNodeStateMachineTransition_xcx65"), "take_down", "death", SubResource("AnimationNodeStateMachineTransition_lo3nm"), "damage", "death", SubResource("AnimationNodeStateMachineTransition_q8fyi"), "c2s", "death", SubResource("AnimationNodeStateMachineTransition_nivuo"), "cWalk", "death", SubResource("AnimationNodeStateMachineTransition_vbldr"), "cIdle", "death", SubResource("AnimationNodeStateMachineTransition_kajhm"), "kick", "death", SubResource("AnimationNodeStateMachineTransition_5bkwp"), "idle", "falling", SubResource("AnimationNodeStateMachineTransition_o3srn"), "falling", "idle", SubResource("AnimationNodeStateMachineTransition_g0tbh"), "run", "falling", SubResource("AnimationNodeStateMachineTransition_h08gj"), "falling", "run", SubResource("AnimationNodeStateMachineTransition_g8dkg"), "damage", "falling", SubResource("AnimationNodeStateMachineTransition_23118"), "falling", "damage", SubResource("AnimationNodeStateMachineTransition_y8aql"), "take_down", "falling", SubResource("AnimationNodeStateMachineTransition_q4bg0"), "falling", "take_down", SubResource("AnimationNodeStateMachineTransition_ovq1l"), "falling", "kick", SubResource("AnimationNodeStateMachineTransition_8nkt4"), "kick", "falling", SubResource("AnimationNodeStateMachineTransition_dtira"), "falling", "death", SubResource("AnimationNodeStateMachineTransition_piy38"), "s2c", "falling", SubResource("AnimationNodeStateMachineTransition_rgjkx"), "falling", "s2c", SubResource("AnimationNodeStateMachineTransition_0v8j6"), "c2s", "falling", SubResource("AnimationNodeStateMachineTransition_t11e1"), "falling", "c2s", SubResource("AnimationNodeStateMachineTransition_82y64"), "cIdle", "falling", SubResource("AnimationNodeStateMachineTransition_amb3y"), "falling", "cIdle", SubResource("AnimationNodeStateMachineTransition_mtpnp"), "falling", "cWalk", SubResource("AnimationNodeStateMachineTransition_7aobq"), "cWalk", "falling", SubResource("AnimationNodeStateMachineTransition_5sqax"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_thjm2"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_moyhk"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_ptihw"), "jump", "run", SubResource("AnimationNodeStateMachineTransition_3fgdu"), "jump", "cWalk", SubResource("AnimationNodeStateMachineTransition_yfr1n"), "cWalk", "jump", SubResource("AnimationNodeStateMachineTransition_jacl0"), "jump", "cIdle", SubResource("AnimationNodeStateMachineTransition_fwhut"), "cIdle", "jump", SubResource("AnimationNodeStateMachineTransition_0unmc"), "jump", "death", SubResource("AnimationNodeStateMachineTransition_yoyfe")]
+states/take_down/position = Vector2(-6784.35, -1739)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_3g1js"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_qs5df"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_gvtqo"), "idle", "s2c", SubResource("AnimationNodeStateMachineTransition_jdtqh"), "c2s", "idle", SubResource("AnimationNodeStateMachineTransition_7rcct"), "s2c", "cIdle", SubResource("AnimationNodeStateMachineTransition_a3s0y"), "cIdle", "c2s", SubResource("AnimationNodeStateMachineTransition_deeom"), "cIdle", "cWalk", SubResource("AnimationNodeStateMachineTransition_jn3t3"), "cWalk", "cIdle", SubResource("AnimationNodeStateMachineTransition_clnco"), "cWalk", "c2s", SubResource("AnimationNodeStateMachineTransition_w5lyd"), "idle", "take_down", SubResource("AnimationNodeStateMachineTransition_trbbt"), "take_down", "idle", SubResource("AnimationNodeStateMachineTransition_jy3kj"), "run", "take_down", SubResource("AnimationNodeStateMachineTransition_8j2ig"), "take_down", "run", SubResource("AnimationNodeStateMachineTransition_usjcm"), "cIdle", "take_down", SubResource("AnimationNodeStateMachineTransition_1jtw7"), "take_down", "cIdle", SubResource("AnimationNodeStateMachineTransition_qj6ii"), "cWalk", "take_down", SubResource("AnimationNodeStateMachineTransition_spa6l"), "take_down", "cWalk", SubResource("AnimationNodeStateMachineTransition_w168k"), "idle", "kick", SubResource("AnimationNodeStateMachineTransition_6xdg1"), "kick", "idle", SubResource("AnimationNodeStateMachineTransition_dnupp"), "run", "kick", SubResource("AnimationNodeStateMachineTransition_ycsnw"), "kick", "run", SubResource("AnimationNodeStateMachineTransition_xy67b"), "cWalk", "kick", SubResource("AnimationNodeStateMachineTransition_kybuy"), "kick", "cWalk", SubResource("AnimationNodeStateMachineTransition_rcg7d"), "kick", "cIdle", SubResource("AnimationNodeStateMachineTransition_g0xrd"), "cIdle", "kick", SubResource("AnimationNodeStateMachineTransition_su47a"), "idle", "damage", SubResource("AnimationNodeStateMachineTransition_qgm60"), "damage", "idle", SubResource("AnimationNodeStateMachineTransition_kwov4"), "run", "damage", SubResource("AnimationNodeStateMachineTransition_a1qfr"), "damage", "run", SubResource("AnimationNodeStateMachineTransition_12of4"), "take_down", "damage", SubResource("AnimationNodeStateMachineTransition_wbceu"), "damage", "take_down", SubResource("AnimationNodeStateMachineTransition_h1oew"), "s2c", "damage", SubResource("AnimationNodeStateMachineTransition_h3k33"), "damage", "s2c", SubResource("AnimationNodeStateMachineTransition_8m78l"), "damage", "c2s", SubResource("AnimationNodeStateMachineTransition_t6yda"), "c2s", "damage", SubResource("AnimationNodeStateMachineTransition_qu44p"), "damage", "cIdle", SubResource("AnimationNodeStateMachineTransition_ipby0"), "cIdle", "damage", SubResource("AnimationNodeStateMachineTransition_uygbv"), "cWalk", "damage", SubResource("AnimationNodeStateMachineTransition_icq4c"), "damage", "cWalk", SubResource("AnimationNodeStateMachineTransition_g488v"), "damage", "kick", SubResource("AnimationNodeStateMachineTransition_6r0in"), "kick", "damage", SubResource("AnimationNodeStateMachineTransition_5mn3b"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_c8bkq"), "s2c", "death", SubResource("AnimationNodeStateMachineTransition_da4am"), "run", "death", SubResource("AnimationNodeStateMachineTransition_xcx65"), "take_down", "death", SubResource("AnimationNodeStateMachineTransition_lo3nm"), "damage", "death", SubResource("AnimationNodeStateMachineTransition_q8fyi"), "c2s", "death", SubResource("AnimationNodeStateMachineTransition_nivuo"), "cWalk", "death", SubResource("AnimationNodeStateMachineTransition_vbldr"), "cIdle", "death", SubResource("AnimationNodeStateMachineTransition_kajhm"), "kick", "death", SubResource("AnimationNodeStateMachineTransition_5bkwp"), "idle", "falling", SubResource("AnimationNodeStateMachineTransition_o3srn"), "falling", "idle", SubResource("AnimationNodeStateMachineTransition_g0tbh"), "run", "falling", SubResource("AnimationNodeStateMachineTransition_h08gj"), "falling", "run", SubResource("AnimationNodeStateMachineTransition_g8dkg"), "damage", "falling", SubResource("AnimationNodeStateMachineTransition_23118"), "falling", "damage", SubResource("AnimationNodeStateMachineTransition_y8aql"), "take_down", "falling", SubResource("AnimationNodeStateMachineTransition_q4bg0"), "falling", "take_down", SubResource("AnimationNodeStateMachineTransition_ovq1l"), "falling", "kick", SubResource("AnimationNodeStateMachineTransition_8nkt4"), "kick", "falling", SubResource("AnimationNodeStateMachineTransition_dtira"), "falling", "death", SubResource("AnimationNodeStateMachineTransition_piy38"), "s2c", "falling", SubResource("AnimationNodeStateMachineTransition_rgjkx"), "falling", "s2c", SubResource("AnimationNodeStateMachineTransition_0v8j6"), "c2s", "falling", SubResource("AnimationNodeStateMachineTransition_t11e1"), "falling", "c2s", SubResource("AnimationNodeStateMachineTransition_82y64"), "cIdle", "falling", SubResource("AnimationNodeStateMachineTransition_amb3y"), "falling", "cIdle", SubResource("AnimationNodeStateMachineTransition_mtpnp"), "falling", "cWalk", SubResource("AnimationNodeStateMachineTransition_7aobq"), "cWalk", "falling", SubResource("AnimationNodeStateMachineTransition_5sqax"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_thjm2"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_moyhk"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_ptihw"), "jump", "run", SubResource("AnimationNodeStateMachineTransition_3fgdu"), "jump", "cWalk", SubResource("AnimationNodeStateMachineTransition_yfr1n"), "cWalk", "jump", SubResource("AnimationNodeStateMachineTransition_jacl0"), "jump", "cIdle", SubResource("AnimationNodeStateMachineTransition_fwhut"), "cIdle", "jump", SubResource("AnimationNodeStateMachineTransition_0unmc"), "jump", "death", SubResource("AnimationNodeStateMachineTransition_yoyfe"), "idle", "parry", SubResource("AnimationNodeStateMachineTransition_lhsx8"), "parry", "idle", SubResource("AnimationNodeStateMachineTransition_s2ilu"), "parry", "kick", SubResource("AnimationNodeStateMachineTransition_ctuls"), "kick", "parry", SubResource("AnimationNodeStateMachineTransition_72obj"), "parry", "damage", SubResource("AnimationNodeStateMachineTransition_y7u07"), "damage", "parry", SubResource("AnimationNodeStateMachineTransition_fur3v")]
 graph_offset = Vector2(-6932.35, -1974.98)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bdfpv"]
@@ -530,59 +567,60 @@ parameters/conditions/falling = false
 parameters/conditions/idle = false
 parameters/conditions/jump = false
 parameters/conditions/kick = false
+parameters/conditions/parry = false
 parameters/conditions/run = false
 parameters/conditions/s2c = false
 parameters/conditions/take_down = false
 
 [node name="GeneralSkeleton" parent="Armature" index="3"]
-bones/1/rotation = Quaternion(-0.00264954, -0.0408671, -0.0252596, 0.998842)
-bones/2/rotation = Quaternion(0.00886665, 0.00547182, 0.0148824, 0.999835)
-bones/3/rotation = Quaternion(0.0176792, 0.0109368, 0.0260276, 0.999445)
-bones/4/rotation = Quaternion(0.0176792, 0.0109367, 0.0260276, 0.999445)
-bones/5/rotation = Quaternion(-0.0947415, 0.00240952, -0.00196423, 0.995497)
-bones/6/rotation = Quaternion(0.0286749, 0.0070231, -0.0404632, 0.998745)
-bones/9/rotation = Quaternion(0.514305, 0.468598, 0.580189, -0.423422)
-bones/10/rotation = Quaternion(0.103659, 0.813233, -0.545168, -0.17521)
-bones/11/rotation = Quaternion(0.107147, -0.699549, 0.106965, 0.698362)
-bones/12/rotation = Quaternion(-0.00416746, 0.583076, 0.158758, 0.796744)
+bones/1/rotation = Quaternion(-0.00663203, -0.0496536, -0.0281597, 0.998347)
+bones/2/rotation = Quaternion(0.0104201, 0.00413397, 0.0154752, 0.999817)
+bones/3/rotation = Quaternion(0.0213817, 0.00848149, 0.0265247, 0.999384)
+bones/4/rotation = Quaternion(0.0213817, 0.00848147, 0.0265247, 0.999384)
+bones/5/rotation = Quaternion(-0.090368, 0.00153576, 0.00473604, 0.995896)
+bones/6/rotation = Quaternion(0.0374922, 0.0101249, -0.0464424, 0.998166)
+bones/9/rotation = Quaternion(0.514087, 0.468827, 0.580155, -0.423481)
+bones/10/rotation = Quaternion(0.143038, 0.808924, -0.550424, -0.149046)
+bones/11/rotation = Quaternion(0.0526935, -0.708898, 0.0521367, 0.701405)
+bones/12/rotation = Quaternion(0.0424116, 0.578679, 0.179046, 0.794528)
 bones/13/rotation = Quaternion(-0.186812, 0.722468, 0.136546, 0.651534)
 bones/14/rotation = Quaternion(-0.00560214, -0.00278673, -0.000284135, 0.99998)
 bones/15/rotation = Quaternion(-2.98023e-08, 2.98023e-08, 0, 1)
-bones/16/rotation = Quaternion(0.101964, 0.00382154, -0.0104347, 0.994726)
+bones/16/rotation = Quaternion(0.105655, 0.00381004, -0.0107082, 0.994338)
 bones/17/rotation = Quaternion(5.96046e-08, 0, 6.63102e-05, 1)
-bones/19/rotation = Quaternion(0.108633, 4.79538e-05, 0.00351639, 0.994076)
+bones/19/rotation = Quaternion(0.166428, -8.73244e-05, 0.00661035, 0.986031)
 bones/20/rotation = Quaternion(2.98023e-08, -2.98023e-08, -2.0951e-05, 1)
-bones/22/rotation = Quaternion(0.100234, -0.00104339, 4.04912e-05, 0.994963)
+bones/22/rotation = Quaternion(0.166229, -0.00170569, 0.00674042, 0.986063)
 bones/23/rotation = Quaternion(0, 4.47035e-08, 4.47035e-08, 1)
 bones/24/rotation = Quaternion(5.96046e-08, 4.47035e-08, 0, 1)
-bones/25/rotation = Quaternion(0.14321, -0.000245466, 0.0251364, 0.989373)
+bones/25/rotation = Quaternion(0.210593, -7.80571e-05, 0.0375872, 0.976851)
 bones/26/rotation = Quaternion(5.96046e-08, -1.49012e-08, 6.72191e-05, 1)
-bones/28/rotation = Quaternion(0.515899, -0.471053, -0.556974, -0.449152)
-bones/29/rotation = Quaternion(-0.0920243, 0.798559, -0.539724, 0.250065)
-bones/30/rotation = Quaternion(0.113434, 0.697766, -0.113491, 0.698122)
-bones/31/rotation = Quaternion(-0.0886112, -0.489438, -0.202873, 0.84347)
+bones/28/rotation = Quaternion(0.520733, -0.466564, -0.555033, -0.450658)
+bones/29/rotation = Quaternion(-0.133519, 0.79969, -0.540328, 0.225198)
+bones/30/rotation = Quaternion(0.0601717, 0.710669, -0.0591371, 0.69845)
+bones/31/rotation = Quaternion(-0.0587274, -0.483416, -0.22177, 0.844795)
 bones/32/rotation = Quaternion(-0.152293, -0.73494, -0.125718, 0.648741)
 bones/33/rotation = Quaternion(-0.006365, 0.00315903, 0.000399619, 0.999975)
 bones/34/rotation = Quaternion(-1.49012e-08, 1.49012e-08, 2.98023e-08, 1)
-bones/35/rotation = Quaternion(0.0220512, -0.00716256, 0.00744122, 0.999704)
+bones/35/rotation = Quaternion(0.0410055, -0.000724994, 0.00482571, 0.999147)
 bones/36/rotation = Quaternion(-2.98023e-08, -2.98023e-08, 8.81404e-05, 1)
 bones/37/rotation = Quaternion(1.49012e-08, 1.49012e-08, 1.49012e-08, 1)
-bones/38/rotation = Quaternion(0.0847645, 0.000404742, -0.00450106, 0.996391)
+bones/38/rotation = Quaternion(0.090614, 0.000415396, -0.00489084, 0.995874)
 bones/39/rotation = Quaternion(2.98023e-08, -2.98023e-08, 0.000322029, 1)
 bones/40/rotation = Quaternion(0, 0, 2.98023e-08, 1)
-bones/41/rotation = Quaternion(0.0780921, 0.00280322, -0.00368677, 0.996935)
+bones/41/rotation = Quaternion(0.0811761, 0.00280709, -0.00389741, 0.996688)
 bones/42/rotation = Quaternion(-2.98023e-08, 2.98023e-08, 0.000112608, 1)
 bones/43/rotation = Quaternion(-2.98023e-08, 2.98023e-08, -2.98023e-08, 1)
-bones/44/rotation = Quaternion(0.105311, 0.00758117, -0.0369135, 0.993725)
+bones/44/rotation = Quaternion(0.108183, 0.00751576, -0.037249, 0.993405)
 bones/45/rotation = Quaternion(0, 0, 0.000496566, 1)
 bones/46/rotation = Quaternion(1.49012e-08, 1.49012e-08, 0, 1)
-bones/51/rotation = Quaternion(0.0230124, 0.12755, 0.988713, -0.0751544)
-bones/52/rotation = Quaternion(0.00457068, 0.992354, -0.123333, 0.000981315)
-bones/53/rotation = Quaternion(0.0925801, 0.717916, -0.677132, 0.132358)
-bones/54/rotation = Quaternion(-0.0351079, 0.999137, 0.00419925, 0.021793)
-bones/55/rotation = Quaternion(-0.0606928, 0.0221623, 0.996167, -0.0589546)
-bones/56/rotation = Quaternion(-0.00193628, 0.997565, -0.069715, 0.000123849)
-bones/57/rotation = Quaternion(-0.0995287, 0.670612, -0.733073, -0.0545722)
+bones/51/rotation = Quaternion(0.0241472, 0.127877, 0.988593, -0.0758235)
+bones/52/rotation = Quaternion(0.00478874, 0.991656, -0.128822, 0.000936719)
+bones/53/rotation = Quaternion(0.0990193, 0.716299, -0.677173, 0.136189)
+bones/54/rotation = Quaternion(-0.0230535, 0.999647, -0.000676705, 0.0132267)
+bones/55/rotation = Quaternion(-0.0607133, 0.0240941, 0.996213, -0.0573907)
+bones/56/rotation = Quaternion(-0.00222562, 0.997234, -0.0742969, 8.90795e-05)
+bones/57/rotation = Quaternion(-0.0917936, 0.671834, -0.733195, -0.0513677)
 bones/58/rotation = Quaternion(-0.00833547, 0.999661, 0.0240893, 0.00531647)
 script = ExtResource("10_qwsps")
 damage_material = ExtResource("22_nh8os")

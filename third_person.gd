@@ -224,14 +224,14 @@ func _physics_process(delta: float) -> void:
 			#print(animstate)
 	#print(EffecPos.name)	
 	#print(animstate)	
-	if Input.is_action_just_pressed("take_down") and is_on_floor() and DamageFlag and not parry_miss and Flag02 and near_enemy.get("waken"):
+	if Input.is_action_just_pressed("take_down") and is_on_floor() and DamageFlag and not parry_miss and Flag02 and near_enemy.get("waken") and is_standing:
 		for enemy in get_tree().get_nodes_in_group("Enemy"):
 			if enemy.get("can_parry_flag"):
 				if enemy.has_method("parry"):
 					if enemy.get("body_enter"):
-#						var effect_resource = preload("res://effect/Hit02.efkefc")
+						var effect_resource = preload("res://effect/Hit02.efkefc")
 						var emitter = EffekseerEmitter3D.new()
-#						emitter.set_effect(effect_resource)
+						emitter.set_effect(effect_resource)
 						emitter.transform.origin = EffecPos.transform.origin
 						emitter.transform.basis = EffecPos.transform.basis
 						emitter.play()

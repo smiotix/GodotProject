@@ -35,6 +35,7 @@ var guard_flag: bool = false
 var animplayer = null
 @export_enum("Patrol","Stand") var type:int
 var waken: bool = false
+var can_parry_flag: bool = true 
 
 func _ready():
 	gravity = Vector3.DOWN * ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -127,10 +128,14 @@ func _physics_process(delta: float) -> void:
 			#print(animplayer.speed_scale)
 			velocity = gravity * delta 
 			#print(current_position)
+			if current_position > 0.7 and not current_position > 1:
+				if can_parry_flag:
+					can_parry_flag = true
 			if current_position > 0.63:
 				if not guard_flag:
 					guard_flag = true
 			if current_position > 1 and attack_flag:
+				can_parry_flag = false
 				if Player.get("body_enter"):
 					if Player.has_method("flash_damage"):
 						Player.flash_damage()
