@@ -34,6 +34,7 @@ var p_state_machine = null
 var guard_flag: bool = false
 var animplayer = null
 @export_enum("Patrol","Stand") var type:int
+var waken: bool = false
 
 func _ready():
 	gravity = Vector3.DOWN * ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -69,6 +70,7 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if Player.get("death"):
 		state = State.Stop
+		waken = false
 	var current_position = state_machine.get_current_play_position ()
 	animstate = state_machine.get_current_node()
 	if animstate != "guard":
@@ -168,6 +170,7 @@ func _physics_process(delta: float) -> void:
 		if rayscript.get("PlayerDetection"):
 			state = State.Attack
 			Flag02 = false
+			waken = true
 	if DamageFlag:
 		#print("damage")
 		if damage_elapsed >= damage_duration:
@@ -189,6 +192,7 @@ func _physics_process(delta: float) -> void:
 func flash_damage():
 	if state != State.Attack:
 		state = State.Attack
+		waken = true
 	DamageEffect.take_damage()
 	HitPoint -= 30
 	DamageFlag = true
