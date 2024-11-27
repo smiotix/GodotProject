@@ -229,3 +229,9 @@ func _on_Area_body_exited(body):
 	if body.is_in_group("Player"):
 		body.set("body_enter",false)
 		#print("プレイヤーがエリアを離れました",body.get("body_enter"))
+func parry():
+	can_parry_flag = false
+	HitPoint -= 40
+	DamageEffect.take_damage()
+	DamageFlag = true
+	
