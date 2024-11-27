@@ -49,6 +49,7 @@ var take_down_flag: bool = true
 var HitPoint: int = 100
 var stealth: bool = false
 var td_Flag: bool = false
+var death: bool = false
 #var WinText: Label = null
 #var audioplayer: AudioStreamPlayer3D = null
 #var PauseText: Label = null
@@ -307,6 +308,7 @@ func _physics_process(delta: float) -> void:
 	if HitPoint <= 0:
 		if animstate != "death":
 			state_machine.travel("death")
+			death = true
 		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
 	#print(current_position)
 	#if near_enemy != null:

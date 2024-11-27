@@ -67,6 +67,8 @@ func _ready():
 	#print(EffecPos.name)
 	#print(animplayer.name)
 func _physics_process(delta: float) -> void:
+	if Player.get("death"):
+		state = State.Stop
 	var current_position = state_machine.get_current_play_position ()
 	animstate = state_machine.get_current_node()
 	if animstate != "guard":
@@ -106,7 +108,7 @@ func _physics_process(delta: float) -> void:
 		if animstate == "guard":
 			if current_position > 0.6:
 				await get_tree().create_timer(1.0).timeout
-				state_machine.travel("idle")
+				state_machine.travel("attack")
 		elif distance < 1.8 and animstate != "attack":
 			var p_state = p_state_machine.get_current_node()
 			var p_position = p_state_machine.get_current_play_position ()
@@ -119,10 +121,13 @@ func _physics_process(delta: float) -> void:
 				attack_flag = true
 			velocity = gravity * delta 
 		elif animstate == "attack":
-			animplayer.speed_scale = 3
+			#animplayer.speed_scale = 3
 			#print(animplayer.speed_scale)
 			velocity = gravity * delta 
 			#print(current_position)
+			if current_position > 0.63:
+				if not guard_flag:
+					guard_flag = true
 			if current_position > 1 and attack_flag:
 				if Player.get("body_enter"):
 					if Player.has_method("flash_damage"):
@@ -138,7 +143,9 @@ func _physics_process(delta: float) -> void:
 						add_child(emitter)
 						attack_flag = false
 			if current_position > 1.53:
-				animplayer.speed_scale = 1
+				#animplayer.speed_scale = 1
+				if guard_flag:
+					guard_flag = false
 				state_machine.travel("idle")
 		else:
 			if animstate != "run":
