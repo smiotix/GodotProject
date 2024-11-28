@@ -224,9 +224,11 @@ func _physics_process(delta: float) -> void:
 			#print(animstate)
 	#print(EffecPos.name)	
 	#print(animstate)	
+	#print(near_enemy.get("waken"))
 	if Input.is_action_just_pressed("take_down") and is_on_floor() and DamageFlag and not parry_miss and Flag02 and near_enemy.get("waken") and is_standing:
 		for enemy in get_tree().get_nodes_in_group("Enemy"):
 			if enemy.get("can_parry_flag"):
+				#print(enemy.get("can_parry_flag"))
 				if enemy.has_method("parry"):
 					if enemy.get("body_enter"):
 						var effect_resource = preload("res://effect/Hit02.efkefc")
@@ -254,14 +256,14 @@ func _physics_process(delta: float) -> void:
 		state_machine.travel("idle")
 	if parry_miss:
 		if Flag00:
-			parry_miss_timer = 3
+			parry_miss_timer = 0.5
 			Flag00 = false
 		else:
-			parry_miss_timer -=  2 * delta
+			parry_miss_timer -=  0.1 * delta
 		if parry_miss_timer <= 0.0:
 			parry_miss = false
 			Flag00 = true
-		#print(parry_miss_timer)
+	#print(parry_miss_timer)
 	if Input.is_action_just_pressed("take_down") and not near_enemy.get("waken"):
 		take_down_flag = true
 		if animstate != "take_down":
