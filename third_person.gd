@@ -259,7 +259,8 @@ func _physics_process(delta: float) -> void:
 			parry_miss_timer = 0.5
 			Flag00 = false
 		else:
-			parry_miss_timer -=  0.1 * delta
+			parry_miss_timer -=  1 * delta
+			print(parry_miss_timer)
 		if parry_miss_timer <= 0.0:
 			parry_miss = false
 			Flag00 = true
