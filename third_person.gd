@@ -114,7 +114,7 @@ func _physics_process(delta: float) -> void:
 	var current_position = state_machine.get_current_play_position ()
 	animstate = state_machine.get_current_node() 
 	# キャラクターの移動処理
-	if joystick_left_input != Vector2.ZERO and is_on_floor() and DamageFlag and Flag02 and is_standing and not td_Flag:
+	if joystick_left_input != Vector2.ZERO and is_on_floor() and DamageFlag and Flag02 and is_standing and not td_Flag and not death:
 		move_direction = camera_node.global_transform.basis * Vector3(joystick_left_input.x, 0, joystick_left_input.y).normalized()
 		move_direction.y = 0 # Y軸の移動は無視（重力による落下のみ）
 		# ジャンプ処理
@@ -129,7 +129,7 @@ func _physics_process(delta: float) -> void:
 			look_at(global_transform.origin + move_direction,Vector3.UP)
 			if animstate != "kick":
 				velocity = move_direction * move_speed + gravity * delta
-	elif  joystick_left_input != Vector2.ZERO and is_on_floor() and DamageFlag and Flag02 and not is_standing and not td_Flag:
+	elif  joystick_left_input != Vector2.ZERO and is_on_floor() and DamageFlag and Flag02 and not is_standing and not td_Flag and not death:
 		move_direction = camera_node.global_transform.basis * Vector3(joystick_left_input.x, 0, joystick_left_input.y).normalized()
 		move_direction.y = 0
 		if move_direction != Vector3.ZERO:
@@ -158,7 +158,7 @@ func _physics_process(delta: float) -> void:
 		velocity += gravity * delta
 	#print(is_on_floor())
 	#print(gravity)
-	if Input.is_action_just_pressed("jump") and is_on_floor() and DamageFlag and Flag02 and is_standing and not td_Flag:
+	if Input.is_action_just_pressed("jump") and is_on_floor() and DamageFlag and Flag02 and is_standing and not td_Flag and not death:
 		#animstate = state_machine.get_current_node()
 		if animstate != "jump":
 			state_machine.travel("jump")
@@ -174,7 +174,7 @@ func _physics_process(delta: float) -> void:
 		if animstate != "jump":
 			state_machine.travel("falling")
 	animstate = state_machine.get_current_node()
-	if Input.is_action_just_pressed("attack") and is_on_floor()  and animstate != "jump" and animstate != "falling" and animstate != "kick" and DamageFlag and Flag02:
+	if Input.is_action_just_pressed("attack") and is_on_floor()  and animstate != "jump" and animstate != "falling" and animstate != "kick" and DamageFlag and Flag02 and not death:
 		state_machine.travel("kick")
 		attack_flag = true
 	#print(current_position)
@@ -225,7 +225,7 @@ func _physics_process(delta: float) -> void:
 	#print(EffecPos.name)	
 	#print(animstate)	
 	#print(near_enemy.get("waken"))
-	if Input.is_action_just_pressed("take_down") and is_on_floor() and DamageFlag and not parry_miss and Flag02 and near_enemy.get("waken") and is_standing:
+	if Input.is_action_just_pressed("take_down") and is_on_floor() and DamageFlag and not parry_miss and Flag02 and near_enemy.get("waken") and is_standing and not death:
 		for enemy in get_tree().get_nodes_in_group("Enemy"):
 			if enemy.get("can_parry_flag"):
 				#print(enemy.get("can_parry_flag"))
@@ -260,12 +260,14 @@ func _physics_process(delta: float) -> void:
 			Flag00 = false
 		else:
 			parry_miss_timer -=  1 * delta
-			print(parry_miss_timer)
+			#print(parry_miss_timer)
 		if parry_miss_timer <= 0.0:
 			parry_miss = false
 			Flag00 = true
+	#else:
+	#	print("parry ok")
 	#print(parry_miss_timer)
-	if Input.is_action_just_pressed("take_down") and not near_enemy.get("waken"):
+	if Input.is_action_just_pressed("take_down") and not near_enemy.get("waken") and not death:
 		take_down_flag = true
 		if animstate != "take_down":
 			state_machine.travel("take_down")

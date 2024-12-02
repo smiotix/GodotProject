@@ -78,6 +78,10 @@ shape = SubResource("BoxShape3D_i7fbv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.13112, 6.31472, 8.64334)
 script = ExtResource("5_mrcgt")
 
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2799, 6.31472, 8.64334)
+script = ExtResource("5_mrcgt")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 3, 0.983504, -0.734338, 5.61597)
 mesh = SubResource("BoxMesh_nm2ct")
