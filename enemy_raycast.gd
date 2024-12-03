@@ -5,8 +5,17 @@ var view_distance: float = 25.0
 var view_angle_min: float = 40.0  # 前方20度
 var view_angle_max: float = 140.0  # 前方110度
 var PlayerDetection: bool = false
+var Body = null
 
 func _ready():
+	var tFlag: bool = true
+	var node = self.get_parent()
+	while tFlag:
+		if node as CharacterBody3D:
+			tFlag = false
+		else:
+			node = node.get_parent()
+	Body = node
 	#RenderingServer.VIEWPORT_DEBUG_DRAW_WIREFRAME
 	# 初期設定などを行う場合はここに記述
 	pass
@@ -19,6 +28,7 @@ func _process(delta: float):
 		var raycast = RayCast3D.new()  # 新しいレイキャストを作成
 		raycast.target_position = ray_direction
 		raycast.enabled = true
+		raycast.add_exception(Body)
 		self.add_child(raycast)  # レイキャストをシーンに追加
 		#raycast.global_transform.origin = start_point
 		#DebugDraw3D.draw_line(start_point,end_point,Color(1.0,0.0,0.0,1.0),-view_distance)
@@ -32,6 +42,8 @@ func _process(delta: float):
 			if raycast.is_colliding():
 				var distance = raycast.get_collision_point().distance_to(raycast.global_transform.origin)
 				# 距離に応じて異なる処理を実行
+				if collided_object.is_in_group("Enemy") and collided_object == Body:
+					print(collided_object.get_class())
 				if distance < 10.0:
 					#_handle_medium_collision()
 					if collided_object.is_in_group("Player"):
