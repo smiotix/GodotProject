@@ -16,7 +16,7 @@ func _ready():
 		else:
 			node = node.get_parent()
 	Body = node
-	#RenderingServer.VIEWPORT_DEBUG_DRAW_WIREFRAME
+	RenderingServer.VIEWPORT_DEBUG_DRAW_WIREFRAME
 	# 初期設定などを行う場合はここに記述
 	pass
 
@@ -30,6 +30,7 @@ func _process(delta: float):
 		raycast.enabled = true
 		raycast.add_exception(Body)
 		self.add_child(raycast)  # レイキャストをシーンに追加
+#		raycast.add_exception(Body)
 		#raycast.global_transform.origin = start_point
 		#DebugDraw3D.draw_line(start_point,end_point,Color(1.0,0.0,0.0,1.0),-view_distance)
 		await get_tree().create_timer(0).timeout  # フレームの終わりまで待つ
@@ -42,8 +43,9 @@ func _process(delta: float):
 			if raycast.is_colliding():
 				var distance = raycast.get_collision_point().distance_to(raycast.global_transform.origin)
 				# 距離に応じて異なる処理を実行
-				if collided_object.is_in_group("Enemy") and collided_object == Body:
-					print(collided_object.get_class())
+				if collided_object.is_in_group("Enemy"):
+					if collided_object.get("waken"):
+						PlayerDetection = true
 				if distance < 10.0:
 					#_handle_medium_collision()
 					if collided_object.is_in_group("Player"):
