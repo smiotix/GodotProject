@@ -44,7 +44,7 @@ func _process(delta: float):
 				var distance = raycast.get_collision_point().distance_to(raycast.global_transform.origin)
 				# 距離に応じて異なる処理を実行
 				if collided_object.is_in_group("Enemy"):
-					print("Enemy")
+					#print("Enemy")
 					if collided_object.get("waken"):
 						PlayerDetection = true
 				if distance < 10.0:

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba0o537xp32i0"]
+
+[ext_resource type="Script" path="res://camera_shaft.gd" id="1_mbc5x"]
+
+[node name="Camera_Shaft" type="Node3D"]
+script = ExtResource("1_mbc5x")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)

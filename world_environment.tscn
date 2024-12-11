@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dav784s6yxdpu"]
+
+[ext_resource type="Texture2D" uid="uid://b543wc160l280" path="res://Epic_GloriousPink_EquiRect.png" id="1_wqb2y"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sot2r"]
+panorama = ExtResource("1_wqb2y")
+
+[sub_resource type="Sky" id="Sky_32dx4"]
+sky_material = SubResource("PanoramaSkyMaterial_sot2r")
+
+[sub_resource type="Environment" id="Environment_yg06h"]
+background_mode = 2
+sky = SubResource("Sky_32dx4")
+ssao_enabled = true
+ssao_radius = 8.57
+ssao_intensity = 6.72
+ssao_power = 0.416088
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = SubResource("Environment_yg06h")

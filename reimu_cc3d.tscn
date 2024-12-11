@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmb44odro5vv7"]
+
+[ext_resource type="PackedScene" uid="uid://dnstydu5ohyss" path="res://reimu.tscn" id="1_0diyn"]
+[ext_resource type="Script" path="res://third_person.gd" id="1_cfs6u"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_11h3u"]
+radius = 0.450066
+height = 2.06197
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jhj3l"]
+height = 1.60044
+
+[node name="Reimu" type="CharacterBody3D" groups=["Player"]]
+script = ExtResource("1_cfs6u")
+
+[node name="reimu" parent="." instance=ExtResource("1_0diyn")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D_01" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_11h3u")
+
+[node name="CollisionShape3D_02" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_jhj3l")

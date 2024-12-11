@@ -39,6 +39,7 @@ var Flag00: bool = true
 #var bar:ProgressBar = null
 var Flag01: bool = true
 var Flag02: bool = true
+var Flag03: bool = true
 var is_standing: bool = true
 var col_01: CollisionShape3D = null
 var col_02: CollisionShape3D = null
@@ -50,6 +51,7 @@ var HitPoint: int = 100
 var stealth: bool = false
 var td_Flag: bool = false
 var death: bool = false
+var No_Damage_Timer: float = 0.0
 #var WinText: Label = null
 #var audioplayer: AudioStreamPlayer3D = null
 #var PauseText: Label = null
@@ -211,6 +213,8 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
 		if Flag01:
 #			bar.value -= 30
+			No_Damage_Timer = 0.8
+			Flag03 = false
 			Flag01 = false
 		if damage_elapsed >= damage_duration:
 			damage_elapsed = 0.0
@@ -222,6 +226,12 @@ func _physics_process(delta: float) -> void:
 				state_machine.travel("damage")
 			damage_elapsed += delta
 			#print(animstate)
+	if not Flag03:
+		if No_Damage_Timer <= 0.0:
+			Flag03 = true
+		else:
+			No_Damage_Timer -= delta
+		#print(No_Damage_Timer)
 	#print(EffecPos.name)	
 	#print(animstate)	
 	#print(near_enemy.get("waken"))
@@ -319,14 +329,17 @@ func _physics_process(delta: float) -> void:
 	#if near_enemy != null:
 	#	print("G")
 	#print(stealth)
+	#print(is_standing)
 	move_and_slide()
 
 	# カメラの回転処理
 func flash_damage():
-	DamageEffect.take_damage()
-	DamageFlag = false
+	if Flag03:
+		DamageEffect.take_damage()
+		DamageFlag = false
 func HitDamage(damage):
-	HitPoint -= damage	
+	if Flag03:
+		HitPoint -= damage	
 	
 func _on_body_entered(body):
 	if body.is_in_group("Enemy"):

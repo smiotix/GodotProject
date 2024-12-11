@@ -1,16 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpmd0gxc10grt"]
+[gd_scene load_steps=4 format=3 uid="uid://byhqy5vslv1w"]
 
-[ext_resource type="Script" path="res://EnemyAI01.gd" id="1_lepvl"]
-[ext_resource type="PackedScene" uid="uid://cpqolx1pmtnga" path="res://mob_tengu.tscn" id="1_rj70u"]
+[ext_resource type="Script" path="res://EnemyAI01.gd" id="1_dtkd8"]
+[ext_resource type="PackedScene" uid="uid://cpqolx1pmtnga" path="res://mob_tengu.tscn" id="2_1vg13"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2hobl"]
 height = 1.96476
 
 [node name="mob_tengu" type="CharacterBody3D" groups=["Enemy"]]
-script = ExtResource("1_lepvl")
-type = 1
+script = ExtResource("1_dtkd8")
 
-[node name="mob_tengu" parent="." instance=ExtResource("1_rj70u")]
+[node name="mob_tengu" parent="." instance=ExtResource("2_1vg13")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
