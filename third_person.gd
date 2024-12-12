@@ -53,7 +53,7 @@ var td_Flag: bool = false
 var death: bool = false
 var No_Damage_Timer: float = 0.0
 #var WinText: Label = null
-#var audioplayer: AudioStreamPlayer3D = null
+var audioplayer: AudioStreamPlayer3D = null
 #var PauseText: Label = null
 
 
@@ -77,7 +77,7 @@ func _ready():
 	attack_area = get_node("reimu/Armature/Area3D")
 #	bar = get_node("../Koishi_Life")
 #	WinText = get_node("../WinText")
-#	audioplayer = get_node("koishi01godot/Armature/AudioStreamPlayer3D")
+	audioplayer = get_node("reimu/AudioStreamPlayer3D")
 #	PauseText = get_node("../PauseText")
 #	damage_duration = DamageEffect.get("blink_duration")
 	attack_area.connect("body_entered", Callable(self, "_on_body_entered"))
@@ -250,9 +250,9 @@ func _physics_process(delta: float) -> void:
 						add_child(emitter)
 						#print(emitter.transform.origin)
 						enemy.parry()
-#						var sound = preload("res://soundFX_HAMMER_Hit_Metal_Armor_stereo.wav")	
-#						audioplayer.stream = sound
-#						audioplayer.play()
+						var sound = preload("res://soundFX_HAMMER_Hit_Metal_Armor_stereo.wav")	
+						audioplayer.stream = sound
+						audioplayer.play()
 						state_machine.travel("parry")
 			else:
 				parry_miss = true

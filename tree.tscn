@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2td00wpt604s"]
+
+[ext_resource type="PackedScene" uid="uid://ci76yqmupbdgb" path="res://tree.glb" id="1_sm3w5"]
+
+[node name="tree" instance=ExtResource("1_sm3w5")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
