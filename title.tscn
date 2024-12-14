@@ -7,36 +7,69 @@ font_size = 30
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("labels")]
 script = ExtResource("1_lg74t")
-labels = [NodePath("Label"), NodePath("Label2"), NodePath("Label3")]
+labels = [NodePath("Control/Label"), NodePath("Control/Label2"), NodePath("Control/Label3"), NodePath("Control/Label4")]
 
-[node name="Label" type="Label" parent="."]
-offset_left = 70.0
+[node name="Control" type="Control" parent="."]
+layout_direction = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
 offset_top = 100.0
-offset_right = 233.0
-offset_bottom = 142.0
+offset_right = 360.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Game Start"
 label_settings = SubResource("LabelSettings_e5hmi")
 
-[node name="Label2" type="Label" parent="."]
-offset_left = 70.0
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
 offset_top = 150.0
-offset_right = 230.0
-offset_bottom = 192.0
+offset_right = 360.0
+offset_bottom = 155.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Full Screen/Window"
 label_settings = SubResource("LabelSettings_e5hmi")
 
-[node name="Label3" type="Label" parent="."]
-offset_left = 70.0
+[node name="Label3" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
 offset_top = 200.0
-offset_right = 230.0
-offset_bottom = 242.0
+offset_right = 360.0
+offset_bottom = 205.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Tutorial"
 label_settings = SubResource("LabelSettings_e5hmi")
 
-[node name="Label4" type="Label" parent="."]
-offset_left = 70.0
+[node name="Label4" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
 offset_top = 250.0
-offset_right = 230.0
-offset_bottom = 292.0
+offset_right = 360.0
+offset_bottom = 255.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "End"
 label_settings = SubResource("LabelSettings_e5hmi")

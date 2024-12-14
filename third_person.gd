@@ -54,6 +54,7 @@ var death: bool = false
 var No_Damage_Timer: float = 0.0
 #var WinText: Label = null
 var audioplayer: AudioStreamPlayer3D = null
+var DieTimer:float = 6
 #var PauseText: Label = null
 
 
@@ -192,7 +193,7 @@ func _physics_process(delta: float) -> void:
 		if current_position > 0.6 and attack_flag:
 			#if enemy_enter:
 			if near_enemy.get("body_enter"):
-				if not near_enemy.get("guard_flag"):
+				if not near_enemy.get("guard_flag") and not near_enemy.get("death"):
 					if near_enemy.has_method("flash_damage"):
 						attack_flag = false
 						var effect_resource = preload("res://effect/Hit03.efkefc")
@@ -328,6 +329,11 @@ func _physics_process(delta: float) -> void:
 			state_machine.travel("death")
 			death = true
 		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
+	if death:
+		DieTimer -= delta
+		#print(DieTimer)
+		if DieTimer <= 0.0:
+			get_tree().change_scene_to_file("res://title.tscn")	
 	#print(current_position)
 	#if near_enemy != null:
 	#	print("G")

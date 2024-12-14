@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="test02"
-run/main_scene="res://title.tscn"
+run/main_scene="res://lang.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Globals="*res://globals.gd"
 
 [editor_plugins]
 
@@ -73,5 +77,10 @@ joy_axis_down={
 pause={
 "deadzone": 0.5,
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":true,"script":null)
+]
+}
+cancel={
+"deadzone": 0.5,
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":1,"pressure":0.0,"pressed":true,"script":null)
 ]
 }

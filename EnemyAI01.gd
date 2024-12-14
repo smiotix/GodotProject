@@ -36,7 +36,8 @@ var animplayer = null
 @export_enum("Patrol","Stand") var type:int
 @export var Gate_off: bool = false
 var waken: bool = false
-var can_parry_flag: bool = true 
+var can_parry_flag: bool = true
+var death: bool = false 
 
 func _ready():
 	gravity = Vector3.DOWN * ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -192,6 +193,7 @@ func _physics_process(delta: float) -> void:
 			damage_elapsed += delta
 	if HitPoint <= 0:
 		state = State.Die
+		death = true
 	#print(body_enter)
 	#print(animstate)
 	if is_instance_valid(self):
@@ -218,6 +220,7 @@ func take_down():
 			if obj.get("td_Flag"):
 				obj.set("td_Flag",false)
 			state = State.Die
+			death = true
 
 
 func before_take_down():
