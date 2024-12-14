@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwnpea5c72irq"]
+[gd_scene load_steps=10 format=3 uid="uid://bwnpea5c72irq"]
 
 [ext_resource type="PackedScene" uid="uid://cvseowmjdltmb" path="res://tate.glb" id="1_fxnl2"]
-[ext_resource type="Material" uid="uid://c2v3cdclwya3s" path="res://gobot_celshaded10.tres" id="2_nd8ur"]
+[ext_resource type="Material" uid="uid://8e2bh6fs8el8" path="res://tate07.tres" id="2_7ax0e"]
+[ext_resource type="Script" path="res://tate.gd" id="3_cvsey"]
+[ext_resource type="Material" uid="uid://roktusvafjar" path="res://tate01.tres" id="4_mcutn"]
+[ext_resource type="Material" uid="uid://c2c0f3k7s7i7s" path="res://tate02.tres" id="5_dopns"]
+[ext_resource type="Material" uid="uid://blpi7cr77tprw" path="res://tate03.tres" id="6_tp7q4"]
+[ext_resource type="Material" uid="uid://ba55kam1kucbe" path="res://tate04.tres" id="7_1kpp5"]
+[ext_resource type="Material" uid="uid://waerfowhwrkk" path="res://tate05.tres" id="8_tf1o5"]
+[ext_resource type="Material" uid="uid://djhjoy25q5kvt" path="res://tate06.tres" id="9_m5m55"]
 
 [node name="tate" instance=ExtResource("1_fxnl2")]
 
 [node name="盾" parent="." index="0"]
-surface_material_override/0 = ExtResource("2_nd8ur")
+surface_material_override/0 = ExtResource("2_7ax0e")
+script = ExtResource("3_cvsey")
+materials = Array[Material]([ExtResource("4_mcutn"), ExtResource("5_dopns"), ExtResource("6_tp7q4"), ExtResource("7_1kpp5"), ExtResource("8_tf1o5"), ExtResource("9_m5m55"), ExtResource("2_7ax0e")])
