@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://6t350xne6t61"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5feg5"]
+font_size = 40
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 405.0
+offset_top = 299.0
+offset_right = 807.0
+offset_bottom = 341.0
+text = "Full Screen/Window"
+label_settings = SubResource("LabelSettings_5feg5")

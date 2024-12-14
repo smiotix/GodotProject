@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp5oa821w0xlf"]
+
+[ext_resource type="Script" path="res://title.gd" id="1_lg74t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e5hmi"]
+font_size = 30
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("labels")]
+script = ExtResource("1_lg74t")
+labels = [NodePath("Label"), NodePath("Label2"), NodePath("Label3")]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 70.0
+offset_top = 100.0
+offset_right = 233.0
+offset_bottom = 142.0
+text = "Game Start"
+label_settings = SubResource("LabelSettings_e5hmi")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 70.0
+offset_top = 150.0
+offset_right = 230.0
+offset_bottom = 192.0
+text = "Full Screen/Window"
+label_settings = SubResource("LabelSettings_e5hmi")
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 70.0
+offset_top = 200.0
+offset_right = 230.0
+offset_bottom = 242.0
+text = "Tutorial"
+label_settings = SubResource("LabelSettings_e5hmi")
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 70.0
+offset_top = 250.0
+offset_right = 230.0
+offset_bottom = 292.0
+text = "End"
+label_settings = SubResource("LabelSettings_e5hmi")

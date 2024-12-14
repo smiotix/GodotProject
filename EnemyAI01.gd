@@ -176,7 +176,7 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
 	if Flag02 and (state == State.Patrol or state == State.Stand):
 		if rayscript.get("PlayerDetection"):
-			#state = State.Attack
+			state = State.Attack
 			Flag02 = false
 			waken = true
 	if DamageFlag:

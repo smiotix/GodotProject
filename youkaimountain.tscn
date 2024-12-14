@@ -1,10 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://bq25x188qe1tv"]
+[gd_scene load_steps=26 format=3 uid="uid://bq25x188qe1tv"]
 
 [ext_resource type="Material" uid="uid://c5tg7t2ttfaah" path="res://grass02.tres" id="1_efjy0"]
 [ext_resource type="Material" uid="uid://b3mitphpwor8e" path="res://wallmat.tres" id="2_jrk0p"]
 [ext_resource type="Material" uid="uid://lalt7datt4or" path="res://gatemat.tres" id="2_og88u"]
 [ext_resource type="Texture2D" uid="uid://tqgn58u423bv" path="res://CliffAlbedoSpecular.png" id="2_syk7j"]
-[ext_resource type="Material" uid="uid://2rb0jr2fiqey" path="res://gate.tres" id="2_u8g3d"]
 [ext_resource type="PackedScene" uid="uid://ba0o537xp32i0" path="res://cams.tscn" id="3_juh71"]
 [ext_resource type="PackedScene" uid="uid://dmb44odro5vv7" path="res://reimu_cc3d.tscn" id="4_5pnqg"]
 [ext_resource type="PackedScene" uid="uid://dav784s6yxdpu" path="res://world_environment.tscn" id="5_t2mkb"]
@@ -16,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://c2td00wpt604s" path="res://tree.tscn" id="12_evsx8"]
 [ext_resource type="PackedScene" uid="uid://ckbfyogrmsuwp" path="res://grass.tscn" id="12_svfya"]
 [ext_resource type="PackedScene" uid="uid://dsoye205wx2r4" path="res://gate.tscn" id="13_uhu65"]
+[ext_resource type="Script" path="res://pause.gd" id="17_aupv2"]
+[ext_resource type="PackedScene" uid="uid://bl2lcmvjoiox2" path="res://yashiki.tscn" id="17_tfthf"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_286r6"]
 
@@ -38,10 +39,6 @@ size = Vector3(71.0394, 90.3264, 163.276)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k67jd"]
 size = Vector3(23.2021, 28.2678, 103.518)
-
-[sub_resource type="BoxMesh" id="BoxMesh_ecdhh"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_jgcgs"]
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.8654, 0, 22.532)
@@ -276,16 +273,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 121.019, 16.0934, -37.4106)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1011, 16.6335, -1.58102)
 shape = SubResource("BoxShape3D_k67jd")
 
-[node name="MeshInstance3D18" type="MeshInstance3D" parent="."]
-transform = Transform3D(9.98764, -0.24852, 0, 0.497039, 4.99382, 0, 0, 0, 10, 111.157, 13.0275, -36.7031)
-mesh = SubResource("BoxMesh_ecdhh")
-surface_material_override/0 = ExtResource("2_u8g3d")
-
-[node name="Area3D" type="Area3D" parent="MeshInstance3D18"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D18/Area3D"]
-shape = SubResource("BoxShape3D_jgcgs")
-
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.574242, 0, -5.88888)
 
@@ -350,7 +337,7 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -11.7912, 2.59028, -7.1
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -8.41668, 2.59028, -7.13522)
 
 [node name="grass2" parent="." instance=ExtResource("12_svfya")]
-transform = Transform3D(0.2, 0, 0, 0, 0.15, 0, 0, 0, 0.5, -26.1716, -2.23996, -52.0977)
+transform = Transform3D(0.2, 0, 0, 0, 0.15, 0, 0, 0, 0.5, -26.1716, -2.51784, -52.0977)
 
 [node name="grass7" parent="." instance=ExtResource("12_svfya")]
 transform = Transform3D(0.2, 0, 0, 0, 0.15, 0, 0, 0, 0.5, -24.5481, -2.23996, -52.0977)
@@ -359,13 +346,13 @@ transform = Transform3D(0.2, 0, 0, 0, 0.15, 0, 0, 0, 0.5, -24.5481, -2.23996, -5
 transform = Transform3D(0.2, 0, 0, 0, 0.15, 0, 0, 0, 0.5, -27.8298, -2.41976, -52.0977)
 
 [node name="grass5" parent="." instance=ExtResource("12_svfya")]
-transform = Transform3D(0.2, 0, 0, 0, 0.15, 0, 0, 0, 0.5, -16.3829, -1.50419, -51.184)
+transform = Transform3D(0.2, 0, 0, 0, 0.15, 0, 0, 0, 0.5, -16.3829, -1.70228, -51.184)
 
 [node name="grass6" parent="." instance=ExtResource("12_svfya")]
-transform = Transform3D(0.2, 0, 0, 0, 0.15, 0, 0, 0, 0.5, -18.2221, -1.50419, -51.184)
+transform = Transform3D(0.2, 0, 0, 0, 0.15, 0, 0, 0, 0.5, -18.2221, -1.6579, -51.184)
 
 [node name="grass27" parent="." instance=ExtResource("12_svfya")]
-transform = Transform3D(0.2, 0, 0, 0, 0.15, 0, 0, 0, 0.5, -20.0263, -1.50419, -51.184)
+transform = Transform3D(0.2, 0, 0, 0, 0.15, 0, 0, 0, 0.5, -20.0263, -1.78587, -51.184)
 
 [node name="grass8" parent="." instance=ExtResource("12_svfya")]
 transform = Transform3D(0.2, 0, 0, 0, 0.15, 0, 0, 0, 0.5, 1.17655, 0.241889, -43.9968)
@@ -1634,3 +1621,10 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 56.3958, 11.1655, -23.4
 
 [node name="grass25" parent="." instance=ExtResource("12_svfya")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 56.3958, 11.1655, -21.0539)
+
+[node name="Pause" type="Node3D" parent="."]
+process_mode = 3
+script = ExtResource("17_aupv2")
+
+[node name="yashiki" parent="." instance=ExtResource("17_tfthf")]
+transform = Transform3D(-0.0740295, 0, -2.99909, 0, 3, 0, 2.99909, 0, -0.0740295, 120.521, 12.9171, -46.7758)

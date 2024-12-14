@@ -7,7 +7,7 @@
 albedo_color = Color(0.290196, 0.65098, 0.407843, 0.772549)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tbq56"]
-size = Vector3(9.70789, 8.72955, 11.7031)
+size = Vector3(11.8246, 11.749, 14.628)
 
 [node name="grass" instance=ExtResource("1_ekb6g")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.688031, 0, 0.354619)
@@ -19,5 +19,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_6d2ms")
 script = ExtResource("2_ca0ne")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.72817, 0.693939, -5.35156)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.68928, 1.07088, -4.82904)
 shape = SubResource("BoxShape3D_tbq56")
