@@ -13,7 +13,7 @@ albedo_texture = ExtResource("2_vlas3")
 uv1_scale = Vector3(10, 10, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_20nph"]
-size = Vector3(22.3433, 3.88818, 3.74881)
+size = Vector3(20.0581, 3.88818, 2.60566)
 
 [node name="cliff" instance=ExtResource("1_d1mwr")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
@@ -27,5 +27,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_vsukm")
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1041, 1.44409, 0.16192)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75703, 1.44409, 0.468656)
 shape = SubResource("BoxShape3D_20nph")

@@ -235,9 +235,9 @@ func _physics_process(delta: float) -> void:
 	#print(EffecPos.name)	
 	#print(animstate)	
 	#print(near_enemy.get("waken"))
-	if Input.is_action_just_pressed("take_down") and is_on_floor() and DamageFlag and not parry_miss and Flag02 and near_enemy.get("waken") and is_standing and not death:
+	if Input.is_action_just_pressed("take_down") and is_on_floor() and DamageFlag and Flag02 and near_enemy.get("waken") and is_standing and not death:
 		for enemy in get_tree().get_nodes_in_group("Enemy"):
-			if enemy.get("can_parry_flag"):
+			if enemy.get("can_parry_flag") and not parry_miss:
 				#print(enemy.get("can_parry_flag"))
 				if enemy.has_method("parry"):
 					if enemy.get("body_enter"):
