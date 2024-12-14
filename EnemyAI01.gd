@@ -34,6 +34,7 @@ var p_state_machine = null
 var guard_flag: bool = false
 var animplayer = null
 @export_enum("Patrol","Stand") var type:int
+@export var Gate_off: bool = false
 var waken: bool = false
 var can_parry_flag: bool = true 
 
@@ -159,6 +160,8 @@ func _physics_process(delta: float) -> void:
 				state_machine.travel("run")
 			velocity = -global_transform.basis.z * run_speed + Vector3(0, velocity.y, 0) + gravity * delta 
 	elif state == State.Die:
+		if Gate_off:
+			Gate_off = false
 		if animstate != "death":
 			state_machine.travel("death")
 		velocity = Vector3(0, velocity.y, 0)  + gravity * delta

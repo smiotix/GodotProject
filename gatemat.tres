@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://lalt7datt4or"]
+
+[ext_resource type="Texture2D" uid="uid://chq4185v1mou5" path="res://wood_grain.png" id="1_y3448"]
+
+[resource]
+albedo_texture = ExtResource("1_y3448")
+uv1_scale = Vector3(1, 12, 12)

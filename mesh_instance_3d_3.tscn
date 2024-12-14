@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cl6n4m6bgitlq"]
+
+[ext_resource type="Texture2D" uid="uid://tqgn58u423bv" path="res://CliffAlbedoSpecular.png" id="1_es0hk"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_wb0wx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g0cgq"]
+albedo_texture = ExtResource("1_es0hk")
+uv1_scale = Vector3(8, 8, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ehox5"]
+size = Vector3(0.717285, 1.02625, 1.00964)
+
+[node name="MeshInstance3D3" type="MeshInstance3D"]
+transform = Transform3D(7.10239, 3.68185, 0, -3.68185, 7.10239, 0, 0, 0, 8, 15.9591, 2.26288, -13.3097)
+mesh = SubResource("PrismMesh_wb0wx")
+skeleton = NodePath("../Node3D34/Node3D28/tree3")
+surface_material_override/0 = SubResource("StandardMaterial3D_g0cgq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.889237, 0.457458, 0, -0.457458, 0.889237, 0, 0, 0, 1, 0.0712191, -0.126746, 0.00482178)
+shape = SubResource("BoxShape3D_ehox5")
