@@ -255,6 +255,9 @@ func _physics_process(delta: float) -> void:
 						audioplayer.play()
 						state_machine.travel("parry")
 			else:
+				var sound = preload("res://parry_miss.wav")
+				audioplayer.stream = sound
+				audioplayer.play()
 				parry_miss = true
 	if joystick_right_input != Vector2.ZERO:
 		camera_node.rotate_x(deg_to_rad(-joystick_right_input.y * camera_rotate_speed))

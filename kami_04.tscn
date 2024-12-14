@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8y5kbvpicj6j"]
+
+[ext_resource type="PackedScene" uid="uid://el1ovkkq1cl8" path="res://kami04.glb" id="1_1k0af"]
+[ext_resource type="Material" uid="uid://d0pq5xfwmffqt" path="res://gobot_celshaded20.tres" id="2_wc8wa"]
+
+[node name="kami04" instance=ExtResource("1_1k0af")]
+
+[node name="髪_002" parent="." index="0" groups=["kami"]]
+surface_material_override/0 = ExtResource("2_wc8wa")

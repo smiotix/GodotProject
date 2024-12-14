@@ -22,6 +22,7 @@ enabled=PackedStringArray("res://addons/effekseer/plugin.cfg")
 [global_group]
 
 Player=""
+kami=""
 
 [input]
 
