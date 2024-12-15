@@ -1,0 +1,7 @@
+When the enemy discovers you, the battle begins.
+The Y button on takedown turns into a parry button.
+Press X to kick and Y to parry.
+Y button to parry an enemy's attack.
+The timing of the parry must match the timing of the enemy's attack.
+If you succeed in parry, you will hear a high pitched sound.
+If you fail to parry, you will hear a dull sound.

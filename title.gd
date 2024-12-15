@@ -9,11 +9,14 @@ func _ready():
 	labels[0].modulate = Color(1, 1, 0)
 	if Globals.lang_setting == 0:
 		labels[0].text = "ゲームスタート"
-		labels[1].text = "フルスクリーン/ウィンドウ"
-		labels[2].text = "チュートリアル"
-		labels[3].text = "ゲームを終わる"
+		labels[1].text = "チュートリアル"
+		labels[2].text = "ゲームを終わる"
+#		labels[3].text = "ゲームを終わる"
 	elif Globals.lang_setting == 1:
-		pass
+		labels[0].text = "Game start"
+		labels[1].text = "Tutorial"
+		labels[2].text = "Exit the game"
+	update_selection()
 func _process(_delta):
 	pass
 #if Input.is_action_just_pressed("jump"):
@@ -39,11 +42,11 @@ func _input(event):
 		if selected_index == 0:
 			get_tree().change_scene_to_file("res://youkaimountain.tscn")
 		elif selected_index == 1:
-			toggle_fullscreen()
+			get_tree().change_scene_to_file("res://tutorial.tscn")
 		elif selected_index == 2:
-			pass
+			get_tree().quit()
 	elif event.is_action_pressed("cancel"):
-		get_tree().change_scene_to_file("res://lang.tscn")
+		get_tree().change_scene_to_file("res://opening.tscn")
 	
 func toggle_fullscreen(): 
 	if fullscreen: 
@@ -55,8 +58,8 @@ func toggle_fullscreen():
 func update_selection(): 
 	for i in range(labels.size()):
 		if i == selected_index: 
-			labels[i].modulate = Color(1, 1, 0)
+			labels[i].modulate = Color(1, 0, 0)
 			 # 選択状態を示す色（黄色） 
 		else:
-			labels[i].modulate = Color(1, 1, 1) 
+			labels[i].modulate = Color(0, 0, 0) 
 			# 通常の色（白）

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckgsrx6076ojn"]
+[gd_scene load_steps=6 format=3 uid="uid://ckgsrx6076ojn"]
 
 [ext_resource type="PackedScene" uid="uid://cm7ufmvwer3uj" path="res://cliff.glb" id="1_d1mwr"]
 [ext_resource type="Texture2D" uid="uid://tqgn58u423bv" path="res://CliffAlbedoSpecular.png" id="2_iyyj1"]
@@ -12,9 +12,6 @@ uv1_scale = Vector3(12, 12, 12)
 albedo_texture = ExtResource("2_vlas3")
 uv1_scale = Vector3(10, 10, 10)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_20nph"]
-size = Vector3(20.0581, 3.88818, 2.60566)
-
 [node name="cliff" instance=ExtResource("1_d1mwr")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 
@@ -23,9 +20,3 @@ surface_material_override/0 = SubResource("StandardMaterial3D_yxhke")
 
 [node name="Cube_001" parent="." index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_vsukm")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75703, 1.44409, 0.468656)
-shape = SubResource("BoxShape3D_20nph")

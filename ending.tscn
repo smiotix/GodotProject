@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnu83w3sf08pr"]
+
+[ext_resource type="PackedScene" uid="uid://durxgxi13qol6" path="res://opening.tscn" id="1_6iyfn"]
+[ext_resource type="Script" path="res://Ending.gd" id="2_k4fs4"]
+
+[node name="Node2D" instance=ExtResource("1_6iyfn")]
+script = ExtResource("2_k4fs4")
+
+[node name="Label" parent="Control" index="2"]
+offset_left = 711.0
+offset_top = 21.0
+offset_bottom = 1096.0
+
+[node name="Label2" parent="Control" index="3"]
+text = ""

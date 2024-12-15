@@ -1,0 +1,8 @@
+basic controls
+
+L stick : move
+R stick : camera rotation
+A : jump
+X : attack
+Y : take down/parry
+R stick pressed down : crouch/stand

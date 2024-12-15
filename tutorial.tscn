@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://qkwmv25ha1te"]
+
+[ext_resource type="Script" path="res://tutorial.gd" id="1_awn4i"]
+[ext_resource type="Texture2D" uid="uid://b0m8g7memdu1w" path="res://01.jpg" id="1_ou1xw"]
+[ext_resource type="Texture2D" uid="uid://ucbo4yyemdl0" path="res://02.jpg" id="2_n2hnn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_atd3o"]
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ixr3"]
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n4y27"]
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("labels")]
+script = ExtResource("1_awn4i")
+labels = [NodePath("Control/Label"), NodePath("Control/Label2"), NodePath("Control/Label3")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 2197.0
+offset_bottom = 1430.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+position = Vector2(836, 191)
+scale = Vector2(0.566676, 0.711202)
+texture = ExtResource("1_ou1xw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Control"]
+position = Vector2(827, 612)
+scale = Vector2(0.552419, 0.618671)
+texture = ExtResource("2_n2hnn")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 87.0
+offset_right = 610.0
+offset_bottom = 625.0
+label_settings = SubResource("LabelSettings_atd3o")
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1031.0
+offset_top = 36.0
+offset_right = 1561.0
+offset_bottom = 374.0
+label_settings = SubResource("LabelSettings_5ixr3")
+
+[node name="Label3" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1046.0
+offset_top = 455.0
+offset_right = 1562.0
+offset_bottom = 784.0
+label_settings = SubResource("LabelSettings_n4y27")

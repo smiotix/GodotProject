@@ -203,6 +203,9 @@ func _physics_process(delta: float) -> void:
 						emitter.transform.basis = EffecPos.transform.basis
 						emitter.play()
 						add_child(emitter)
+						var sound = preload("res://soundFX_Gard.wav")	
+						audioplayer.stream = sound
+						audioplayer.play()
 						near_enemy.flash_damage()
 		if current_position > 1.89:
 			if is_standing:
@@ -321,6 +324,9 @@ func _physics_process(delta: float) -> void:
 			if near_enemy.get("before_take_down_flag"):
 				#print(near_enemy.has_method("take_down"))
 				if near_enemy.has_method("take_down"):
+					var sound = preload("res://take_down.wav")	
+					audioplayer.stream = sound
+					audioplayer.play()
 					near_enemy.take_down()
 			take_down_flag = false
 		velocity = Vector3(0, velocity.y, 0)  + gravity * delta

@@ -38,6 +38,7 @@ var animplayer = null
 var waken: bool = false
 var can_parry_flag: bool = true
 var death: bool = false 
+var audioplayer: AudioStreamPlayer3D = null
 
 func _ready():
 	gravity = Vector3.DOWN * ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -48,6 +49,7 @@ func _ready():
 	EffecPos = get_node("mob_tengu/Armature/EffecPos")
 	DamageEffect = get_node("mob_tengu/Armature/GeneralSkeleton")
 	animplayer = get_node("mob_tengu/Armature/AnimationPlayer")
+	audioplayer = get_node("mob_tengu/AudioStreamPlayer3D")
 	var node_group = get_tree().get_nodes_in_group("Player")
 	for node in node_group:
 		if node is CharacterBody3D:
@@ -150,6 +152,9 @@ func _physics_process(delta: float) -> void:
 						emitter.transform.basis = EffecPos.transform.basis
 						emitter.play()
 						add_child(emitter)
+						var sound = preload("res://soundFX_blade.wav")
+						audioplayer.stream = sound
+						audioplayer.play()	
 						attack_flag = false
 			if current_position > 1.53:
 				#animplayer.speed_scale = 1

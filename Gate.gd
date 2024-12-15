@@ -11,8 +11,8 @@ func _ready():
 	for block in self.get_children():
 		if block is MeshInstance3D:
 			gateblocks.append(block)
-	for block in gateblocks:
-		pass
+	#for block in gateblocks:
+	#	pass
 		#print(block.name)
 			
 func _process(_delta):

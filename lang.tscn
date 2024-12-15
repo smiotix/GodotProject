@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://lang.gd" id="1_bm5x5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_k8106"]
-font_size = 80
+font_size = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_ch7ji"]
-font_size = 80
+font_size = 50
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("labels")]
 script = ExtResource("1_bm5x5")
@@ -21,15 +21,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 2477.0
+offset_bottom = 1522.0
+
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 400.0
-offset_top = 200.0
-offset_right = 600.0
-offset_bottom = 270.0
+offset_left = 900.0
+offset_top = 400.0
+offset_right = 1140.0
+offset_bottom = 510.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "日本語"
@@ -40,10 +45,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 400.0
-offset_top = 300.0
-offset_right = 634.0
-offset_bottom = 370.0
+offset_left = 900.0
+offset_top = 500.0
+offset_right = 1174.0
+offset_bottom = 610.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "English"

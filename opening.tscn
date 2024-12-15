@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://durxgxi13qol6"]
+
+[ext_resource type="Texture2D" uid="uid://lpb4h73clwnl" path="res://reimu3.png" id="1_6fqke"]
+[ext_resource type="Script" path="res://opening.gd" id="1_usmjt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b5dd7"]
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_y43qy"]
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("label", "label2")]
+script = ExtResource("1_usmjt")
+label = NodePath("Control/Label")
+label2 = NodePath("Control/Label2")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 450.0
+offset_top = -8.0
+offset_right = 2108.0
+offset_bottom = 1225.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+position = Vector2(422, 554)
+scale = Vector2(0.807985, 0.760753)
+texture = ExtResource("1_6fqke")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 687.0
+offset_top = 264.0
+offset_right = 1754.0
+offset_bottom = 841.0
+label_settings = SubResource("LabelSettings_b5dd7")
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1059.0
+offset_top = 949.0
+offset_right = 1440.0
+offset_bottom = 1046.0
+text = "Press A to start game."
+label_settings = SubResource("LabelSettings_y43qy")
