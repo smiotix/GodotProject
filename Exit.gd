@@ -1,6 +1,6 @@
 extends Area3D
 
-var exit_timer: float = 6
+var exit_timer: float = 1.5
 var Flag01: bool = false
 
 func _ready():

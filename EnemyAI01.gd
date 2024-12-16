@@ -109,7 +109,7 @@ func _physics_process(delta: float) -> void:
 	#print(WalkTimer)
 	elif state == State.Attack and not DamageFlag:
 		var target_position = Player.global_transform.origin
-		look_at(target_position,Vector3.UP)
+		look_at(Vector3(target_position.x,global_transform.origin.y,target_position.z),Vector3.UP)
 		var distance = global_transform.origin.distance_to(target_position)
 		#print(distance)
 		if animstate == "guard":

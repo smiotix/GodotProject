@@ -339,6 +339,7 @@ func _physics_process(delta: float) -> void:
 		DieTimer -= delta
 		#print(DieTimer)
 		if DieTimer <= 0.0:
+			AudioManager.play_music("res://kahvi039a_badloop-your_blue_eyes.mp3")
 			get_tree().change_scene_to_file("res://title.tscn")	
 	#print(current_position)
 	#if near_enemy != null:

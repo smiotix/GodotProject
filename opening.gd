@@ -15,7 +15,7 @@ func _ready():
 func load_text_from_file(file_path: String) -> String: 
 	var file = FileAccess.open(file_path, FileAccess.READ) 
 	if not file: 
-		return "" 
+		return "テキストファイルがみつかりません" 
 	var text = file.get_as_text() 
 	file.close()
 	return text 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://durxgxi13qol6"]
 
-[ext_resource type="Texture2D" uid="uid://lpb4h73clwnl" path="res://reimu3.png" id="1_6fqke"]
 [ext_resource type="Script" path="res://opening.gd" id="1_usmjt"]
+[ext_resource type="Texture2D" uid="uid://b8qohmrdetnn1" path="res://reimu4.png" id="2_eltl2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_b5dd7"]
 font_size = 30
@@ -30,9 +30,9 @@ offset_right = 2108.0
 offset_bottom = 1225.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Control"]
-position = Vector2(422, 554)
-scale = Vector2(0.807985, 0.760753)
-texture = ExtResource("1_6fqke")
+position = Vector2(397.5, 536.5)
+scale = Vector2(0.229475, 0.219153)
+texture = ExtResource("2_eltl2")
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 0

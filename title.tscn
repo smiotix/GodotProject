@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bp5oa821w0xlf"]
+[gd_scene load_steps=4 format=3 uid="uid://bp5oa821w0xlf"]
 
 [ext_resource type="Script" path="res://title.gd" id="1_lg74t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_e5hmi"]
 font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_wq6c0"]
+font_size = 60
+font_color = Color(0, 0, 0, 1)
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("labels")]
 script = ExtResource("1_lg74t")
@@ -64,3 +68,12 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Exit the game"
 label_settings = SubResource("LabelSettings_e5hmi")
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1178.0
+offset_top = 855.0
+offset_right = 1831.0
+offset_bottom = 1050.0
+text = "a brief walk through"
+label_settings = SubResource("LabelSettings_wq6c0")
