@@ -273,7 +273,7 @@ func _physics_process(delta: float) -> void:
 		state_machine.travel("idle")
 	if parry_miss:
 		if Flag00:
-			parry_miss_timer = 0.5
+			parry_miss_timer = 0.25
 			Flag00 = false
 		else:
 			parry_miss_timer -=  1 * delta
@@ -317,6 +317,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			state_machine.travel("cIdle")
 	if animstate == "take_down":
+		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
 		#print(near_enemy.get("body_enter"))
 		#print(near_enemy.has_method("take_down"))
 		#print(current_position)
@@ -328,8 +329,19 @@ func _physics_process(delta: float) -> void:
 					audioplayer.stream = sound
 					audioplayer.play()
 					near_enemy.take_down()
-			take_down_flag = false
-		velocity = Vector3(0, velocity.y, 0)  + gravity * delta
+			take_down_flag = false		
+		elif not near_enemy.get("waken") and take_down_flag:
+			if near_enemy != null:
+				var current_direction = -global_transform.basis.z.normalized()
+				target_direction = (near_enemy.global_transform.origin - global_transform.origin).normalized()
+				var interpolated_direction = current_direction.lerp(target_direction, lerp_speed * delta)
+				interpolated_direction.y = 0
+				look_at(global_transform.origin + interpolated_direction, Vector3.UP)
+				if not td_Flag:
+					if near_enemy.get("body_enter"):
+						if near_enemy.has_method("before_take_down"):
+							near_enemy.before_take_down()
+							td_Flag = true	
 	if HitPoint <= 0:
 		if animstate != "death":
 			state_machine.travel("death")

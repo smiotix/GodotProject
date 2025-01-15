@@ -132,7 +132,7 @@ func _physics_process(delta: float) -> void:
 			#print(animplayer.speed_scale)
 			velocity = gravity * delta 
 			#print(current_position)
-			if current_position > 0.5 and current_position < 1:
+			if current_position > 0.4 and current_position < 1:
 				if can_parry_flag:
 					can_parry_flag = true
 			if current_position > 0.63:
